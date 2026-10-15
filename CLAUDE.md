@@ -20,8 +20,8 @@ visual entre eles.
 `docs/roteiro-<evento>.md` (o texto de cada dia, tarefa por tarefa). O roteiro é
 escrito e aprovado primeiro; depois vira `event.json`.
 
-**Estado (out/2026):** MVP com a **segunda-feira** da *Surprise Party* jogável.
-Terça a sexta estão no roteiro, ainda não no `event.json`.
+**Estado (out/2026):** MVP com a **segunda-feira** da *Surprise Party* jogável
+(15 partes). Terça a sexta estão no roteiro, ainda não no `event.json`.
 
 ## Arquitetura
 
@@ -44,8 +44,14 @@ de celular (o Playwright está disponível nas sessões na nuvem).
 
 ### Um dia no `event.json`
 
-`lock` (tela de bloqueio) → `notes` (lista do dia) → 4 `tasks` → `close`
-(resumo, agenda, gancho do dia seguinte, código de resultado, código do próximo dia).
+`lock` (tela de bloqueio) → `notes` (lista do dia) → **12 `tasks`** → `close`
+(resumo, agenda, gancho do dia seguinte, código de resultado, código do próximo dia):
+**15 partes por dia** (decidido em out/2026: 7 era curto para uma aula). Das 12
+tarefas, **8 são de montar** a frase e **4 são de leitura** (`"type": "pick"`), em
+que o aluno confere Notes, agenda ou a conversa e escolhe 1 de 3 respostas
+prontas (`outcomes` com `text`, `reply` e, nas erradas, `tip`; sem marca). O
+texto dessas respostas vai sem glossário (botão dentro de botão quebra a tela).
+O `checar.py` confere as contas (12 = 8 + 4).
 
 Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
 `blocks` (as peças do montador, inclusive as erradas) e `outcomes` (as respostas):

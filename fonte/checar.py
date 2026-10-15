@@ -30,7 +30,7 @@ for _b, _p, _pp, _ in IR:
 META = ["slug", "code", "title", "titlePt", "blurb", "blurbPt", "cover", "cast", "marks", "keywords"]
 DAY = ["day", "dayPt", "focusPt", "lock", "notes", "notesPt", "tasks", "close"]
 KINDS = {"ok", "warn", "bad"}
-TAREFAS = 4
+TAREFAS, LEITURA = 12, 4   # por dia: 12 tarefas, das quais 4 de leitura ("type": "pick") e 8 de montar
 
 sem_glossario = lambda t: re.sub(r"\[\[([^|\]]+)\|[^\]]+\]\]", r"\1", t.replace("{name}", "Ana"))
 def passado(t):
@@ -71,9 +71,33 @@ def check_event(slug, game):
             if k not in d: erros.append(f"{nd}: falta o campo '{k}'")
         if erros: continue
         if len(d["tasks"]) != TAREFAS: erros.append(f"{nd}: {len(d['tasks'])} tarefas (todo dia tem {TAREFAS})")
+        nl = sum(t.get("type") == "pick" for t in d["tasks"])
+        if nl != LEITURA: erros.append(f"{nd}: {nl} tarefas de leitura (todo dia tem {LEITURA} e {TAREFAS - LEITURA} de montar)")
         textos += [(nd, x) for x in d["notes"]] + [(nd, x[2]) for x in d["lock"]["items"]] + [(nd, d["close"]["tomorrow"]), (nd, d["close"]["hook"][3])]
         for t in d["tasks"]:
             tid = t.get("id", "?"); ids[tid] += 1; onde = f"{nd} · {tid}"
+            if t.get("type") == "pick":
+                for k in ["id", "app", "thread", "time", "messages", "pt", "outcomes"]:
+                    if k not in t: erros.append(f"{onde}: falta o campo '{k}'")
+                if "mark" in t: erros.append(f"{onde}: tarefa de leitura não tem marca (as marcas ficam nas de montar)")
+                for w, x in t.get("messages", []):
+                    if w not in cast: erros.append(f"{onde}: '{w}' fala, mas não está em meta.cast")
+                    textos.append((onde, x))
+                O = t.get("outcomes", [])
+                if len(O) != 3: erros.append(f"{onde}: tarefa de leitura com {len(O)} opções (são 3)")
+                if sum(o.get("kind") == "ok" for o in O) != 1: erros.append(f"{onde}: tarefa de leitura precisa de exatamente uma opção 'ok'")
+                if len({o.get("text") for o in O}) != len(O): erros.append(f"{onde}: opções repetidas")
+                for i, o in enumerate(O):
+                    ko = f"{onde} · opção {i + 1} ({o.get('kind')})"
+                    if o.get("kind") not in KINDS: erros.append(f"{ko}: kind deve ser ok, warn ou bad")
+                    if not o.get("text"): erros.append(f"{ko}: falta 'text' (o botão)")
+                    if not o.get("reply"): erros.append(f"{ko}: falta 'reply' (a reação do personagem)")
+                    if o.get("kind") != "ok" and not o.get("tip"): erros.append(f"{ko}: opção errada sem 'tip' (a dica em português)")
+                    textos.append((ko, o.get("text", "")))
+                    for w, x in o.get("reply", []):
+                        if w not in cast: erros.append(f"{ko}: '{w}' fala, mas não está em meta.cast")
+                        textos.append((ko, x))
+                continue
             for k in ["id", "app", "thread", "time", "messages", "pt", "blocks", "outcomes", "fallback"]:
                 if k not in t: erros.append(f"{onde}: falta o campo '{k}'")
             if any(k not in t for k in ["messages", "blocks", "outcomes", "fallback"]): continue

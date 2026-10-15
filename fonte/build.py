@@ -15,6 +15,7 @@ As respostas de cada tarefa são escritas como padrões de blocos:
   { "opt": "Sorry," }          bloco opcional
   { "any": ["a", "b", "c"] }   estes blocos em qualquer ordem
 O build expande os padrões em todas as frases aceitas (o template só compara).
+Tarefas de leitura ("type": "pick") não têm blocos: cada resposta tem "text".
 """
 import base64, hashlib, html, itertools, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -51,7 +52,8 @@ def load_event(slug):
             for o in t["outcomes"]:
                 if "say" in o: o["say"] = [s for p in o["say"] for s in expand(p)]
             ok = next(o for o in t["outcomes"] if o["kind"] == "ok")
-            t["model"] = join_toks(ok["say"][0])
+            # tarefa de leitura ("pick"): a resposta certa é a própria frase-modelo
+            t["model"] = re.sub(r"\[\[([^|\]]+)\|[^\]]+\]\]", r"\1", ok["text"]) if t.get("type") == "pick" else join_toks(ok["say"][0])
     return {"slug": slug, "meta": e["meta"], "days": e["days"]}, open(os.path.join(d, "scenes.js"), encoding="utf-8").read()
 
 def main(online=False, drafts=False, out=None):

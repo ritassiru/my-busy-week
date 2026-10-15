@@ -480,6 +480,16 @@ function builderHTML(t) {
     <div class="row2"><button type="button" class="btn" data-act="clear"${pick.length ? "" : " disabled"}>Clear <span>· apagar</span></button>
       <button type="button" class="btn primary" data-act="send"${pick.length ? "" : " disabled"}>Send ➤ <span>· enviar</span></button></div>`;
 }
+// tarefa de leitura ("pick"): 3 respostas prontas; a ordem é embaralhada, mas sempre a mesma para a mesma tarefa.
+// O texto do botão vai sem glossário: um botão de palavra dentro do botão da resposta quebra a tela.
+function pickOrder(t) {
+  let h = [...t.id].reduce((x, c) => (x * 31 + c.charCodeAt(0)) >>> 0, 7);
+  const idx = t.outcomes.map((_, i) => i);
+  for (let i = idx.length - 1; i > 0; i--) { h = (h * 1103515245 + 12345) >>> 0; const j = h % (i + 1); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+  return idx;
+}
+const pickHTML = t => `<div class="choices" role="group" aria-label="Choose your answer · escolha a resposta">${pickOrder(t).map(i =>
+  `<button type="button" class="btn" data-pick="${i}">${esc(semGloss(t.outcomes[i].text))}</button>`).join("")}</div>`;
 function screenTask(n) {
   const d = DAY(), t = d.tasks[n], a = answerOf(t.id);
   const icon = t.app === "call" ? "📞" : "💬";
@@ -498,7 +508,7 @@ function screenTask(n) {
     <div class="phone"><div class="ph-head"><span class="ph-ico" aria-hidden="true">${icon}</span><div><b>${esc(t.thread)}</b><small>${esc(t.time)}</small></div></div>
       <div class="ph-body">${sayButton(speakable(t.messages))}<div class="chat">${t.messages.map(([w, x]) => bubble(w, x)).join("")}
       ${a ? after : `</div>${t.mark ? `<p class="keyb">🔑 Important · esta resposta muda a sexta-feira</p>` : ""}
-        <p class="task-pt">${esc(t.pt)}</p><div id="builder">${builderHTML(t)}</div>`}
+        <p class="task-pt">${esc(t.pt)}</p>${t.type === "pick" ? pickHTML(t) : `<div id="builder">${builderHTML(t)}</div>`}`}
       </div>${appBar("chat")}</div>`);
   justSent = false;
 }
@@ -509,10 +519,14 @@ function redrawBuilder(focus) {
   (f || $("#builder .blk:not([disabled])") || $("#builder [data-act=send]")).focus();
 }
 function send() {
-  const d = DAY(), t = d.tasks[run.step - 2];
+  const t = DAY().tasks[run.step - 2];
   if (!pick.length || answerOf(t.id)) return;
-  const toks = pick.map(i => t.blocks[i]), i = judge(t, toks), o = outcomeOf(t, i);
-  run.answers.push({ day: run.day, id: t.id, said: joinToks(toks), o: i, kind: o.kind, first: o.kind === "ok" });
+  const toks = pick.map(i => t.blocks[i]);
+  answer(t, judge(t, toks), joinToks(toks));
+}
+function answer(t, i, said) {
+  const o = outcomeOf(t, i);
+  run.answers.push({ day: run.day, id: t.id, said, o: i, kind: o.kind, first: o.kind === "ok" });
   if (t.mark) run.marks[t.mark] = o.mark === true;
   if (o.calendar) run.cal.push(o.calendar);
   if (t.notes) run.notes.push({ day: run.day + 1, text: t.notes });
@@ -576,6 +590,8 @@ function openApp(k) {
 $("#app").addEventListener("click", e => {
   const blk = e.target.closest("[data-blk]"), tok = e.target.closest("[data-tok]"), av = e.target.closest("[data-av]"), app = e.target.closest("[data-app]");
   if (blk) { pick.push(+blk.dataset.blk); redrawBuilder(); return; }
+  const pk = e.target.closest("[data-pick]");
+  if (pk) { const t = DAY().tasks[run.step - 2]; if (!answerOf(t.id)) answer(t, +pk.dataset.pick, t.outcomes[+pk.dataset.pick].text); return; }
   if (tok) { pick.splice(+tok.dataset.tok, 1); redrawBuilder(); return; }
   if (app) { if (app.dataset.app !== "chat") openApp(app.dataset.app); return; }
   if (av) {
