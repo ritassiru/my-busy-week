@@ -266,6 +266,7 @@
   "reais",
   "satisfeita",
   "ser",
+  "t",
   "tapioca",
   "vocês"
  ],
@@ -1178,5 +1179,18 @@
  "parties": "party|festas",
  "sure": "claro",
  "who's": "who is|quem é, quem está",
- "remember": "lembrar"
+ "remember": "lembrar",
+ "arriving": "arrive|chegar",
+ "candles": "candle|velas",
+ "candy": "doce, bala",
+ "cleaning": "clean|limpar",
+ "dear": "querido(a)",
+ "plates": "plate|pratos",
+ "sandwich": "sanduíche",
+ "shirt": "camisa",
+ "thanks": "obrigado(a)",
+ "wallet": "carteira",
+ "wonderful": "maravilhoso",
+ "wow": "uau",
+ "yellow": "amarelo"
 }

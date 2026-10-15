@@ -443,12 +443,14 @@ function screenLock() {
     <button type="button" class="btn primary" data-act="next">Open the phone ▶ <span>· abrir o celular</span></button>`);
 }
 
-const notesToday = () => DAY().notes.map(t => ({ t, isNew: false })).concat(run.notes.filter(n => n.day === run.day).map(n => ({ t: n.text, isNew: true })));
+// as notas do dia: as fixas do event.json + as que vieram de tarefas do dia anterior ("Tuesday: ..." perde o nome do dia)
+const notesToday = () => DAY().notes.map(t => ({ t, isNew: false })).concat(run.notes.filter(n => n.day === run.day)
+  .map(n => ({ t: n.text.replace(new RegExp("^" + DAY().day + ":\\s*"), ""), isNew: true })));
 function screenNotes() {
   const d = DAY();
   render(`${dayTop()}
     <div class="phone"><div class="ph-head"><span class="ph-ico" aria-hidden="true">📝</span><div><b>Notes</b><small>Today · ${esc(d.day)}</small></div></div>
-      <div class="ph-body"><ul class="notes-l">${d.notes.map(t => `<li>${rich(t)}</li>`).join("")}</ul>${sayButton(d.notes.join(" "))}</div>${appBar("notes")}</div>
+      <div class="ph-body"><ul class="notes-l">${notesToday().map(n => `<li class="${n.isNew ? "new" : ""}">${rich(n.t)}</li>`).join("")}</ul>${sayButton(notesToday().map(n => n.t).join(" "))}</div>${appBar("notes")}</div>
     <p class="task-pt">${esc(d.notesPt)}</p>
     <button type="button" class="btn primary" data-act="next">Messages ▶ <span>· mensagens</span></button>`);
 }
@@ -529,12 +531,16 @@ function answer(t, i, said) {
   run.answers.push({ day: run.day, id: t.id, said, o: i, kind: o.kind, first: o.kind === "ok" });
   if (t.mark) run.marks[t.mark] = o.mark === true;
   if (o.calendar) run.cal.push(o.calendar);
+  if (o.flag) run.flags = [...new Set([...(run.flags || []), o.flag])];   // escolhas sem marca que só mudam o visual (a camiseta da terça)
   if (t.notes) run.notes.push({ day: run.day + 1, text: t.notes });
   saveRun(); pick = []; justSent = !document.documentElement.classList.contains("no-motion");
   screenTask(run.step - 2);
   const b = $("#app [data-act=next]"); if (b) b.focus({ preventScroll: true });
 }
 
+// a agenda na ordem dos dias da semana (as entradas começam com "Mon", "Tue"...), não na ordem em que foram marcadas
+const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const calSorted = () => run.cal.map((c, i) => [c, i]).sort((x, y) => (DOW.indexOf(x[0].slice(0, 3)) - DOW.indexOf(y[0].slice(0, 3))) || x[1] - y[1]).map(x => x[0]);
 function resultCode() {
   const ev = EV(), marks = ev.meta.marks.map(k => run.marks[k] === true ? "1" : run.marks[k] === false ? "0" : "x").join("");
   const body = `${ev.meta.code}-${run.done.length}-${String(firstTry()).padStart(2, "0")}-${marks}`;
@@ -549,7 +555,7 @@ function screenClose() {
       <h2 style="margin:0">Good job, ${esc(NAME())}! <span class="hint">· bom trabalho!</span></h2>
       <p class="score">First try: ${firstTry(run.day)}/${d.tasks.length} <span class="hint">· acertos de primeira</span></p></div>
     <div class="card"><p class="sec-t" style="margin-top:0">📅 This week <span>· esta semana</span></p>
-      ${run.cal.length ? `<ul class="cal-l">${run.cal.map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nada marcado ainda.</p>`}
+      ${run.cal.length ? `<ul class="cal-l">${calSorted().map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nada marcado ainda.</p>`}
       <p class="sec-t">📝 Tomorrow <span>· amanhã</span></p><p>${rich(d.close.tomorrow)}</p></div>
     ${wordsCardHTML(run.dayT0)}
     <div class="lock" style="padding:14px"><div class="date" style="margin:0 0 8px">${esc(d.close.time)}</div>
@@ -584,7 +590,7 @@ function sheetList(title, items) {
 function openApp(k) {
   if (k === "notes") openSheet(sheetList(`📝 Notes <span>· anotações</span>`, `<ul class="notes-l">${notesToday().map(n => `<li class="${n.isNew ? "new" : ""}">${esc(semGloss(n.t))}</li>`).join("")}</ul>
     ${run.notes.some(n => n.day > run.day) ? `<p class="sec-t">Next days <span>· próximos dias</span></p><ul class="notes-l">${run.notes.filter(n => n.day > run.day).map(n => `<li>${esc(semGloss(n.text))}</li>`).join("")}</ul>` : ""}`));
-  else if (k === "calendar") openSheet(sheetList(`📅 Calendar <span>· agenda</span>`, run.cal.length ? `<ul class="cal-l">${run.cal.map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nothing yet · nada marcado ainda.</p>`));
+  else if (k === "calendar") openSheet(sheetList(`📅 Calendar <span>· agenda</span>`, run.cal.length ? `<ul class="cal-l">${calSorted().map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nothing yet · nada marcado ainda.</p>`));
 }
 
 $("#app").addEventListener("click", e => {
@@ -613,7 +619,7 @@ $("#app").addEventListener("click", e => {
   }
   else if (act === "pick") {
     const now = Date.now();
-    run = { event: b.dataset.ev, day: 0, step: 0, kw: false, marks: {}, answers: [], cal: [], notes: [], done: [], t0: now, dayT0: now };
+    run = { event: b.dataset.ev, day: 0, step: 0, kw: false, marks: {}, flags: [], answers: [], cal: [], notes: [], done: [], t0: now, dayT0: now };
     saveRun(); go();
   }
   else if (act === "saveprof") {

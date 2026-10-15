@@ -20,8 +20,9 @@ visual entre eles.
 `docs/roteiro-<evento>.md` (o texto de cada dia, tarefa por tarefa). O roteiro é
 escrito e aprovado primeiro; depois vira `event.json`.
 
-**Estado (out/2026):** MVP com a **segunda-feira** da *Surprise Party* jogável
-(15 partes). Terça a sexta estão no roteiro, ainda não no `event.json`.
+**Estado (out/2026):** **segunda e terça** da *Surprise Party* jogáveis (15 partes
+cada; a terça abre com o código `BALLOON`). Quarta a sexta estão no roteiro,
+ainda não no `event.json`.
 
 ## Arquitetura
 
@@ -70,7 +71,12 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
 - Tarefa com `mark` (decisão-chave): **toda** resposta e o fallback dizem
   `"mark": true/false`. **Só a informação muda a marca**; a forma errada com a
   informação certa é `warn` com `mark: true`.
-- `calendar` (na resposta) entra na agenda; `notes` (na tarefa) entra nas notas do dia seguinte.
+- `calendar` (na resposta, também nas de leitura) entra na agenda, que aparece na
+  ordem dos dias (a entrada começa com `Mon`, `Tue`...). `notes` (na tarefa) entra
+  nas notas do dia seguinte (escreva `"Tuesday: ..."`; na terça o nome do dia some
+  e a nota aparece como *new* no Notes).
+- `flag` (na resposta) guarda uma escolha **sem marca** que só muda o visual da
+  sexta (ex.: `camiseta_amarela`, na terça). Fica em `run.flags`.
 
 ## Regras para escrever (as mesmas do GDD)
 
