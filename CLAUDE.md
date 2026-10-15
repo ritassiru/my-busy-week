@@ -1,0 +1,124 @@
+# My Busy Week — instruções para o Claude
+
+Converse com o professor em **português**. O jogo é em **inglês**, com apoio em
+português (glossário, dicas, instruções curtas).
+
+## O projeto
+
+Jogo de inglês do Prof. Ritaciro Cavalcante (IFAL Campus Viçosa) para o **1º ano**
+do Ensino Médio Integrado, nível **A1/A2**: o aluno vive uma semana (segunda a
+sexta, **um dia por aula**) no celular de um adolescente e usa o **futuro**
+(*will*, *going to*, *present continuous* com expressão de tempo) para organizar
+um evento. Lido **no celular**, muitas vezes com internet limitada: tudo precisa
+funcionar em tela pequena, no modo claro e no escuro, e **sem internet**.
+
+Projetos irmãos: `ritassiru/story-shelf` (de onde vêm o template base, o glossário
+e o painel de configurações) e `ritassiru/the-ceo-game`. Mantenha a consistência
+visual entre eles.
+
+**Documentos de design:** `docs/gdd.md` (decisões do jogo) e
+`docs/roteiro-<evento>.md` (o texto de cada dia, tarefa por tarefa). O roteiro é
+escrito e aprovado primeiro; depois vira `event.json`.
+
+**Estado (out/2026):** MVP com a **segunda-feira** da *Surprise Party* jogável.
+Terça a sexta estão no roteiro, ainda não no `event.json`.
+
+## Arquitetura
+
+```
+fonte/game.json                       eventos, ordem, publicado/rascunho, códigos dos dias
+fonte/events/<slug>/event.json        metadados (meta) + os dias de um evento
+fonte/events/<slug>/scenes.js         ilustrações: SCENE_LIB["<slug>"] = (() => { ... return { cena: () => `svg` } })();
+fonte/template.html                   visual e lógica, iguais para todos os eventos
+fonte/a1.json, irreg.json             glossário Beginner e verbos irregulares (vieram da estante)
+fonte/build.py                        gera ../index.html, sw.js, manifest e professor.html (--online, --drafts, --out)
+fonte/checar.py                       valida o jogo e cada tarefa
+fonte/qr.py                           gerador de QR (o MESMO arquivo da estante: não edite aqui)
+fonte/icones.py                       ícones do aplicativo
+index.html, sw.js, manifest.webmanifest, professor.html   GERADOS. Nunca edite à mão.
+```
+
+**Depois de qualquer mudança:** `python3 fonte/checar.py` e depois
+`python3 fonte/build.py`. Abra o `index.html` e jogue ao menos um dia em largura
+de celular (o Playwright está disponível nas sessões na nuvem).
+
+### Um dia no `event.json`
+
+`lock` (tela de bloqueio) → `notes` (lista do dia) → 4 `tasks` → `close`
+(resumo, agenda, gancho do dia seguinte, código de resultado, código do próximo dia).
+
+Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
+`blocks` (as peças do montador, inclusive as erradas) e `outcomes` (as respostas):
+
+- `say`: padrões de blocos aceitos. `"Yes!"` = um bloco; `{"opt": "Sorry,"}` = opcional;
+  `{"any": ["a", "b", "c"]}` = esses blocos em qualquer ordem. A pontuação final é
+  opcional. O `build.py` expande tudo; a primeira frase da primeira resposta `ok` é
+  a frase-modelo das dicas ("Você quis dizer").
+- sem `say`, uma resposta é uma **regra**: `has` (todos estes blocos), `hasAny`
+  (algum destes), `lacks` (nenhum destes). As regras só valem se nenhuma frase
+  `say` combinou; vale a primeira da lista.
+- `fallback`: qualquer outra montagem.
+- `kind`: `ok` (conta como acerto de primeira; com `tip` vira ✅ com 💡), `warn`
+  (⚠️ só a forma errada) ou `bad` (❌ informação errada). Toda resposta errada tem `tip`.
+- Tarefa com `mark` (decisão-chave): **toda** resposta e o fallback dizem
+  `"mark": true/false`. **Só a informação muda a marca**; a forma errada com a
+  informação certa é `warn` com `mark: true`.
+- `calendar` (na resposta) entra na agenda; `notes` (na tarefa) entra nas notas do dia seguinte.
+
+## Regras para escrever (as mesmas do GDD)
+
+- Falas curtas, vocabulário A1/A2, **sem simple past, nem nas falas** (o
+  `checar.py` avisa). Expressões fixas no passado (*Got it!*) vão em `[[...|...]]`.
+- **Distratores:** uma forma errada só entra quando o sentido muda de verdade e a
+  reação mostra a mudança. Quando *will* e *going to* são naturais, aceite os dois
+  (✅ com 💡).
+- **-ing sem expressão de tempo quer dizer "agora"**: o balão só mostra
+  "compromisso marcado" com expressão de tempo na mesma frase, e o `checar.py`
+  avisa quando falta. Se o "agora" for de propósito (*I'm running!*), marque com `[[...]]`.
+- Glossário Beginner: toda palavra nova precisa estar em `fonte/a1.json`,
+  `_cognatos` ou `_ignorar` (o `checar.py` avisa). O `a1.json` veio da estante:
+  palavras novas aqui também servem lá, então vale copiar de volta.
+- Temas adequados a adolescentes. Lugares fictícios.
+- A festa (o evento) **sempre dá certo** na sexta: as marcas mudam o jeito, nunca
+  viram fracasso.
+
+## Decisões já tomadas (não desfazer sem pedir)
+
+- **Futuro no balão** (`WILL`, `GOING_TO`, `TIME`, `BE_ING`, `NOT_ING`): a mesma
+  regra no `template.html` e no `checar.py`. Se mudar num, mude no outro.
+- **Partes copiadas da estante sem mudança** (utilidades, verbos, `person()`/`SKY()`/
+  `GROUND()`, áudio, painel de configurações, *My words*, balão do glossário):
+  mudanças nelas devem ir para os dois projetos. Diferenças de propósito: textos
+  ("jogo" em vez de "estante/leitura") e a chave `reader:audio`.
+- **Armazenamento** (tudo em `try/catch`): configurações compartilhadas com a
+  estante (`reader:gloss`, `reader:theme`, `reader:size`, `reader:motion`,
+  `reader:audio`), porque é o mesmo site. Do jogo: `week:profile` (nome e avatar),
+  `week:run` (a semana em andamento) e `week:words` (*My words* do jogo, separado
+  da estante). O nome do aluno nunca sai do aparelho.
+- **Um dia por aula:** a segunda abre direto; terça a sexta pedem o código do dia
+  (`game.json` → `codes`), que fica em `professor.html`. O código organiza a
+  turma, não é segurança.
+- **Código de resultado:** `EV-dias-acertos-marcas-X` (ex.: `SP-1-03-1xxxx-L`):
+  evento, dias concluídos, acertos de primeira (2 dígitos), uma letra por marca de
+  `meta.marks` (1 boa, 0 ruim, x ainda não) e uma letra de conferência (soma dos
+  códigos dos caracteres, mod 26).
+- **PWA:** o `build.py` gera `sw.js` e `manifest.webmanifest`; prefixo do cache
+  `my-busy-week-` (a estante usa `story-shelf-`, o CEO game `ceo-game-`).
+
+## Armadilhas (vindas da estante)
+
+- **Nunca reuse o mesmo atributo `data-*` em elementos diferentes.** Aqui:
+  `data-act` (ações), `data-blk` (blocos), `data-tok` (blocos já na mensagem),
+  `data-av` (avatar), `data-app` (barra de apps), `data-ev` (evento); o painel
+  usa `data-k`/`data-v`; os verbos, `data-v`/`data-cols`.
+- **Não nomeie globais com nomes da janela** (`top`, `name`, `status`, `parent`...).
+- **Nomes de cena só com letras, números e `_`.**
+- **Identificadores dentro dos SVGs precisam ser únicos** (`SKY()` já cuida disso).
+- **Ao substituir texto em arquivos, confira o resultado**, não só a ausência do texto antigo.
+
+## O que não fazer
+
+- Licença: conteúdo em CC BY-SA 4.0, código em MIT, fontes em OFL (arquivo `LICENSE`).
+- Não adicionar bibliotecas externas, CDNs nem qualquer acesso à rede.
+- Não coletar nem enviar dados dos alunos.
+- Não reproduzir letras de música ou textos protegidos.

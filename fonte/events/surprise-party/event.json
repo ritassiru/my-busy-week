@@ -1,0 +1,175 @@
+{
+ "meta": {
+  "slug": "surprise-party",
+  "code": "SP",
+  "title": "Surprise Party",
+  "titlePt": "Festa surpresa",
+  "blurb": "It's Nina's birthday on Friday, and your friends want a surprise party. Can you keep the secret and plan everything?",
+  "blurbPt": "O aniversário da Nina é na sexta, e seus amigos querem fazer uma festa surpresa. Você consegue guardar o segredo e organizar tudo?",
+  "cover": "cover",
+  "cast": {
+   "Bia": { "color": "#7A4FB0", "emoji": "📋" },
+   "Davi": { "color": "#2F7DA8", "emoji": "😴" },
+   "Maya": { "color": "#3E8E6B", "emoji": "🌦️" },
+   "Kauã": { "color": "#C0612E", "emoji": "🍕" },
+   "Nina": { "color": "#C08A2E", "emoji": "💛" },
+   "Mom": { "color": "#A26769", "emoji": "🏠" }
+  },
+  "marks": ["combinado_firme", "promessa_familia", "lista_pronta", "preparado_tempo", "imprevisto_resolvido"],
+  "keywords": [
+   { "title": "Party words", "pt": "palavras da festa", "words": [
+    ["🎂", "birthday", "aniversário"], ["🎉", "surprise party", "festa surpresa"], ["🤫", "secret", "segredo"],
+    ["🎈", "balloons", "balões"], ["🏳️", "banner", "faixa"], ["📋", "plan", "plano"]] },
+   { "title": "Future words", "pt": "palavras do futuro", "words": [
+    ["⚡", "I'll help!", "eu ajudo! (decidi agora)"], ["🚫", "won't", "não vai"], ["📝", "I'm going to", "eu vou (já planejei)"],
+    ["📅", "I'm meeting... at 6", "vou encontrar... às 6 (marcado)"], ["🌅", "tomorrow", "amanhã"], ["🗓️", "on Friday", "na sexta"]] },
+   { "title": "Phone words", "pt": "palavras do celular", "words": [
+    ["💬", "new messages", "mensagens novas"], ["📞", "missed call", "chamada perdida"], ["📝", "notes", "anotações"],
+    ["📅", "calendar", "agenda"], ["⏰", "reminder", "lembrete"], ["🌦️", "forecast", "previsão do tempo"]] }
+  ]
+ },
+ "days": [
+  {
+   "day": "Monday",
+   "dayPt": "segunda-feira",
+   "focusPt": "Convites e agenda: aceitar na hora (I'll) e combinar quando e onde (I'm meeting... on Friday at 6).",
+   "lock": {
+    "time": "7:05",
+    "items": [
+     ["💬", "Nina's Party 🤫", "4 new messages"],
+     ["💬", "Nina", "1 new message"],
+     ["🌤️", "Weather", "Sunny, 29°C"]
+    ]
+   },
+   "notes": [
+    "School at 7:30. I have Math and English today.",
+    "I'm going to return my [[library|biblioteca]] book.",
+    "Football practice at 5 p.m."
+   ],
+   "notesPt": "Toque nas mensagens para ler.",
+   "tasks": [
+    {
+     "id": "mon1",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "7:10 a.m.",
+     "messages": [
+      ["Bia", "Good morning, everybody! ☀️"],
+      ["Bia", "Big news: Nina's birthday is on Friday! 🎂"],
+      ["Bia", "Let's have a surprise party for her! 🤫"],
+      ["Maya", "Great idea!! 😍"],
+      ["Bia", "{name}, [[are you in?|você topa?]]"]
+     ],
+     "pt": "A Bia acabou de ter a ideia. Responda: você topa ajudar?",
+     "blocks": ["Yes!", "I", "'ll", "'m going to", "help", "!"],
+     "outcomes": [
+      { "kind": "ok", "say": [["Yes!", "I", "'ll", "help", "!"]],
+        "reply": [["Bia", "Yay! Thank you, {name}! 💜"]] },
+      { "kind": "warn", "say": [["Yes!", "I", "'m going to", "help", "!"]],
+        "reply": [["Bia", "Wait... you know about it?! 😮 Who's the [[spy|espião]]?"], ["Kauã", "Not me! 🙈"]],
+        "tip": "Você decidiu agora, na hora do convite: I'll help! O going to indica um plano que você já tinha, então pareceu que você já sabia da festa." }
+     ],
+     "fallback": { "reply": [["Bia", "Sorry, what? 😅"]], "tip": "A Bia acabou de ter a ideia, então você decide agora: I'll help!" }
+    },
+    {
+     "id": "mon2",
+     "app": "chat",
+     "thread": "Nina",
+     "time": "7:20 a.m.",
+     "messages": [
+      ["Nina", "Hi, {name}! 🙂"],
+      ["Nina", "Do you want to go to the movies on Friday? 🍿"]
+     ],
+     "pt": "Você não pode contar da festa. Diga que já tem um compromisso marcado com amigos na sexta.",
+     "blocks": ["Sorry,", "I", "'m", "'ll", "meeting", "meet", "some friends", "on Friday", "."],
+     "outcomes": [
+      { "kind": "ok", "say": [[{ "opt": "Sorry," }, "I", "'m", "meeting", "some friends", "on Friday", "."]],
+        "reply": [["Nina", "Oh, OK! [[Next week, then!|Então semana que vem!]] 😊"]] },
+      { "kind": "warn", "say": [[{ "opt": "Sorry," }, "I", "'ll", "meet", "some friends", "on Friday", "."]],
+        "reply": [["Nina", "Oh, it's just an idea? So come to the movies with me! 😄"], ["Nina", "No? OK... 🤨"]],
+        "tip": "Para um compromisso já marcado, use I'm meeting. Com I'll meet, pareceu uma ideia de agora, e a Nina achou que você podia mudar de plano." },
+      { "kind": "bad", "has": ["'m", "meeting"], "lacks": ["on Friday"],
+        "reply": [["Nina", "Now? At 7 a.m.? 😂"]],
+        "tip": "Sem a expressão de tempo, I'm meeting quer dizer agora. Diga quando: on Friday." }
+     ],
+     "fallback": { "reply": [["Nina", "Sorry, what? 😅"]], "tip": "Diga que você já tem um compromisso marcado: I'm meeting some friends on Friday." }
+    },
+    {
+     "id": "mon3",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "12:30 p.m.",
+     "mark": "combinado_firme",
+     "messages": [
+      ["Bia", "OK, here's the plan! 📋"],
+      ["Bia", "The party is at my house on Friday."],
+      ["Bia", "Nina's mom is bringing her at 6:30. 🤫"],
+      ["Bia", "So we're meeting at my house at 6. [[Don't be late!|Não se atrasem!]]"],
+      ["Maya", "👍"],
+      ["Kauã", "I'm making the cake on Friday! 🎂"],
+      ["Davi", "Too many messages! 😵 When are we meeting? And where?"]
+     ],
+     "pt": "O Davi não leu tudo. Explique onde, que dia e que horas vocês vão se encontrar.",
+     "blocks": ["We", "'re meeting", "'ll meet", "maybe", "at Bia's house", "on Friday", "at 6", "at 6:30", "."],
+     "outcomes": [
+      { "kind": "ok", "say": [["We", "'re meeting", { "any": ["at Bia's house", "on Friday", "at 6"] }, "."]],
+        "reply": [["Davi", "[[Got it!|Entendi!]] Friday, 6 p.m., Bia's house. 👍"]],
+        "mark": true, "calendar": "Fri · 6:00 p.m. · Meeting at Bia's house 🎉" },
+      { "kind": "warn", "say": [["We", "'ll meet", { "any": ["at Bia's house", "on Friday", "at 6"] }, "."]],
+        "reply": [["Davi", "OK... is it a plan or just an idea? 🤔"], ["Bia", "It's a PLAN, Davi! 😤"]],
+        "tip": "Já está combinado, então use We're meeting. We'll meet soa como uma ideia de agora.",
+        "mark": true, "calendar": "Fri · 6:00 p.m. · Meeting at Bia's house 🎉" },
+      { "kind": "bad", "has": ["at 6:30"],
+        "reply": [["Davi", "6:30, [[got it!|entendi!]] 👍"], ["Bia", "No, Davi!! 6:30 is NINA! 😱"], ["Davi", "😴"]],
+        "tip": "6:30 é a hora em que a Nina chega. Vocês se encontram às 6, antes dela.",
+        "mark": false, "calendar": "Fri · 6:30 p.m. · Meeting at Bia's house 🎉" },
+      { "kind": "bad", "has": ["maybe"],
+        "reply": [["Davi", "Maybe? OK, maybe I'll go. 🤷"]],
+        "tip": "Já está combinado: não tem maybe. Com ele, o Davi achou que nada estava certo.",
+        "mark": false, "calendar": "Fri · 6:00 p.m. · Meeting at Bia's house (maybe?) 🤷" },
+      { "kind": "bad", "hasAny": ["'re meeting", "'ll meet"], "lacks": ["on Friday"],
+        "reply": [["Davi", "Today?! 😱 [[I'm running!|Estou correndo!]] 🏃"]],
+        "tip": "Sem o dia, pareceu hoje. Diga quando: on Friday.",
+        "mark": false, "calendar": "Mon?? · 6:00 p.m. · Meeting at Bia's house" },
+      { "kind": "bad", "hasAny": ["'re meeting", "'ll meet"], "lacks": ["at Bia's house"],
+        "reply": [["Davi", "OK, but where? 🤔"]],
+        "tip": "Um compromisso precisa de onde e quando.",
+        "mark": false, "calendar": "Fri · 6:00 p.m. · Meeting at ???" }
+     ],
+     "fallback": { "reply": [["Davi", "Sorry, what? 😅"]], "tip": "Diga onde, que dia e que horas: We're meeting at Bia's house on Friday at 6.",
+                   "mark": false, "calendar": "Fri · ? · ???" }
+    },
+    {
+     "id": "mon4",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "12:40 p.m.",
+     "messages": [
+      ["Bia", "We need balloons and a [[banner|faixa]]. 🎈"],
+      ["Bia", "Who can buy them?"],
+      ["Kauã", "Not me, I'm busy with the cake! 🎂"]
+     ],
+     "pt": "Ninguém se ofereceu ainda. Ofereça-se agora.",
+     "blocks": ["I", "'ll", "'m going to", "'m", "buy", "buying", "them", "!"],
+     "notes": "Tuesday: I'm going to buy balloons and a banner.",
+     "outcomes": [
+      { "kind": "ok", "say": [["I", "'ll", "buy", "them", "!"]],
+        "reply": [["Bia", "You're the best, {name}! 🎈💜"]] },
+      { "kind": "warn", "say": [["I", "'m going to", "buy", "them", "!"]],
+        "reply": [["Bia", "It's already on your list? Are you a [[mind reader|leitor de mentes]]? 🔮😂"]],
+        "tip": "Oferecer ajuda na hora é I'll. O going to parece um plano que você já tinha antes da pergunta." },
+      { "kind": "bad", "say": [["I", "'m", "buying", "them", "!"]],
+        "reply": [["Bia", "Right now? In class? 😂"]],
+        "tip": "Sem expressão de tempo, I'm buying quer dizer agora mesmo. Para se oferecer, use I'll buy them!" }
+     ],
+     "fallback": { "reply": [["Bia", "Sorry, what? 😅"]], "tip": "Para se oferecer na hora: I'll buy them!" }
+    }
+   ],
+   "close": {
+    "time": "9:30 p.m.",
+    "tomorrow": "I'm going to buy balloons and a banner.",
+    "hook": ["💬", "Mom", "9:45 p.m.", "Can you help me tomorrow after school? It's important! 🙏"]
+   }
+  }
+ ]
+}

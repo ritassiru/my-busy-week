@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>__TITLE__</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#6D2E46">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Busy Week">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F6F0E6; --panel: #FFFDF8; --ink: #2B1721; --muted: #6E5C63; --berry: #6D2E46; --rose: #A26769;
+  --cream: #ECE2D0; --line: #D9CBBE; --ok: #3E8E6B; --gold: #C08A2E; --bad: #B0413E; --btn-text: #FFFFFF; --msg: #E3EEF3;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1E1318; --panel: #2A1C23; --ink: #F1E7EA; --muted: #BFA9B1; --berry: #C77A98; --rose: #D19A9C;
+    --cream: #3A2830; --line: #4A3540; --ok: #62B891; --gold: #E0AE55; --bad: #E07571; --btn-text: #1E1318; --msg: #243540;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1E1318; --panel: #2A1C23; --ink: #F1E7EA; --muted: #BFA9B1; --berry: #C77A98; --rose: #D19A9C;
+  --cream: #3A2830; --line: #4A3540; --ok: #62B891; --gold: #E0AE55; --bad: #E07571; --btn-text: #1E1318; --msg: #243540;
+}
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+*, *::before, *::after { box-sizing: inherit; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif; font-size: 1.125rem; line-height: 1.55; }
+/* tamanho do texto (configurações): tudo em rem acompanha */
+:root[data-size="lg"] { font-size: 112.5%; }
+:root[data-size="xl"] { font-size: 125%; }
+.wrap { max-width: 560px; margin: 0 auto; padding: 14px 14px 36px; }
+h1, h2, h3, .ch-title, .brand { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-weight: 800; letter-spacing: -0.01em; }
+h1 { font-size: 2.2rem; line-height: 1.05; margin: 0 0 6px; color: var(--berry); }
+h2 { font-size: 1.6rem; line-height: 1.15; margin: 0 0 10px; color: var(--berry); }
+p { margin: 0 0 12px; }
+.hint { color: var(--muted); font-size: 0.95rem; }
+button { font: inherit; }
+
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.brand { font-size: 1.05rem; color: var(--berry); }
+.step { color: var(--muted); font-size: 0.92rem; white-space: nowrap; }
+.top.top2 { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.top2 .gear { justify-self: end; }
+.top.bar { align-items: center; }
+.gear { flex: none; width: 40px; height: 40px; padding: 0; display: grid; place-items: center; cursor: pointer; color: var(--berry); background: none; border: 1.5px solid var(--line); border-radius: 999px; margin-left: auto; }
+.gear svg { width: 22px; height: 22px; }
+.gear:hover { border-color: var(--rose); }
+.no-gloss .gloss { text-decoration: none; cursor: inherit; pointer-events: none; }
+
+/* configurações */
+#settings { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(20, 10, 15, 0.55); overflow-y: auto; }
+.sheet { width: 100%; max-width: 440px; margin: auto; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px 16px; }
+.sheet h2 span { font-family: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif; font-weight: 400; font-size: 1rem; color: var(--muted); letter-spacing: 0; }
+.st-g { margin-bottom: 14px; }
+.st-h { font-size: 0.88rem; color: var(--muted); margin: -2px 0 6px; }
+.sheet .chip[aria-pressed="true"] b::before { content: "✓ "; color: var(--berry); }
+.btn span { font-weight: 400; }
+.dots { display: flex; gap: 5px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); display: inline-block; }
+.dots i.on { background: var(--berry); }
+
+/* glossário */
+.gloss { background: none; border: 0; padding: 0; margin: 0; cursor: pointer; color: inherit; font: inherit; text-decoration: underline dotted var(--rose); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.gloss.verb { text-decoration-style: dashed; text-decoration-color: var(--berry); }
+/* nível Beginner (A1): sublinhado mais leve, para não pesar o texto */
+.gloss.a1 { text-decoration-thickness: 1.5px; text-decoration-color: var(--muted); }
+:root:not(.gloss-a1) .gloss.a1 { text-decoration: none; cursor: inherit; pointer-events: none; }
+.opt-pt { display: none; font-weight: 400; font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+.gloss-a1 .opt-pt { display: block; }
+.seq .gloss { font-weight: inherit; color: inherit; }
+.nw { white-space: nowrap; }
+#tip { position: absolute; z-index: 20; max-width: 280px; display: none; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 0.95rem; padding: 6px 10px; border-radius: 8px; }
+#tip.on { display: block; }
+#tip .vt { display: grid; grid-auto-flow: column; grid-auto-columns: auto; gap: 4px 14px; }
+#tip .vc { padding: 2px 6px; border-radius: 6px; border: 2px solid transparent; }
+#tip .vc.on { border-color: var(--gold); }
+#tip .vc span { display: block; font-size: 0.72rem; opacity: .8; }
+#tip .vpt { margin-top: 6px; }
+.choices { display: grid; gap: 10px; margin-top: 8px; }
+.choose-t { font-family: "Fraunces", Georgia, serif; font-weight: 800; color: var(--berry); font-size: 1.2rem; margin: 4px 0 6px; }
+.btn { display: block; width: 100%; text-align: left; cursor: pointer; padding: 14px 16px; border-radius: 12px; font-size: 1.06rem; font-weight: 700; background: var(--panel); color: var(--berry); border: 2px solid var(--berry); }
+.btn.primary { background: var(--berry); color: var(--btn-text); text-align: center; }
+.btn.center { text-align: center; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.btn:focus-visible, .opt:focus-visible, .gloss:focus-visible, .gear:focus-visible, .chip:focus-visible, .help-btn:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.kw-g { font-weight: 700; margin: 14px 0 6px; } .kw-g span { font-weight: 400; color: var(--muted); }
+.kw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.kw { display: flex; gap: 8px; align-items: center; padding: 6px 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+.kw-e { font-size: 1.25rem; } .kw b { display: block; } .kw span.pt { display: block; font-size: .8rem; color: var(--muted); line-height: 1.2; }
+
+.sent { margin-bottom: 14px; }
+label.lbl { display: block; font-weight: 700; margin-bottom: 6px; }
+textarea { width: 100%; font: inherit; font-size: 1.02rem; color: var(--ink); background: var(--bg); border: 2px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 64px; resize: vertical; }
+.tag { font-weight: 400; font-size: .78rem; margin-left: 6px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--rose); color: var(--rose); white-space: nowrap; }
+.help-btn { display: block; text-align: left; margin-top: 4px; background: none; border: 0; padding: 4px 0; cursor: pointer; color: var(--berry); font-weight: 700; font-size: .98rem; text-decoration: underline; text-underline-offset: 3px; }
+.help-btn span, .step-t span, .grp span { font-weight: 400; color: var(--muted); }
+.own { font-size: .92rem; color: var(--muted); margin: 6px 0 0; padding-left: 10px; border-left: 3px solid var(--gold); }
+.builder { margin-top: 8px; padding: 12px; border: 2px solid var(--line); border-radius: 12px; background: var(--bg); }
+.step-t { font-weight: 700; margin: 10px 0 6px; } .step-t:first-child { margin-top: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { cursor: pointer; text-align: left; padding: 6px 10px; border-radius: 10px; border: 2px solid var(--line); background: var(--panel); color: var(--ink); line-height: 1.25; }
+.chip b { display: block; font-size: .98rem; } .chip span { display: block; font-size: .8rem; color: var(--muted); }
+.chip.on, .chip[aria-pressed="true"] { border-color: var(--berry); background: var(--cream); }
+.pv-bar { position: sticky; bottom: env(safe-area-inset-bottom, 0px); margin: 14px -12px -12px; padding: 10px 12px 12px; background: var(--bg); border-top: 2px solid var(--line); border-radius: 0 0 10px 10px; }
+.preview { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: var(--cream); font-size: 1.05rem; min-height: 2.6em; }
+.done { font-weight: 700; color: var(--ok); margin: 12px 0 0; }
+.again-hint { text-align: center; margin: 8px 0 0; }
+/* My words */
+.wlist { list-style: none; padding: 0; margin: 4px 0 8px; }
+.wlist li { padding: 6px 0; border-top: 1px solid var(--line); }
+.wlist li:first-child { border-top: 0; }
+.wlist li span { color: var(--muted); }
+.wcard { text-align: center; padding: 22px 12px; margin: 6px 0 12px; border: 2px dashed var(--rose); border-radius: 14px; background: var(--bg); }
+.wcard b { display: block; font-family: "Fraunces", Georgia, serif; font-size: 1.6rem; color: var(--berry); line-height: 1.2; }
+.wcard span { display: block; margin-top: 8px; font-size: 1.1rem; }
+.wbtns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+/* áudio */
+.say { display: none; align-items: center; gap: 6px; font: inherit; font-size: 0.88rem; font-weight: 700; color: var(--berry); background: none; border: 1.5px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 0 0 10px; cursor: pointer; }
+.say span { font-weight: 400; }
+.can-speak .say { display: inline-flex; }
+.say[aria-pressed="true"] { border-color: var(--berry); background: var(--cream); }
+.say:focus-visible { outline: 3px solid var(--gold, var(--rep)); outline-offset: 2px; }
+.wcard + .say { margin: -4px auto 12px; }
+
+.wbtns .btn { text-align: center; }
+.wscore { font-weight: 700; font-size: 1.15rem; color: var(--berry); }
+.wscore span { font-weight: 400; font-size: 0.95rem; color: var(--muted); }
+.resume { font-weight: 700; color: var(--bad); margin: 0 0 10px; padding: 8px 10px; border: 2px solid var(--bad); border-radius: 10px; }
+.past-list { list-style: none; padding: 0; margin: 0 0 6px; }
+.past-list li { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.past-list .pe { font-size: 1.4rem; width: 1.8rem; text-align: center; } .past-list .pm { font-size: .85rem; color: var(--muted); }
+.cover-t { text-align: center; padding: 6px 4px 2px; }
+.cover-t .lvl { display: inline-block; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--rose); border: 1px solid var(--rose); border-radius: 999px; padding: 1px 10px; margin-bottom: 8px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.no-motion * { transition: none !important; animation: none !important; }
+
+/* estante */
+.shelf-head { text-align: center; margin: 6px 0 14px; }
+.shelf-head h1 { margin-bottom: 2px; }
+.shelf-plank { height: 10px; background: linear-gradient(#8E6A55, #6B4A32); border-radius: 3px; margin: -4px 4px 18px; box-shadow: 0 3px 6px rgba(43,23,33,.2); }
+.back { background: none; border: 0; color: var(--berry); font-weight: 700; cursor: pointer; padding: 4px 0; margin-bottom: 6px; text-decoration: underline; text-underline-offset: 3px; }
+.locked-note { font-size: .88rem; color: var(--bad); margin: 0 0 6px; }
+.fb { font-size: 0.95rem; margin-top: 8px; min-height: 1.3em; }
+.fb.ok { color: var(--ok); font-weight: 700; } .fb.no { color: var(--bad); }
+.sec-t { font-weight: 700; margin: 16px 0 8px; } .sec-t span { font-weight: 400; color: var(--muted); }
+.score { font-size: 1.15rem; font-weight: 700; color: var(--berry); }
+/* ---------------- celular ---------------- */
+.phone { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 6px 18px rgba(43,23,33,.08); }
+.ph-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--cream); border-bottom: 1px solid var(--line); }
+.ph-head .ph-ico { font-size: 1.4rem; line-height: 1; }
+.ph-head b { display: block; line-height: 1.2; }
+.ph-head small { color: var(--muted); font-size: .82rem; }
+.ph-body { padding: 12px 12px 14px; }
+.chat { display: grid; gap: 8px; margin-bottom: 4px; }
+.bub { max-width: 86%; padding: 8px 12px; border-radius: 16px; background: var(--msg); font-size: 1.04rem; line-height: 1.45; }
+.bub.in { justify-self: start; border-bottom-left-radius: 4px; }
+.bub.out { justify-self: end; background: var(--berry); color: var(--btn-text); border-bottom-right-radius: 4px; }
+.bub.out .gloss { text-decoration-color: var(--btn-text); }
+.bub .who { display: block; font-size: .78rem; font-weight: 700; margin-bottom: 1px; }
+.appear { animation: pop .35s both; }
+@keyframes pop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.task-pt { font-size: .98rem; margin: 12px 0 8px; padding: 8px 10px; border-left: 4px solid var(--gold); background: var(--bg); border-radius: 0 10px 10px 0; }
+.keyb { display: inline-block; font-size: .8rem; font-weight: 700; color: var(--berry); border: 1.5px solid var(--berry); border-radius: 999px; padding: 1px 10px; margin: 0 0 6px; }
+.ans { min-height: 3.2em; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px; border: 2px dashed var(--line); border-radius: 12px; background: var(--bg); margin-bottom: 8px; }
+.ans .empty { color: var(--muted); font-size: .92rem; }
+.blks { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.blk, .tok { cursor: pointer; font: inherit; font-weight: 700; font-size: 1rem; padding: 7px 11px; border-radius: 10px; border: 2px solid var(--line); background: var(--panel); color: var(--ink); }
+.tok { border-color: var(--berry); background: var(--cream); }
+.blk:disabled { opacity: .3; cursor: default; }
+.blk:focus-visible, .tok:focus-visible, .appbar button:focus-visible, .av:focus-visible, input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.row2 { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; }
+.row2 .btn { text-align: center; }
+.fbk { border-radius: 12px; padding: 12px 14px; margin: 12px 0; border: 2px solid var(--line); background: var(--bg); }
+.fbk.ok { border-color: var(--ok); } .fbk.warn { border-color: var(--gold); } .fbk.bad { border-color: var(--bad); }
+.fbk-t { font-weight: 700; margin: 0 0 4px; }
+.fbk .model { margin: 8px 0 0; font-size: .95rem; } .fbk .model b { color: var(--berry); }
+.appbar { display: flex; justify-content: space-around; border-top: 1px solid var(--line); background: var(--cream); padding: 4px; }
+.appbar button { font: inherit; font-size: .78rem; color: var(--muted); background: none; border: 0; border-radius: 10px; padding: 4px 10px; cursor: pointer; display: grid; justify-items: center; line-height: 1.2; }
+.appbar button span { font-size: 1.3rem; }
+.appbar button.on { color: var(--berry); font-weight: 700; }
+.lock { text-align: center; color: #FFF6EE; background: linear-gradient(160deg, #3A2830, #6D2E46 70%, #A26769); border-radius: 22px; padding: 26px 14px 18px; margin-bottom: 14px; }
+.lock .clock { font-family: "Fraunces", Georgia, serif; font-weight: 800; font-size: 3.4rem; line-height: 1; }
+.lock .date { margin: 4px 0 18px; opacity: .9; }
+.notif { display: flex; gap: 10px; align-items: center; text-align: left; background: rgba(255,255,255,.14); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; }
+.notif .ni { font-size: 1.4rem; } .notif b { display: block; } .notif span { font-size: .92rem; opacity: .9; }
+.notes-l { list-style: none; padding: 0; margin: 0; }
+.notes-l li { padding: 8px 0 8px 30px; border-top: 1px solid var(--line); position: relative; }
+.notes-l li:first-child { border-top: 0; }
+.notes-l li::before { content: "☐"; position: absolute; left: 4px; color: var(--berry); }
+.notes-l li.new::after { content: "new"; margin-left: 8px; font-size: .72rem; font-weight: 700; color: var(--berry); border: 1px solid var(--berry); border-radius: 999px; padding: 0 6px; }
+.cal-l { list-style: none; padding: 0; margin: 0; }
+.cal-l li { padding: 8px 10px; border-left: 4px solid var(--berry); background: var(--bg); border-radius: 0 10px 10px 0; margin-bottom: 6px; }
+.avatar svg { display: block; width: 120px; height: 120px; margin: 0 auto; }
+.av-g { margin-bottom: 12px; }
+.av-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.av { width: 40px; height: 40px; border-radius: 999px; border: 3px solid var(--line); cursor: pointer; padding: 0; font: inherit; background: var(--panel); color: var(--ink); }
+.av.txt { width: auto; padding: 0 12px; font-size: .9rem; }
+.av[aria-pressed="true"] { border-color: var(--berry); box-shadow: 0 0 0 2px var(--berry); }
+input.name { width: 100%; font: inherit; font-size: 1.1rem; color: var(--ink); background: var(--bg); border: 2px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.ev-card .scene svg { display: block; width: 100%; height: auto; border-radius: 10px; }
+.code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.3rem; font-weight: 700; letter-spacing: .06em; color: var(--berry); }
+.home-av svg { width: 90px; height: 90px; display: block; margin: 0 auto 4px; }
+.stamp { display: inline-block; font-weight: 700; color: var(--ok); border: 2px solid var(--ok); border-radius: 999px; padding: 2px 12px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<main class="wrap" id="app" aria-live="polite"></main>
+<div id="tip" role="tooltip"></div>
+<div id="settings" hidden></div>
+<script>
+const GAME = __GAME__;      // { title, subtitle, codes, events: [ { slug, meta, days } ] } (os padrões de resposta já vêm expandidos pelo build.py)
+const A1 = __A1__;         // glossário Beginner (fonte/a1.json): palavra -> "tradução" ou "forma base|tradução"
+const IRREG = __IRREG__;   // [infinitive, past, participle, tradução]; o balão mostra infinitive e past
+
+/* ---------------- utilidades ---------------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const smooth = () => (document.documentElement.classList.contains("no-motion") || matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth");
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* sem armazenamento */ } },
+  del(k) { try { localStorage.removeItem(k); } catch (e) { /* sem armazenamento */ } }
+};
+/* armazenamento: configurações iguais às da estante (mesmo site); o jogo e as palavras ficam em week:* */
+const KEY = { gloss: "reader:gloss", theme: "reader:theme", size: "reader:size", motion: "reader:motion", audio: "reader:audio", words: "week:words", profile: "week:profile", run: "week:run" };
+const book = null;   // o jogo não tem "livros": os verbos mostram infinitive e past (verbForms 2)
+
+/* verbos irregulares: forma escrita -> { i, cols }; cols: 0 = infinitive, 1 = past, 2 = participle.
+   VERB3 também reconhece os particípios; é usado pelos livros com "verbForms": 3 nos metadados. */
+const VERB = new Map(), VERB3 = new Map();
+[VERB, VERB3].forEach(VERB => {
+  const NO_BASE = new Set(["have", "do"]);
+  const DOUBLE = new Set(["get", "run", "win", "put", "cut", "set", "let", "begin", "sit", "forget"]);
+  const sForm = b => /(s|sh|ch|x|o)$/.test(b) ? b + "es" : /[^aeiou]y$/.test(b) ? b.slice(0, -1) + "ies" : b + "s";
+  const ing = b => (b === "be" || b === "see") ? b + "ing" : DOUBLE.has(b) ? b + b.slice(-1) + "ing" : /ie$/.test(b) ? b.slice(0, -2) + "ying" : /[^e]e$/.test(b) ? b.slice(0, -1) + "ing" : b + "ing";
+  const add = (k, i, col) => { if (!VERB.has(k)) VERB.set(k, { i, cols: [] }); if (col !== null && !VERB.get(k).cols.includes(col)) VERB.get(k).cols.push(col); };
+  IRREG.forEach(([b, p, pp], i) => {
+    if (!NO_BASE.has(b)) { add(b, i, 0); if (b !== "be") add(sForm(b), i, 0); add(ing(b), i, null); }
+    p.split(" / ").forEach(f => add(f, i, 1));
+    if (VERB === VERB3) pp.split(" / ").forEach(f => add(f, i, 2));
+  });
+  const idx = b => IRREG.findIndex(v => v[0] === b);
+  [["didn't", "do"], ["wasn't", "be"], ["weren't", "be"], ["hadn't", "have"], ["couldn't", "can"]].forEach(([k, b]) => { if (idx(b) >= 0) add(k, idx(b), 1); });
+});
+const verbForms = () => (book && book.verbForms === 3 ? 3 : 2);
+/* ---------------- futuro no balão ----------------
+   A mesma regra está em checar.py (WILL, GOING_TO, TIME, BE_ING, NOT_ING): se mudar aqui, mude lá.
+   - 'll / will / won't + verbo: decisão, promessa ou opinião
+   - going to + verbo: plano ou sinal ("going to school" continua sendo o verbo go)
+   - am/is/are + -ing COM expressão de tempo na mesma frase: compromisso marcado.
+     Sem expressão de tempo, o -ing quer dizer "agora" e fica sem esse balão. */
+const GOING_TO = /\b(going to)(?=\s+(?!(?:the|a|an|my|your|his|her|its|our|their|this|that|these|those|school|bed|sleep|work|church|class|town|home)\b)[a-z])/i;
+const WILL = /\b([A-Za-z]+['’]ll|will|won['’]t)\b(?=\s+(?:not\s+)?[a-z])/i;
+const TIME = /\b(?:tonight|tomorrow|this (?:morning|afternoon|evening|weekend)|next (?:week|weekend|year|monday|tuesday|wednesday|thursday|friday|saturday|sunday)|on (?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)|in the (?:morning|afternoon|evening)|at \d{1,2}(?::\d\d)?)\b/i;
+const BE_ING = /((?:\b(?:am|is|are)|['’](?:m|s|re))\s+)([a-z]+ing)\b/gi;
+const NOT_ING = new Set(["nothing", "something", "anything", "everything", "thing", "morning", "evening", "king", "ring", "spring", "building", "ceiling", "sing", "bring"]);
+const FUT_PT = { will: "vai + verbo: decisão, promessa ou opinião (futuro)", wont: "não vai + verbo (futuro)", going: "vai + verbo: plano ou sinal (futuro)", ing: "compromisso marcado (futuro: be + -ing + hora)" };
+// marca o -ing de compromisso com ..., frase por frase (fora dos [[...]])
+function markFuture(text) {
+  const keep = [];
+  const masked = text.replace(/\[\[[^\]]+\]\]/g, m => { keep.push(m); return "" + (keep.length - 1) + ""; });
+  const marked = masked.replace(/[^.!?]+[.!?]*/g, s => TIME.test(s) ? s.replace(BE_ING, (m, be, ing, off, str) =>
+    NOT_ING.has(ing.toLowerCase()) || (ing.toLowerCase() === "going" && GOING_TO.test(str.slice(off + be.length))) ? m : be + "" + ing + "") : s);
+  return marked.replace(/(\d+)/g, (m, i) => keep[+i]);
+}
+const futBtn = (txt, pt, base) => `<button type="button" class="gloss" data-pt="${esc(pt)}"${base ? ` data-base="${esc(base)}"` : ""}>${esc(txt)}</button>`;
+function verbWrap(plain) {
+  const ing = plain.split(/([^]+)/);
+  if (ing.length > 1) return ing.map((part, i) => i % 2 ? futBtn(part, FUT_PT.ing) : verbWrap(part)).join("");
+  const will = plain.split(WILL);
+  if (will.length > 1) return will.map((part, i) => {
+    if (!(i % 2)) return verbWrap(part);
+    const wont = /^won/i.test(part);
+    return futBtn(part, wont ? FUT_PT.wont : FUT_PT.will, wont ? "will not" : /ll$/i.test(part) ? part.replace(/['’]ll$/i, " will") : "");
+  }).join("");
+  const future = plain.split(GOING_TO);
+  if (future.length > 1) return future.map((part, i) => i % 2 ? futBtn(part, FUT_PT.going) : verbWrap(part)).join("");
+  // letras acentuadas fazem parte da palavra: "Kauã" não vira "Kau" + "ã"
+  return plain.split(/([A-Za-zÀ-ÿ]+(?:['’][A-Za-zÀ-ÿ]+)?)/).map((part, i) => {
+    if (i % 2 === 0) return esc(part);
+    const key = part.toLowerCase().replace("’", "'");
+    const v = VERB.get(key);
+    if (v) return `<button type="button" class="gloss verb" data-v="${v.i}" data-cols="${v.cols.join(",")}">${esc(part)}</button>`;
+    // nível Beginner: quase todas as palavras (só aparecem com esse nível ligado)
+    const a = A1[key];
+    if (!a) return esc(part);
+    const [base, pt] = a.includes("|") ? a.split("|") : ["", a];
+    return `<button type="button" class="gloss a1" data-pt="${esc(pt)}"${base ? ` data-base="${esc(base)}"` : ""}>${esc(part)}</button>`;
+  }).join("");
+}
+const withName = t => String(t).replace(/\{name\}/g, NAME());
+function rich(text) {
+  const html = markFuture(withName(text)).split(/(\[\[[^\]]+\]\])/).map(seg => {
+    const g = seg.match(/^\[\[([^|\]]+)\|([^\]]+)\]\]$/);
+    return g ? `<button type="button" class="gloss" data-pt="${esc(g[2])}">${esc(g[1])}</button>` : verbWrap(seg);
+  }).join("");
+  // a pontuação colada à palavra (antes: “ ‘ ( ; depois: , . ! ” ...) fica na mesma linha que ela
+  return html.replace(/([“‘(]+)?(<button type="button" class="gloss[^>]*>[^<]*<\/button>)((?:<\/span>)?[,.;:!?”’)]+)?/g, (m, antes, _, depois) => antes || depois ? `<span class="nw">${m}</span>` : m);
+}
+const semGloss = t => withName(t).replace(/\[\[([^|\]]+)\|[^\]]+\]\]/g, "$1");
+
+/* ---------------- ilustrações: ajudantes genéricos (iguais aos da estante) + cenas de cada evento ---------------- */
+const SCENE_LIB = {};
+function person(x, y, o) {
+  // y = linha dos pés; o = { skin, hair, shirt, style, s (escala), extra }
+  const s = o.s || 1, sk = o.skin || "#D9A57E", hr = o.hair || "#2B1B16", sh = o.shirt || "#6D2E46";
+  const hairs = {
+    long: `<path d="M-15 -70 Q-15 -85 0 -86 Q15 -85 15 -70 Q8 -79 0 -79 Q-8 -79 -15 -70 Z" fill="${hr}"/>`,
+    short: `<path d="M-13 -70 Q-12 -86 0 -86 Q12 -86 13 -70 Q6 -78 0 -78 Q-6 -78 -13 -70 Z" fill="${hr}"/>`,
+    curly: `<g fill="${hr}"><circle cx="-10" cy="-80" r="7"/><circle cx="0" cy="-84" r="7"/><circle cx="10" cy="-80" r="7"/><circle cx="-13" cy="-71" r="5"/><circle cx="13" cy="-71" r="5"/></g>`,
+    bun: `<circle cx="0" cy="-90" r="7" fill="${hr}"/><path d="M-14 -68 Q-13 -86 0 -86 Q13 -86 14 -68 Q7 -77 0 -77 Q-7 -77 -14 -68 Z" fill="${hr}"/>`,
+    cap: `<path d="M-14 -72 Q-13 -88 0 -88 Q13 -88 14 -72 Z" fill="${hr}"/><rect x="0" y="-76" width="18" height="4" rx="2" fill="${hr}"/>`,
+    bald: `<path d="M-14 -70 Q-15 -62 -13 -58 M14 -70 Q15 -62 13 -58" stroke="${hr}" stroke-width="5" fill="none"/>`
+  };
+  const back = o.style === "long" ? `<path d="M-17 -70 Q-18 -88 0 -88 Q18 -88 17 -70 L18 -40 Q0 -34 -18 -40 Z" fill="${hr}"/>` : "";
+  return `<g transform="translate(${x} ${y}) scale(${s})">${back}
+    <path d="M-20 0 L-20 -30 Q-20 -46 0 -46 Q20 -46 20 -30 L20 0 Z" fill="${sh}"/>
+    <rect x="-5" y="-54" width="10" height="10" fill="${sk}"/>
+    <circle cx="0" cy="-68" r="15" fill="${sk}"/>
+    ${hairs[o.style || "short"]}
+    <circle cx="-5" cy="-68" r="1.8" fill="#2B1721"/><circle cx="5" cy="-68" r="1.8" fill="#2B1721"/>
+    <path d="M-4 -61 Q0 -58 4 -61" stroke="#5A2A2A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    ${o.extra || ""}</g>`;
+}
+
+let skyN = 0;
+const SKY = (a, b) => { const id = "sky" + (++skyN); return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="540" height="220" fill="url(#${id})"/>`; };
+const GROUND = c => `<rect y="190" width="540" height="30" fill="${c || "#B9A48C"}"/>`;
+__SCENES__
+const scene = (slug, k, label) => `<div class="scene"><svg viewBox="0 0 540 220" role="img" aria-label="${esc(label)}">${SCENE_LIB[slug][k]()}</svg></div>`;
+/* ---------------- estado (fica só no aparelho) ---------------- */
+// profile: nome e avatar · run: a semana em andamento (evento, dia, passo, marcas, respostas, agenda, notas)
+const EVENTS = GAME.events;
+const evBy = s => EVENTS.find(e => e.slug === s);
+let profile = store.get(KEY.profile, null), run = store.get(KEY.run, null);
+if (run && !evBy(run.event)) run = null;
+const saveRun = () => store.set(KEY.run, run);
+const NAME = () => (profile && profile.name) || "you";
+const EV = () => evBy(run.event);
+const DAY = () => EV().days[run.day];
+const answerOf = id => run.answers.find(a => a.id === id);
+const firstTry = day => run.answers.filter(a => (day === undefined || a.day === day) && a.first).length;
+let pick = [], justSent = false, armed = false, draft = null;
+
+/* avatar: as opções viram o person() da estante */
+const AV = [
+  ["skin", "Skin", "pele", ["#F1C9A5", "#D9A57E", "#A86F4C", "#6E4430"]],
+  ["style", "Hair", "cabelo", ["short", "long", "curly", "bun", "cap"]],
+  ["hair", "Hair color", "cor do cabelo", ["#2B1B16", "#6B3E1F", "#C9A04A", "#8E3B2E"]],
+  ["shirt", "T-shirt", "camiseta", ["#6D2E46", "#2F7DA8", "#3E8E6B", "#E7B53C", "#E07A3E"]]
+];
+const STYLE_PT = { short: "curto", long: "longo", curly: "cacheado", bun: "coque", cap: "boné" };
+const avatarSVG = p => `<svg viewBox="-40 -100 80 104" role="img" aria-label="avatar">${person(0, 0, { skin: p.skin, hair: p.hair, style: p.style, shirt: p.shirt })}</svg>`;
+
+/* ---------------- telas ---------------- */
+function topBar(left, right) {
+  return `<div class="top bar"><div class="brand">${left}</div><div class="step">${right || ""}</div>${gearButton()}</div>`;
+}
+function render(html) { $("#app").innerHTML = html; window.scrollTo(0, 0); }
+
+function screenHome() {
+  const ev = run && EV();
+  render(`${topBar(esc(GAME.title))}
+    <div class="shelf-head">${profile ? `<div class="home-av">${avatarSVG(profile)}</div>` : ""}
+      <h1>${esc(GAME.title)}</h1><p class="hint">${esc(GAME.subtitle)}</p></div>
+    <div class="card">
+      ${run ? `<p>${profile ? `Hi, <b>${esc(profile.name)}</b>! ` : ""}Your week: <b>${esc(ev.meta.title)}</b> · ${esc(DAY().day)}</p>
+        <button type="button" class="btn primary" data-act="continue">Continue ▶ <span>· continuar</span></button>
+        <button type="button" class="help-btn" data-act="reset">${armed ? "Tap again to start over <span>· toque de novo para recomeçar</span>" : "Start over <span>· recomeçar a semana</span>"}</button>`
+      : `<p>Viva uma semana no celular de um adolescente e use o futuro em inglês para organizar tudo.</p>
+        <button type="button" class="btn primary" data-act="start">Start ▶ <span>· começar</span></button>`}
+      ${profile ? `<button type="button" class="help-btn" data-act="profile">Edit my profile <span>· mudar nome e avatar</span></button>` : ""}
+    </div>
+    ${wordsHomeHTML()}
+    <p class="hint" style="text-align:center">Tudo fica guardado só neste aparelho.</p>`);
+}
+
+function screenEvents() {
+  render(`${topBar(esc(GAME.title), "Choose · escolha")}
+    <h2>Choose your week <span class="hint">· escolha a sua semana</span></h2>
+    <p class="hint">Qual evento vai acontecer na sexta-feira?</p>
+    ${EVENTS.map(e => `<div class="card ev-card">${scene(e.slug, e.meta.cover, e.meta.title)}
+      <h3 style="margin:10px 0 2px">${esc(e.meta.title)} <span class="hint">· ${esc(e.meta.titlePt)}</span></h3>
+      <p>${rich(e.meta.blurb)}</p><p class="hint">${esc(e.meta.blurbPt)}</p>
+      <button type="button" class="btn primary" data-act="pick" data-ev="${esc(e.slug)}">Choose ▶ <span>· escolher</span></button></div>`).join("")}`);
+}
+
+function screenProfile() {
+  draft = draft || Object.assign({ name: "", skin: AV[0][3][1], style: "short", hair: AV[2][3][0], shirt: AV[3][3][0] }, profile || {});
+  render(`${topBar(esc(GAME.title), "Profile · perfil")}
+    <h2>Who are you? <span class="hint">· quem é você?</span></h2>
+    <div class="card"><div class="avatar" id="av-prev">${avatarSVG(draft)}</div>
+      <label class="lbl" for="pf-name">My name <span class="hint">· meu nome</span></label>
+      <input class="name" id="pf-name" maxlength="16" autocomplete="off" value="${esc(draft.name)}">
+      <p class="hint">Os amigos do jogo vão chamar você por esse nome. Ele fica só neste aparelho.</p>
+      ${AV.map(([k, en, pt, opts]) => `<div class="av-g" role="group" aria-label="${en} · ${pt}"><p class="step-t">${en} <span>· ${pt}</span></p><div class="av-row">
+        ${opts.map(v => k === "style" ? `<button type="button" class="av txt" data-av="${k}:${v}" aria-pressed="${draft[k] === v}">${STYLE_PT[v]}</button>`
+          : `<button type="button" class="av" data-av="${k}:${v}" aria-pressed="${draft[k] === v}" style="background:${v}" aria-label="${en} ${opts.indexOf(v) + 1}"></button>`).join("")}</div></div>`).join("")}
+      <p class="fb no" id="pf-err"></p>
+      <button type="button" class="btn primary" data-act="saveprof">Save ▶ <span>· salvar</span></button></div>`);
+}
+
+function screenKeywords() {
+  render(`${topBar(esc(EV().meta.title), "Words · palavras")}
+    <h2>Key words <span class="hint">· palavras-chave</span></h2>
+    <p class="hint">Leia antes de começar. Toque nas palavras durante o jogo para ver a tradução de novo.</p>
+    <div class="card">${EV().meta.keywords.map(g => `<p class="kw-g">${esc(g.title)} <span>· ${esc(g.pt)}</span></p>
+      <div class="kw-grid">${g.words.map(([e, en, pt]) => `<div class="kw"><span class="kw-e" aria-hidden="true">${e}</span><div><b>${esc(en)}</b><span class="pt">${esc(pt)}</span></div></div>`).join("")}</div>`).join("")}</div>
+    <button type="button" class="btn primary" data-act="kwdone">Let's go! ▶ <span>· vamos lá!</span></button>`);
+}
+
+const dayTop = () => topBar(esc(EV().meta.title), `${esc(DAY().day)} · ${Math.min(run.step, DAY().tasks.length + 2) + 1}/${DAY().tasks.length + 3}`);
+const appBar = cur => `<nav class="appbar" aria-label="Apps">${[["chat", "💬", "Chat"], ["notes", "📝", "Notes"], ["calendar", "📅", "Calendar"]].map(([k, i, n]) =>
+  `<button type="button" data-app="${k}" class="${cur === k ? "on" : ""}"${cur === k ? ' aria-current="page"' : ""}><span aria-hidden="true">${i}</span>${n}</button>`).join("")}</nav>`;
+
+function screenLock() {
+  const d = DAY();
+  render(`${dayTop()}
+    <div class="lock"><div class="clock">${esc(d.lock.time)}</div><div class="date">${esc(d.day)} · ${esc(d.dayPt)}</div>
+      ${d.lock.items.map(([i, f, t]) => `<div class="notif"><span class="ni" aria-hidden="true">${i}</span><div><b>${esc(f)}</b><span>${esc(t)}</span></div></div>`).join("")}</div>
+    <p class="task-pt">🎯 <b>Hoje:</b> ${esc(d.focusPt)}</p>
+    <button type="button" class="btn primary" data-act="next">Open the phone ▶ <span>· abrir o celular</span></button>`);
+}
+
+const notesToday = () => DAY().notes.map(t => ({ t, isNew: false })).concat(run.notes.filter(n => n.day === run.day).map(n => ({ t: n.text, isNew: true })));
+function screenNotes() {
+  const d = DAY();
+  render(`${dayTop()}
+    <div class="phone"><div class="ph-head"><span class="ph-ico" aria-hidden="true">📝</span><div><b>Notes</b><small>Today · ${esc(d.day)}</small></div></div>
+      <div class="ph-body"><ul class="notes-l">${d.notes.map(t => `<li>${rich(t)}</li>`).join("")}</ul>${sayButton(d.notes.join(" "))}</div>${appBar("notes")}</div>
+    <p class="task-pt">${esc(d.notesPt)}</p>
+    <button type="button" class="btn primary" data-act="next">Messages ▶ <span>· mensagens</span></button>`);
+}
+
+const bubble = (who, text, delay) => {
+  const c = (EV().meta.cast[who] || {}).color || "var(--berry)";
+  const anim = delay === undefined ? "" : ` appear" style="animation-delay:${delay}s`;
+  return who === "me" ? `<div class="bub out${anim}">${rich(text)}</div>`
+    : `<div class="bub in${anim}"><span class="who" style="color:${c}">${esc(who)}</span>${rich(text)}</div>`;
+};
+const speakable = msgs => msgs.map(([w, t]) => { const s = `${w}: ${semGloss(t)}`; return /[.!?]\s*$/.test(paraFalar(s)) ? s : s + "."; }).join(" ");
+const joinToks = ts => ts.reduce((s, t) => !s ? t : /^['’.,!?]/.test(t) ? s + t : s + " " + t, "");
+const norm = ts => { ts = ts.slice(); while (ts.length && /^[.!?]$/.test(ts[ts.length - 1])) ts.pop(); return ts.join("\u0001"); };
+function judge(t, toks) {
+  const k = norm(toks), o = t.outcomes;
+  let i = o.findIndex(x => x.say && x.say.some(p => norm(p) === k));
+  if (i < 0) i = o.findIndex(x => !x.say && (x.has || x.hasAny || x.lacks) &&
+    (x.has || []).every(b => toks.includes(b)) && (!x.hasAny || x.hasAny.some(b => toks.includes(b))) && !(x.lacks || []).some(b => toks.includes(b)));
+  return i;
+}
+const outcomeOf = (t, i) => i >= 0 ? t.outcomes[i] : Object.assign({ kind: "none" }, t.fallback);
+const FB = { ok: ["ok", "✅ Great! · muito bem!"], warn: ["warn", "⚠️ Almost! · quase!"], bad: ["bad", "❌ Oops! · ops!"], none: ["bad", "❓ Hmm... · não deu para entender"] };
+
+function builderHTML(t) {
+  return `<div class="ans" aria-live="polite" aria-label="Your message · sua mensagem">${pick.length
+      ? pick.map((b, j) => `<button type="button" class="tok" data-tok="${j}" aria-label="${esc(t.blocks[b])} (remove · tirar)">${esc(t.blocks[b])}</button>`).join("")
+      : `<span class="empty">Toque nos blocos para montar a sua mensagem.</span>`}</div>
+    <div class="blks">${t.blocks.map((b, i) => `<button type="button" class="blk" data-blk="${i}"${pick.includes(i) ? " disabled" : ""}>${esc(b)}</button>`).join("")}</div>
+    <div class="row2"><button type="button" class="btn" data-act="clear"${pick.length ? "" : " disabled"}>Clear <span>· apagar</span></button>
+      <button type="button" class="btn primary" data-act="send"${pick.length ? "" : " disabled"}>Send ➤ <span>· enviar</span></button></div>`;
+}
+function screenTask(n) {
+  const d = DAY(), t = d.tasks[n], a = answerOf(t.id);
+  const icon = t.app === "call" ? "📞" : "💬";
+  let after = "";
+  if (a) {
+    const o = outcomeOf(t, a.o), [cls, title] = FB[o.kind === "ok" && o.tip ? "ok" : o.kind];
+    const step = justSent ? 0.6 : undefined, n0 = (o.reply || []).length;
+    after = `${bubble("me", a.said, justSent ? 0 : undefined)}
+      ${(o.reply || []).map(([w, x], j) => bubble(w, x, step === undefined ? undefined : 0.5 + j * step)).join("")}</div>
+      <div class="fbk ${cls}${justSent ? " appear" : ""}"${justSent ? ` style="animation-delay:${0.6 + n0 * 0.6}s"` : ""}>
+        <p class="fbk-t">${title}</p>${o.tip ? `<p style="margin:0">${o.kind === "ok" ? "💡 " : ""}${esc(o.tip)}</p>` : ""}
+        ${o.kind !== "ok" ? `<p class="model">Você quis dizer: <b>${esc(withName(t.model))}</b></p>` : ""}</div>
+      <button type="button" class="btn primary" data-act="next">${n + 1 < d.tasks.length ? "Next ▶ <span>· próxima</span>" : "End of the day ▶ <span>· fim do dia</span>"}</button>`;
+  }
+  render(`${dayTop()}
+    <div class="phone"><div class="ph-head"><span class="ph-ico" aria-hidden="true">${icon}</span><div><b>${esc(t.thread)}</b><small>${esc(t.time)}</small></div></div>
+      <div class="ph-body">${sayButton(speakable(t.messages))}<div class="chat">${t.messages.map(([w, x]) => bubble(w, x)).join("")}
+      ${a ? after : `</div>${t.mark ? `<p class="keyb">🔑 Important · esta resposta muda a sexta-feira</p>` : ""}
+        <p class="task-pt">${esc(t.pt)}</p><div id="builder">${builderHTML(t)}</div>`}
+      </div>${appBar("chat")}</div>`);
+  justSent = false;
+}
+function redrawBuilder(focus) {
+  const t = DAY().tasks[run.step - 2];
+  $("#builder").innerHTML = builderHTML(t);
+  const f = focus && $("#builder " + focus);
+  (f || $("#builder .blk:not([disabled])") || $("#builder [data-act=send]")).focus();
+}
+function send() {
+  const d = DAY(), t = d.tasks[run.step - 2];
+  if (!pick.length || answerOf(t.id)) return;
+  const toks = pick.map(i => t.blocks[i]), i = judge(t, toks), o = outcomeOf(t, i);
+  run.answers.push({ day: run.day, id: t.id, said: joinToks(toks), o: i, kind: o.kind, first: o.kind === "ok" });
+  if (t.mark) run.marks[t.mark] = o.mark === true;
+  if (o.calendar) run.cal.push(o.calendar);
+  if (t.notes) run.notes.push({ day: run.day + 1, text: t.notes });
+  saveRun(); pick = []; justSent = !document.documentElement.classList.contains("no-motion");
+  screenTask(run.step - 2);
+  const b = $("#app [data-act=next]"); if (b) b.focus({ preventScroll: true });
+}
+
+function resultCode() {
+  const ev = EV(), marks = ev.meta.marks.map(k => run.marks[k] === true ? "1" : run.marks[k] === false ? "0" : "x").join("");
+  const body = `${ev.meta.code}-${run.done.length}-${String(firstTry()).padStart(2, "0")}-${marks}`;
+  return body + "-" + String.fromCharCode(65 + [...body].reduce((s, c) => s + c.charCodeAt(0), 0) % 26);
+}
+function screenClose() {
+  const d = DAY(), next = EV().days[run.day + 1];
+  if (!run.done.includes(run.day)) { run.done.push(run.day); saveRun(); }
+  const [hi, hf, ht, hx] = d.close.hook;
+  render(`${topBar(esc(EV().meta.title), `${esc(d.day)} ✓`)}
+    <div class="card" style="text-align:center"><span class="stamp">✓ ${esc(d.day)}</span>
+      <h2 style="margin:0">Good job, ${esc(NAME())}! <span class="hint">· bom trabalho!</span></h2>
+      <p class="score">First try: ${firstTry(run.day)}/${d.tasks.length} <span class="hint">· acertos de primeira</span></p></div>
+    <div class="card"><p class="sec-t" style="margin-top:0">📅 This week <span>· esta semana</span></p>
+      ${run.cal.length ? `<ul class="cal-l">${run.cal.map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nada marcado ainda.</p>`}
+      <p class="sec-t">📝 Tomorrow <span>· amanhã</span></p><p>${rich(d.close.tomorrow)}</p></div>
+    ${wordsCardHTML(run.dayT0)}
+    <div class="lock" style="padding:14px"><div class="date" style="margin:0 0 8px">${esc(d.close.time)}</div>
+      <div class="notif"><span class="ni" aria-hidden="true">${hi}</span><div><b>${esc(hf)} · ${esc(ht)}</b><span>${esc(semGloss(hx))}</span></div></div></div>
+    <div class="card"><p class="sec-t" style="margin-top:0">Result code <span>· código de resultado</span></p>
+      <p class="code">${resultCode()}</p><p class="hint">Copie este código no caderno: ele mostra ao professor como foi a sua semana até aqui.</p></div>
+    <div class="card">${next ? `<p class="sec-t" style="margin-top:0">${esc(next.day)} <span>· próxima aula</span></p>
+        <label class="lbl" for="code-in">Code of the day <span class="hint">· código do dia (o professor mostra na aula)</span></label>
+        <input class="name" id="code-in" maxlength="12" autocomplete="off" autocapitalize="characters">
+        <p class="fb no" id="code-err"></p>
+        <button type="button" class="btn primary" data-act="unlock">Open ${esc(next.day)} ▶ <span>· abrir</span></button>`
+      : `<p class="sec-t" style="margin-top:0">${esc(["Tuesday", "Wednesday", "Thursday", "Friday"][run.day] || "")} <span>· em breve</span></p>
+        <p class="hint">O próximo dia chega numa próxima versão do jogo. O seu progresso fica guardado.</p>`}
+      <button type="button" class="help-btn" data-act="home">Back to the start <span>· voltar ao início</span></button></div>`);
+}
+
+function go() {
+  if (!run) return screenHome();
+  if (!profile) return screenProfile();
+  if (!run.kw) return screenKeywords();
+  const d = DAY();
+  if (run.step === 0) return screenLock();
+  if (run.step === 1) return screenNotes();
+  if (run.step < d.tasks.length + 2) { pick = []; return screenTask(run.step - 2); }
+  return screenClose();
+}
+
+function sheetList(title, items) {
+  return `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="st-t"><h2 id="st-t">${title}</h2>${items}
+    <button type="button" class="btn primary" id="st-close">Done <span>· pronto</span></button></div>`;
+}
+function openApp(k) {
+  if (k === "notes") openSheet(sheetList(`📝 Notes <span>· anotações</span>`, `<ul class="notes-l">${notesToday().map(n => `<li class="${n.isNew ? "new" : ""}">${esc(semGloss(n.t))}</li>`).join("")}</ul>
+    ${run.notes.some(n => n.day > run.day) ? `<p class="sec-t">Next days <span>· próximos dias</span></p><ul class="notes-l">${run.notes.filter(n => n.day > run.day).map(n => `<li>${esc(semGloss(n.text))}</li>`).join("")}</ul>` : ""}`));
+  else if (k === "calendar") openSheet(sheetList(`📅 Calendar <span>· agenda</span>`, run.cal.length ? `<ul class="cal-l">${run.cal.map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nothing yet · nada marcado ainda.</p>`));
+}
+
+$("#app").addEventListener("click", e => {
+  const blk = e.target.closest("[data-blk]"), tok = e.target.closest("[data-tok]"), av = e.target.closest("[data-av]"), app = e.target.closest("[data-app]");
+  if (blk) { pick.push(+blk.dataset.blk); redrawBuilder(); return; }
+  if (tok) { pick.splice(+tok.dataset.tok, 1); redrawBuilder(); return; }
+  if (app) { if (app.dataset.app !== "chat") openApp(app.dataset.app); return; }
+  if (av) {
+    const [k, v] = av.dataset.av.split(":"); $("#pf-err").textContent = ""; draft[k] = v; draft.name = $("#pf-name").value;
+    av.parentNode.querySelectorAll("[data-av]").forEach(b => b.setAttribute("aria-pressed", b === av));
+    $("#av-prev").innerHTML = avatarSVG(draft); return;
+  }
+  const b = e.target.closest("[data-act]");
+  if (!b) return;
+  const act = b.dataset.act;
+  if (act !== "reset") armed = false;
+  if (act === "start") screenEvents();
+  else if (act === "continue") go();
+  else if (act === "home") screenHome();
+  else if (act === "profile") { draft = null; screenProfile(); }
+  else if (act === "reset") {
+    if (!armed) { armed = true; screenHome(); setTimeout(() => { if (armed) { armed = false; if ($("[data-act=reset]")) screenHome(); } }, 4000); return; }
+    armed = false; run = null; store.del(KEY.run); screenHome();
+  }
+  else if (act === "pick") {
+    const now = Date.now();
+    run = { event: b.dataset.ev, day: 0, step: 0, kw: false, marks: {}, answers: [], cal: [], notes: [], done: [], t0: now, dayT0: now };
+    saveRun(); go();
+  }
+  else if (act === "saveprof") {
+    const name = $("#pf-name").value.trim().replace(/\s+/g, " ");
+    if (!/^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ' -]{0,15}$/.test(name)) { $("#pf-err").textContent = "Escreva o seu nome (só letras)."; $("#pf-name").focus(); return; }
+    profile = Object.assign({}, draft, { name }); draft = null; store.set(KEY.profile, profile);
+    run ? go() : screenEvents();
+  }
+  else if (act === "kwdone") { run.kw = true; saveRun(); go(); }
+  else if (act === "next") { run.step++; saveRun(); go(); }
+  else if (act === "clear") { pick = []; redrawBuilder(); }
+  else if (act === "send") send();
+  else if (act === "unlock") {
+    const v = $("#code-in").value.trim().toUpperCase(), want = (GAME.codes[run.day + 1] || "").toUpperCase();
+    if (!want || v !== want) { $("#code-err").textContent = "Código errado. Confira o código do dia com o professor."; $("#code-in").focus(); return; }
+    run.day++; run.step = 0; run.dayT0 = Date.now(); saveRun(); go();
+  }
+});
+
+/* ---------------- áudio: a voz em inglês que já vem no celular (nada é baixado nem enviado) ---------------- */
+const synth = "speechSynthesis" in window ? window.speechSynthesis : null;
+let voz = null, falando = null;   // falando: o botão 🔊 que está lendo agora
+function escolheVoz() {
+  if (!synth) return null;
+  const vs = synth.getVoices().filter(v => /^en([-_]|$)/i.test(v.lang));
+  // vozes do próprio aparelho primeiro (funcionam sem internet)
+  return vs.find(v => v.localService && /en[-_](US|GB)/i.test(v.lang)) || vs.find(v => v.localService) || vs[0] || null;
+}
+const podeFalar = () => !!(synth && (voz = voz || escolheVoz()));
+if (synth) synth.addEventListener("voiceschanged", () => { voz = escolheVoz(); applySettings(); });
+// texto que vai para a voz: sem [[glossário]], sem emojis, com o nome da empresa; "go · went" vira "go, went"
+const paraFalar = t => String(t).replace(/\[\[([^|\]]+)\|[^\]]+\]\]/g, "$1").replace(/\{name\}/g, (typeof state !== "undefined" && state && state.name) || "")
+  .replace(/\p{Extended_Pictographic}|️|‍/gu, "").replace(/\s·\s/g, ", ").replace(/\s+/g, " ").trim();
+// divide em frases só onde há pontuação seguida de espaço ("8.5" fica inteiro) e não depois de Mr./Ms./Dr. nem antes de minúscula (“Why?” she asked)
+function frases(t) {
+  const out = [];
+  t.split(/([.!?]+[”"’]?\s+)/).forEach((x, i) => {
+    if (i % 2) { out[out.length - 1] += x; return; }
+    const ant = out[out.length - 1];
+    if (ant !== undefined && (/\b(Mr|Ms|Mrs|Dr)\.\s*$/.test(ant) || /^[a-z]/.test(x))) out[out.length - 1] += x; else out.push(x);
+  });
+  return out.map(x => x.trim()).filter(Boolean);
+}
+function fala(texto, botao) {
+  if (!podeFalar() || SET.audio === "off") return;
+  try {
+    synth.cancel(); paraBotao();
+    // frase por frase: alguns navegadores cortam leituras longas no meio
+    const partes = frases(paraFalar(texto));
+    partes.forEach((p, i) => {
+      const u = new SpeechSynthesisUtterance(p);
+      u.voice = voz; u.lang = voz.lang; u.rate = SET.audio === "slow" ? 0.7 : 0.95;
+      if (botao && i === partes.length - 1) { u.onend = u.onerror = () => { if (falando === botao) paraBotao(); }; }
+      synth.speak(u);
+    });
+    if (botao) { falando = botao; botao.setAttribute("aria-pressed", "true"); botao.querySelector("span").textContent = "Stop · parar"; }
+  } catch (e) { /* sem voz: o jogo funciona igual */ }
+}
+function paraBotao() {
+  if (!falando) return;
+  falando.setAttribute("aria-pressed", "false");
+  const s = falando.querySelector("span"); if (s) s.textContent = "Listen · ouvir";
+  falando = null;
+}
+const sayButton = t => `<button type="button" class="say" data-say="${esc(paraFalar(t))}" aria-pressed="false" aria-label="Listen · ouvir o texto">🔊 <span>Listen · ouvir</span></button>`;
+document.addEventListener("click", e => {
+  const b = e.target.closest(".say");
+  if (!b) return;
+  if (b.getAttribute("aria-pressed") === "true") { try { synth.cancel(); } catch (err) { /* nada */ } paraBotao(); return; }
+  fala(b.dataset.say, b);
+});
+// ao trocar de tela, a leitura para
+new MutationObserver(() => { if (falando && !document.contains(falando)) { try { synth.cancel(); } catch (e) { /* nada */ } falando = null; } })
+  .observe(document.body, { childList: true, subtree: true });
+
+/* ---------------- configurações (engrenagem; valem para a estante toda, guardadas no aparelho) ---------------- */
+const SETTINGS = [
+  // [chave, nome, nome em pt, dica, opções: [valor, rótulo, rótulo em pt]]
+  ["gloss", "Glossary", "glossário", "Toque nas palavras sublinhadas para ver a tradução. No Beginner, quase todas as palavras têm tradução, e os botões também.",
+    [["on", "Normal", "palavras difíceis"], ["a1", "Beginner", "iniciante (A1)"], ["off", "Off", "desligado"]]],
+  ["audio", "Audio", "áudio", "Toque numa palavra sublinhada para ouvir a pronúncia, ou use o botão 🔊 Listen para ouvir o texto.",
+    [["on", "Normal", "normal"], ["slow", "Slow", "devagar"], ["off", "Off", "desligado"]]],
+  ["theme", "Colors", "cores", "",
+    [["auto", "Auto", "igual ao celular"], ["light", "Light", "claro"], ["dark", "Dark", "escuro"]]],
+  ["size", "Text size", "tamanho do texto", "",
+    [["normal", "Normal", "normal"], ["lg", "Large", "grande"], ["xl", "Larger", "maior ainda"]]],
+  ["motion", "Animations", "animações", "Desligue se os movimentos da tela atrapalharem.",
+    [["on", "On", "ligadas"], ["off", "Off", "desligadas"]]]
+];
+const SET = {};
+SETTINGS.forEach(([k, , , , opts]) => {
+  let v = store.get(KEY[k], null);
+  if (k === "gloss" && typeof v === "boolean") v = v ? "on" : "off";   // preferência salva antes dos níveis
+  SET[k] = opts.some(o => o[0] === v) ? v : opts[0][0];
+});
+let glossOn = true;
+function applySettings() {
+  const r = document.documentElement;
+  glossOn = SET.gloss !== "off";
+  r.classList.toggle("no-gloss", !glossOn);
+  r.classList.toggle("gloss-a1", SET.gloss === "a1");
+  if (SET.theme === "auto") r.removeAttribute("data-theme"); else r.dataset.theme = SET.theme;
+  if (SET.size === "normal") r.removeAttribute("data-size"); else r.dataset.size = SET.size;
+  r.classList.toggle("no-motion", SET.motion === "off");
+  r.classList.toggle("can-speak", podeFalar() && SET.audio !== "off");
+  if (SET.audio === "off" && synth) { try { synth.cancel(); } catch (e) { /* nada */ } }
+  glossTabs();
+}
+const GEAR = `<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor">${[0, 45, 90, 135].map(a =>
+  `<rect x="10.2" y="1.5" width="3.6" height="21" rx="1.2" transform="rotate(${a} 12 12)"/>`).join("")}<circle cx="12" cy="12" r="7.6"/></g><circle cx="12" cy="12" r="3.1" style="fill: var(--bg)"/></svg>`;
+const gearButton = () => `<button type="button" class="gear" id="gear" aria-label="Settings · configurações" title="Settings · configurações" aria-haspopup="dialog">${GEAR}</button>`;
+function settingsHTML() {
+  return `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="st-t">
+    <h2 id="st-t">Settings <span>· configurações</span></h2>
+    ${SETTINGS.filter(([k]) => k !== "audio" || podeFalar()).map(([k, en, pt, hint, opts]) => `
+      <div class="st-g" role="group" aria-labelledby="st-${k}">
+        <p class="step-t" id="st-${k}">${en} <span>· ${pt}</span></p>
+        ${hint ? `<p class="st-h">${hint}</p>` : ""}
+        <div class="chips">${opts.map(([v, oen, opt]) =>
+          `<button type="button" class="chip" data-k="${k}" data-v="${v}" aria-pressed="${SET[k] === v}"><b>${oen}</b><span>${opt}</span></button>`).join("")}</div>
+      </div>`).join("")}
+    ${installHTML()}
+    <button type="button" class="btn primary" id="st-close">Done <span>· pronto</span></button>
+  </div>`;
+}
+
+/* ---------------- aplicativo: guarda o jogo no aparelho para abrir sem internet ---------------- */
+if ("serviceWorker" in navigator && /^(https:|http:\/\/(localhost|127\.0\.0\.1)[:/])/.test(location.href)) {
+  window.addEventListener("load", () => {
+    try { navigator.serviceWorker.register("sw.js").catch(() => { /* sem aplicativo: o jogo funciona igual */ }); } catch (e) { /* idem */ }
+  });
+}
+let installEvt = null;   // o Android oferece a instalação; guardamos para o botão do painel
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installEvt = e; });
+window.addEventListener("appinstalled", () => { installEvt = null; });
+const instalado = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const iPhone = () => /iphone|ipad|ipod/i.test(navigator.userAgent);
+function installHTML() {
+  if (instalado()) return "";
+  if (installEvt) return `<div class="st-g"><p class="step-t">App <span>· aplicativo</span></p>
+    <p class="st-h">Instale o jogo no celular: ele ganha um ícone e abre mesmo sem internet.</p>
+    <button type="button" class="chip" id="st-install"><b>Install the game</b><span>instalar no celular</span></button></div>`;
+  if (iPhone()) return `<div class="st-g"><p class="step-t">App <span>· aplicativo</span></p>
+    <p class="st-h">No iPhone: toque em <b>Compartilhar</b> (o quadrado com a seta) e depois em <b>Adicionar à Tela de Início</b>. O jogo abre mesmo sem internet.</p></div>`;
+  return "";
+}
+let stReturn = null;   // de onde veio o foco, para voltar ao fechar
+function openSheet(html) {
+  const o = $("#settings");
+  if (o.hidden) stReturn = document.activeElement;
+  $("#tip").classList.remove("on");
+  o.innerHTML = html; o.hidden = false;
+  document.body.style.overflow = "hidden";
+  (o.querySelector('[aria-pressed="true"]') || o.querySelector(".sheet button")).focus();
+}
+const openSettings = () => openSheet(settingsHTML());
+function closeSettings() {
+  const o = $("#settings");
+  o.hidden = true; o.innerHTML = "";
+  document.body.style.overflow = "";
+  // as palavras podem ter sido apagadas na revisão: atualiza os cartões da tela
+  const h = $("#w-home"); if (h) h.outerHTML = wordsHomeHTML();
+  const c = $("#w-end"); if (c) c.outerHTML = wordsCardHTML(+c.dataset.since);
+  const back = stReturn && stReturn !== document.body && document.contains(stReturn) ? stReturn : $("#gear");
+  if (back) back.focus();
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("#gear")) { openSettings(); return; }
+  if (e.target.closest("#w-review")) { openWords(); return; }
+  const o = $("#settings");
+  if (o.hidden) return;
+  if (e.target === o || e.target.closest("#st-close")) { closeSettings(); return; }
+  if (wordsClick(e)) return;
+  if (e.target.closest("#st-install") && installEvt) {
+    const ev = installEvt; installEvt = null;
+    ev.prompt();
+    ev.userChoice.finally(() => { const g = $("#st-install"); if (g) g.closest(".st-g").remove(); $("#st-close").focus(); });
+    return;
+  }
+  const c = e.target.closest(".chip[data-k]");
+  if (!c) return;
+  SET[c.dataset.k] = c.dataset.v; store.set(KEY[c.dataset.k], c.dataset.v);
+  applySettings();
+  o.querySelectorAll(`.chip[data-k="${c.dataset.k}"]`).forEach(b => b.setAttribute("aria-pressed", b === c));
+});
+document.addEventListener("keydown", e => {
+  const o = $("#settings");
+  if (o.hidden) return;
+  if (e.key === "Escape") { closeSettings(); return; }
+  if (e.key !== "Tab") return;
+  // o foco fica dentro do painel enquanto ele está aberto
+  const f = [...o.querySelectorAll("button")], first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+/* ---------------- My words: as palavras consultadas no glossário (ficam só no aparelho) ---------------- */
+// vale para o jogo todo (week:words)
+const loadWords = () => { const v = store.get(KEY.words, []); return Array.isArray(v) ? v : []; };
+const saveWords = ws => store.set(KEY.words, ws.slice(0, 300));
+// en: como a palavra aparece na lista (verbos com as formas); k: chave única
+function rememberWord(k, en, pt) {
+  const ws = loadWords(), i = ws.findIndex(w => w.k === k);
+  const w = i >= 0 ? ws.splice(i, 1)[0] : { k, n: 0, ok: 0 };
+  Object.assign(w, { en, pt, t: Date.now() }); w.n++;
+  saveWords([w, ...ws]);
+}
+const wordOf = g => { const s = (g.dataset.base || g.textContent).trim(); return s.length <= 3 && s === s.toUpperCase() ? s : s.toLowerCase(); };
+const wordsList = ws => `<ul class="wlist">${ws.map(w => `<li><b>${esc(w.en)}</b> <span>= ${esc(w.pt)}</span></li>`).join("")}</ul>`;
+const reviewButton = () => `<button type="button" class="help-btn" id="w-review">Review my words <span>· revisar em cartões</span></button>`;
+
+// no fim do dia: as palavras consultadas naquele dia
+function wordsCardHTML(since) {
+  const all = loadWords(), now = all.filter(w => w.t >= since);
+  return `<div class="card" id="w-end" data-since="${since}"><p class="sec-t" style="margin-top:0">My words <span>· minhas palavras</span></p>
+    ${now.length ? `<p class="hint">As palavras que você consultou hoje. Copie no caderno!</p>${wordsList(now)}`
+                 : `<p class="hint">Você não consultou nenhuma palavra hoje.${all.length ? "" : " Toque nas palavras sublinhadas durante o jogo: elas ficam guardadas aqui para você revisar depois."}</p>`}
+    ${all.length ? reviewButton() : ""}</div>`;
+}
+// no início: acesso à revisão
+function wordsHomeHTML() {
+  const n = loadWords().length;
+  // aparece sempre, mesmo vazio, para o aluno descobrir o recurso
+  return `<div class="card" id="w-home"><p class="sec-t" style="margin-top:0">My words <span>· minhas palavras</span></p>
+    ${n ? `<p class="hint">${n} ${n === 1 ? "palavra consultada" : "palavras consultadas"} no glossário, guardadas neste aparelho.</p>${reviewButton()}`
+         : `<p class="hint">Toque nas palavras sublinhadas durante o jogo: elas ficam guardadas aqui para você revisar depois.</p>`}</div>`;
+}
+
+// revisão em cartões, no mesmo painel das configurações (não mexe no jogo)
+let rv = null;
+function openWords() {
+  const ws = loadWords().sort((a, b) => (a.ok - b.ok) || (b.t - a.t));   // as que ainda não sabe vêm primeiro
+  rv = { deck: ws.slice(0, 10), i: 0, ok: 0, shown: false, armed: false };
+  openSheet(wordsHTML());
+}
+function wordsHTML() {
+  const all = loadWords(), head = `<h2 id="st-t">My words <span>· minhas palavras</span></h2>`;
+  const done = `<button type="button" class="btn primary" id="st-close">Done <span>· pronto</span></button>`;
+  if (!all.length) return `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="st-t">${head}
+    <p>Toque nas palavras sublinhadas durante o jogo: elas aparecem aqui para você revisar.</p>${done}</div>`;
+  if (rv.i >= rv.deck.length) return `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="st-t">${head}
+    <p class="wscore">You knew ${rv.ok} of ${rv.deck.length}! <span>· você sabia ${rv.ok} de ${rv.deck.length}</span></p>
+    <div class="choices"><button type="button" class="btn center" id="w-again">Review again <span>· revisar de novo</span></button></div>
+    <p class="sec-t">All my words <span>· todas as minhas palavras (${all.length})</span></p>${wordsList(all)}
+    <button type="button" class="help-btn" id="w-clear">${rv.armed ? "Tap again to delete <span>· toque de novo para apagar</span>" : "Clear my words <span>· apagar minhas palavras</span>"}</button>
+    <div class="choices">${done}</div></div>`;
+  const w = rv.deck[rv.i];
+  return `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="st-t">${head}
+    <p class="hint">Card ${rv.i + 1} of ${rv.deck.length} · cartão ${rv.i + 1} de ${rv.deck.length}</p>
+    <div class="wcard" aria-live="polite"><b>${esc(w.en)}</b>${rv.shown ? `<span>= ${esc(w.pt)}</span>` : `<span class="hint">O que significa? · What does it mean?</span>`}</div>${sayButton(w.en)}
+    ${rv.shown ? `<div class="wbtns"><button type="button" class="btn primary" id="w-yes">I knew it ✓ <span>· eu sabia</span></button>
+      <button type="button" class="btn center" id="w-no">Not yet ↻ <span>· ainda não</span></button></div>`
+      : `<button type="button" class="btn primary" id="w-show">Show the translation <span>· ver a tradução</span></button>`}
+    <div class="choices">${done.replace("btn primary", "btn center")}</div></div>`;
+}
+function redrawWords(focusId) {
+  $("#settings").innerHTML = wordsHTML();
+  const f = (focusId && $("#" + focusId)) || $("#settings .sheet button");
+  if (f) f.focus();
+}
+function wordsClick(e) {
+  const b = e.target.closest("#w-show, #w-yes, #w-no, #w-again, #w-clear");
+  if (!b) return false;
+  if (b.id === "w-show") { rv.shown = true; redrawWords("w-yes"); }
+  else if (b.id === "w-yes" || b.id === "w-no") {
+    const ws = loadWords(), w = ws.find(x => x.k === rv.deck[rv.i].k);
+    if (w) { w.ok = b.id === "w-yes" ? w.ok + 1 : 0; saveWords(ws); }
+    if (b.id === "w-yes") rv.ok++;
+    rv.i++; rv.shown = false; redrawWords("w-show");
+  }
+  else if (b.id === "w-again") openWords();
+  else if (b.id === "w-clear") {
+    if (rv.armed) { saveWords([]); rv.armed = false; redrawWords(); }
+    else { rv.armed = true; redrawWords("w-clear"); setTimeout(() => { if (rv && rv.armed) { rv.armed = false; if (!$("#settings").hidden && $("#w-clear")) redrawWords("w-clear"); } }, 4000); }
+  }
+  return true;
+}
+
+/* ---------------- glossário: balão e 1ª ocorrência ---------------- */
+document.addEventListener("click", e => {
+  const tip = $("#tip"), g = e.target.closest(".gloss");
+  if (!g || !glossOn || (g.classList.contains("a1") && SET.gloss !== "a1")) { tip.classList.remove("on"); return; }
+  if (g.classList.contains("verb")) {
+    const [b, p, pp, pt] = IRREG[+g.dataset.v], on = g.dataset.cols ? g.dataset.cols.split(",").map(Number) : [];
+    tip.innerHTML = `<div class="vt">${[["infinitive", b], ["past", p], ["participle", pp]].slice(0, verbForms()).map(([l, f], i) => `<div class="vc${on.includes(i) ? " on" : ""}"><span>${l}</span><b>${esc(f)}</b></div>`).join("")}</div><div class="vpt">= ${esc(pt)}</div>`;
+    rememberWord("v:" + b, [b, p, pp].slice(0, verbForms()).join(" · "), pt);
+  } else { tip.textContent = g.textContent + (g.dataset.base ? ` (${g.dataset.base})` : "") + " = " + g.dataset.pt; rememberWord("g:" + wordOf(g), wordOf(g), g.dataset.pt); }
+  tip.classList.add("on");
+  fala(g.textContent);
+  const r = g.getBoundingClientRect();
+  tip.style.left = Math.max(8, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - tip.offsetWidth - 8)) + "px";
+  const above = r.top - tip.offsetHeight - 6;
+  tip.style.top = (window.scrollY + (above > 8 ? above : r.bottom + 6)) + "px";
+});
+function dedupeGloss() {
+  const seen = new Set(), all = [...$("#app").querySelectorAll(".gloss")];
+  const word = el => el.textContent.trim().toLowerCase();
+  // uma palavra do glossário normal nunca perde a vez para a mesma palavra do nível A1
+  const normal = new Set(all.filter(el => !el.classList.contains("a1") && !el.classList.contains("verb")).map(word));
+  all.forEach(el => {
+    const a1 = el.classList.contains("a1");
+    const key = (el.classList.contains("verb") ? "v:" : a1 ? "a:" : "g:") + word(el);
+    if (seen.has(key) || (a1 && normal.has(word(el)))) el.replaceWith(...el.childNodes); else seen.add(key);
+  });
+  glossTabs();
+}
+// palavras do nível A1 só entram na ordem do Tab quando esse nível está ligado
+function glossTabs() {
+  const on = SET.gloss === "a1";
+  document.querySelectorAll(".gloss.a1").forEach(el => { el.tabIndex = on ? 0 : -1; });
+}
+new MutationObserver(dedupeGloss).observe($("#app"), { childList: true, subtree: true });
+
+screenHome();
+</script>
+</body>
+</html>
