@@ -51,7 +51,8 @@ tarefas, **8 são de montar** a frase e **4 são de leitura** (`"type": "pick"`)
 que o aluno confere Notes, agenda ou a conversa e escolhe 1 de 3 respostas
 prontas (`outcomes` com `text`, `reply` e, nas erradas, `tip`; sem marca). O
 texto dessas respostas vai sem glossário (botão dentro de botão quebra a tela).
-O `checar.py` confere as contas (12 = 8 + 4).
+A **sexta** é a exceção: 8 tarefas (6 + 2), porque já tem as cenas da festa e o
+plano do fim de semana (18 partes). O `checar.py` confere as contas.
 
 Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
 `blocks` (as peças do montador, inclusive as erradas) e `outcomes` (as respostas):

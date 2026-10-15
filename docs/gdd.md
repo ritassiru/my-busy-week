@@ -16,7 +16,7 @@
 | **Plataforma** | Celular (tela pequena), modo claro e escuro, **sem internet** (PWA) |
 | **Conteúdo** | Futuro: ***will***, ***going to*** e ***present continuous*** (compromissos) |
 | **Apoio** | *Simple present* (rotina, horários) e imperativo (pedidos, avisos). **Sem simple past.** |
-| **Duração** | 5 episódios (segunda a sexta), **um por aula**, de 10 a 15 min cada |
+| **Duração** | 5 episódios (segunda a sexta), **um por aula**, de 25 a 30 min cada (15 partes) |
 
 ### Objetivo pedagógico
 O aluno distingue os três usos do futuro **pelo efeito**, e não só pela regra:
@@ -108,7 +108,15 @@ Cada um tem um traço que **gera situações de futuro**:
 1. **Abertura**: tela de bloqueio com notificações (*3 new messages · 1 missed
    call*) e a **lista do dia** no Notes (*Today I'm meeting... / I'm going to...*).
    Ela substitui uma recapitulação no passado, que fica fora do conteúdo.
-2. **Tarefas** (4 por dia): o aluno lê uma situação num app e **monta a resposta**.
+2. **Tarefas** (12 por dia): o aluno lê uma situação num app e responde.
+   - **8 de montar a frase** (abaixo);
+   - **4 de leitura**: o aluno confere o Notes, a agenda, o app do tempo ou a
+     própria conversa e escolhe 1 de 3 respostas prontas. Elas variam o ritmo,
+     treinam a leitura do celular e não guardam marca.
+
+   Com a abertura, o Notes e o fechamento, cada dia tem **15 partes** (decidido em
+   out/2026: 7 partes era pouco para uma aula). A **sexta** tem 8 tarefas, porque
+   já tem as cenas da festa e o plano do fim de semana: são 18 partes.
 3. **Reação**: o personagem responde e mostra se o sentido ficou certo.
 4. **Fechamento**: resumo do dia, acertos e as palavras novas no *My words*.
 
@@ -287,7 +295,7 @@ professor.html                  GERADO: QR do jogo, códigos dos dias, decodific
 ```
 
 O `checar.py` do jogo deve verificar, para cada evento:
-- todos os 5 dias completos, com 4 tarefas e as marcas previstas;
+- todos os 5 dias completos, com 12 tarefas (8 de montar e 4 de leitura; a sexta com 8) e as marcas previstas;
 - toda marca tem pedaço bom **e** ruim na sexta;
 - toda resposta aceita usa a forma certa, e as alternativas erradas têm reação
   e dica;
@@ -297,7 +305,7 @@ O `checar.py` do jogo deve verificar, para cada evento:
 
 ## 8. Riscos e pontos em aberto
 
-- **Volume de texto:** 3 eventos × 5 dias × 4 tarefas, cada uma com reação
+- **Volume de texto:** 3 eventos × (4 dias × 12 + 8) tarefas, cada uma com reação
   certa e errada. Sugestão: fazer **um evento completo primeiro** (MVP), testar
   com uma turma e só depois escrever os outros dois.
 - **Sem nova tentativa:** um aluno que erra muito pode desanimar. Observar no

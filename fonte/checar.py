@@ -31,6 +31,7 @@ META = ["slug", "code", "title", "titlePt", "blurb", "blurbPt", "cover", "cast",
 DAY = ["day", "dayPt", "focusPt", "lock", "notes", "notesPt", "tasks", "close"]
 KINDS = {"ok", "warn", "bad"}
 TAREFAS, LEITURA = 12, 4   # por dia: 12 tarefas, das quais 4 de leitura ("type": "pick") e 8 de montar
+SEXTA = (8, 2)             # a sexta (5º dia) tem as cenas da festa e o plano: 8 tarefas, 2 de leitura
 
 sem_glossario = lambda t: re.sub(r"\[\[([^|\]]+)\|[^\]]+\]\]", r"\1", t.replace("{name}", "Ana"))
 def passado(t):
@@ -70,9 +71,10 @@ def check_event(slug, game):
         for k in DAY:
             if k not in d: erros.append(f"{nd}: falta o campo '{k}'")
         if erros: continue
-        if len(d["tasks"]) != TAREFAS: erros.append(f"{nd}: {len(d['tasks'])} tarefas (todo dia tem {TAREFAS})")
+        nt, nlq = SEXTA if di == 4 else (TAREFAS, LEITURA)
+        if len(d["tasks"]) != nt: erros.append(f"{nd}: {len(d['tasks'])} tarefas (este dia tem {nt})")
         nl = sum(t.get("type") == "pick" for t in d["tasks"])
-        if nl != LEITURA: erros.append(f"{nd}: {nl} tarefas de leitura (todo dia tem {LEITURA} e {TAREFAS - LEITURA} de montar)")
+        if nl != nlq: erros.append(f"{nd}: {nl} tarefas de leitura (este dia tem {nlq} e {nt - nlq} de montar)")
         textos += [(nd, x) for x in d["notes"]] + [(nd, x[2]) for x in d["lock"]["items"]] + [(nd, d["close"]["tomorrow"]), (nd, d["close"]["hook"][3])]
         for t in d["tasks"]:
             tid = t.get("id", "?"); ids[tid] += 1; onde = f"{nd} · {tid}"

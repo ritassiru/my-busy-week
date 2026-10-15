@@ -15,7 +15,10 @@ Convenções deste roteiro:
   dizer" (em português), que mostra a frase certa.
 - Qualquer montagem que não esteja listada recebe a **reação genérica** do
   personagem (*Sorry, what? 😅*) e a dica da forma esperada.
-- Todo dia tem **4 tarefas**.
+- Todo dia tem **15 partes**: abertura, Notes, **12 tarefas** (8 de montar e 4 de
+  leitura) e fechamento. A sexta é diferente: 8 tarefas, as cenas da festa e o
+  plano (18 partes). **M5 a M8** são as tarefas novas de montar; **L1 a L4**, as de
+  leitura (escolher 1 de 3 respostas prontas, sem marca).
 - 🔑 marca uma **decisão-chave**, que guarda uma marca para a sexta.
 - ✅ certo · ❌ informação errada (muda a marca) · ⚠️ só a forma errada (reação
   e dica, conta nos acertos de primeira, mas **não muda a marca**) · ✅ com 💡
@@ -39,7 +42,7 @@ marcado (*present continuous* + **quando** e **onde**).
 **Liberação:** a segunda abre direto depois da escolha do evento e do avatar
 (aula 1). O código da terça aparece só para o professor.
 **Decisão-chave:** 🔑 `combinado_firme` (tarefa 3).
-**Duração estimada:** 10 a 12 min · ~180 palavras de leitura.
+**Duração estimada:** 25 a 30 min · ~450 palavras de leitura (15 partes).
 
 ### Abertura
 
@@ -157,11 +160,153 @@ escreveu**, inclusive a hora errada:
 
 ---
 
+### Ordem do dia (15 partes)
+
+Abertura (tela de bloqueio) · Notes · **12 tarefas** · Fechamento. As tarefas
+**T1 a T4** são as de cima; **M5 a M8** são as novas de montar e **L1 a L4**,
+as de leitura (escolher 1 de 3 respostas prontas, conferindo Notes, agenda ou a conversa).
+
+| # | Hora | Tarefa | Tipo | Forma / habilidade |
+|---|---|---|---|---|
+| 1 | 7:00 a.m. | L1 · Mãe: que horas é o futebol? | leitura | ler o Notes |
+| 2 | 7:10 a.m. | T1 · aceitar o convite | montar | *I'll* (decisão na hora) |
+| 3 | 7:20 a.m. | T2 · Nina: guardar o segredo | montar | *I'm meeting... on Friday* |
+| 4 | 7:30 a.m. | L2 · Kauã: qual é a novidade? | leitura | resumir a conversa |
+| 5 | 10:15 a.m. | M5 · Mãe: o livro da biblioteca | montar | *I'm going to* (plano do Notes) |
+| 6 | 12:30 p.m. | T3 · quando e onde 🔑 | montar | *We're meeting* + lugar, dia e hora |
+| 7 | 12:35 p.m. | L3 · Maya: quem traz a Nina? | leitura | lembrar o plano |
+| 8 | 12:40 p.m. | T4 · oferecer ajuda | montar | *I'll buy them!* |
+| 9 | 3:00 p.m. | M6 · Davi: videogame amanhã? | montar | *I'm going to buy balloons tomorrow* |
+| 10 | 6:30 p.m. | L4 · Nina desconfia | leitura | proteger o segredo |
+| 11 | 8:00 p.m. | M7 · Mãe: a louça | montar | *I'll help you!* |
+| 12 | 9:00 p.m. | M8 · Bia: a loja amanhã às 4 | montar | aceitar e combinar a hora |
+
+A tela de bloqueio ganha a notificação **💬 Mom · 1 new message**.
+
+---
+
+#### L1 · 7:00 a.m. · Chat com a mãe — o horário do futebol *(leitura)*
+
+> **Mom:** Good morning! ☀️
+> **Mom:** Do you have football practice today? What time?
+
+*Instrução (pt):* Confira no seu Notes e responda à sua mãe.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Yes, at 5 p.m. ⚽* | **Mom:** OK! Dinner is at 7, then. 🍝 | — |
+| ❌ *Yes, at 7:30 a.m.* | **Mom:** At 7:30? That's school! 😄 | 7:30 é a hora da escola. O futebol é às 5 da tarde (5 p.m.): está no seu Notes. |
+| ❌ *No, it's on Friday.* | **Mom:** Friday? Are you sure? 🤔 | Confira o Notes: o futebol é hoje, às 5 p.m. |
+
+#### L2 · 7:30 a.m. · Chat "Nina's Party 🤫" — a novidade *(leitura)*
+
+> **Kauã:** Good morning! 😴
+> **Kauã:** Too many messages! What's the big news?
+
+*Instrução (pt):* Lembra das mensagens da Bia? Resuma a novidade para o Kauã.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Nina's birthday is on Friday! Let's have a surprise party! 🤫* | **Kauã:** A party!! I love parties! 🎉 | — |
+| ❌ *Bia's birthday is on Friday!* | **Bia:** My birthday? No! 😂 It's NINA's! | O aniversário é da Nina (*Nina's birthday*), não da Bia. |
+| ❌ *Nina's birthday is today!* | **Kauã:** TODAY?! 😱 I have no present! **Bia:** No, Kauã! It's on FRIDAY! 😅 | O aniversário é na sexta (*on Friday*), não hoje. |
+
+#### M5 · 10:15 a.m. · Chat com a mãe — o livro da biblioteca *(montar)*
+
+> **Mom:** Don't forget your [[library|biblioteca]] book today! 📚
+> **Mom:** When are you going to return it?
+
+*Instrução (pt):* Devolver o livro já é um plano (está no seu Notes). Diga quando:
+a biblioteca fecha às 5, e às 5 você tem futebol.
+
+**Blocos:** `I` `'m going to` `'ll` `return it` `at lunch` `after football` `.`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *I'm going to return it at lunch.* | **Mom:** Great! 👍 | — |
+| ⚠️ *I'll return it at lunch.* | **Mom:** Oh, now you remember? 😄 It's on your list! | Devolver o livro já estava no seu Notes: é um plano → *I'm going to return it*. |
+| ❌ … *after football* | **Mom:** After football? The library closes at 5! 😬 | A biblioteca fecha às 5, e o futebol é às 5. Devolva no almoço: *at lunch*. |
+
+#### L3 · 12:35 p.m. · Chat "Nina's Party 🤫" — quem traz a Nina? *(leitura)*
+
+> **Maya:** Wait... who is bringing Nina to the party on Friday? 🤔
+> **Maya:** And at what time?
+
+*Instrução (pt):* Lembra do plano da Bia? Responda à Maya.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Nina's mom, at 6:30.* | **Maya:** OK! So we're meeting at 6, before her. 👍 | — |
+| ❌ *Davi, at 6.* | **Davi:** Me?! 😳 I'm always late! | Quem traz a Nina é a mãe dela (*Nina's mom*), às 6:30. |
+| ❌ *Bia, at 6:30.* | **Bia:** Me? No, I'm at my house with you! 😄 | A Bia fica em casa com vocês. Quem traz a Nina é a mãe dela, às 6:30. |
+
+#### M6 · 3:00 p.m. · Chat com o Davi — videogame amanhã? *(montar)*
+
+> **Davi:** Hey! Let's play video games tomorrow after school! 🎮
+
+*Instrução (pt):* Confira no Notes o que você já planejou para amanhã. Recuse o
+convite e conte o seu plano.
+
+**Blocos:** `Sorry,` `I` `'m going to` `'ll` `buy balloons` `play` `tomorrow` `on Friday` `.`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Sorry,) I'm going to buy balloons tomorrow.* | **Davi:** Oh, for the party! OK! 🎈 | — |
+| ⚠️ *(Sorry,) I'll buy balloons tomorrow.* | **Davi:** Is that a new idea? Then buy them on Wednesday and play with me! 😄 | Comprar os balões já é um plano (está no seu Notes): *I'm going to buy*. Com *I'll*, pareceu uma decisão de agora, e o Davi achou que dava para mudar. |
+| ❌ … *on Friday* | **Davi:** Friday? But Friday is the party! 🤔 | Os balões são amanhã (*tomorrow*), na terça. Confira no Notes. |
+
+#### L4 · 6:30 p.m. · Chat com a Nina — ela desconfia *(leitura)*
+
+> **Nina:** Hey! Everybody is so busy on Friday... 🤨
+> **Nina:** [[What's happening?|O que está acontecendo?]]
+
+*Instrução (pt):* Não conte o segredo! Escolha a resposta que protege a surpresa.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Nothing special! I'm meeting some friends on Friday. 😊* | **Nina:** Hmm... OK! 🙂 | — |
+| ❌ *It's a secret! 😉* | **Nina:** A secret?! 👀 Now I REALLY want to know! | Dizer que é segredo deixa a Nina desconfiada! Use o compromisso que você já contou: *I'm meeting some friends on Friday*. |
+| ❌ *We're having a surprise party for you on Friday!* | **Nina:** A party?! For ME?! 😮 | Ops! Esse é o segredo. A resposta segura é o compromisso. |
+
+#### M7 · 8:00 p.m. · Chat com a mãe — a louça *(montar)*
+
+> **Mom:** Dinner is ready! 🍝
+> **Mom:** Can you help me with the dishes after dinner?
+
+*Instrução (pt):* Sua mãe pediu agora. Decida na hora e responda.
+
+**Blocos:** `Sure, Mom!` `I` `'ll` `'m going to` `help you` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Sure, Mom!) I'll help you!* | **Mom:** Thank you! 💜 | — |
+| ⚠️ *(Sure, Mom!) I'm going to help you!* | **Mom:** [[Going to\|Vai]]... when? Next year? 🙄😄 | Ela pediu agora, e você decidiu na hora: *I'll help you!* O *going to* soa como um plano para outro momento. |
+
+#### M8 · 9:00 p.m. · Chat com a Bia — a loja amanhã *(montar)*
+
+> **Bia:** {name}, let's go to the party shop together tomorrow! 🎈
+> **Bia:** Can you meet me there at 4?
+
+*Instrução (pt):* Aceite o convite da Bia. Confira a hora: amanhã você também tem
+futebol às 5.
+
+**Blocos:** `Sure!` `I` `'ll meet` `'m meeting` `you` `there` `at 4` `at 5` `!`
+
+**Notes:** entra `Tuesday: I'm meeting Bia at the party shop at 4.`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Sure!) I'll meet you there at 4!* | **Bia:** Perfect! See you tomorrow! 💜 | — |
+| ✅ 💡 *(Sure!) I'm meeting you there at 4!* | **Bia:** Perfect! See you tomorrow! 💜 | Vale! Aceitando na hora, o mais comum é *I'll meet you*. Depois de combinado, vira compromisso: *I'm meeting Bia at 4*. |
+| ❌ … *at 5* | **Bia:** At 5? But you have football at 5! ⚽😅 | Às 5 você tem futebol. Combine às 4 (*at 4*). |
+
+---
+
 ### Fechamento · Monday, 9:30 p.m.
 
 **Resumo do dia:**
 
-> ✅ **Monday** · first try: **3/4**
+> ✅ **Monday** · first try: **10/12**
 > 📅 **This week:** Fri · 6:00 p.m. · Meeting at Bia's house 🎉
 > 📝 **Tomorrow:** I'm going to buy balloons and a banner.
 > 📖 **My words:** *surprise, banner, balloons...* (as palavras cujo balão o aluno abriu)
@@ -208,7 +353,7 @@ A sexta é narrada no **presente** (o evento está acontecendo).
 de prometer.
 **Liberação:** código do dia `BALLOON` (aula 2).
 **Decisões-chave:** 🔑 `promessa_familia` (tarefa 1) e 🔑 `lista_pronta` (tarefa 2).
-**Duração estimada:** 12 a 14 min · ~230 palavras de leitura.
+**Duração estimada:** 25 a 30 min (15 partes).
 
 **Princípio das marcas (vale para a semana toda):** a marca depende da
 **informação** (hora, dia, item). A forma errada gera a reação e a dica e conta
@@ -282,7 +427,7 @@ qualquer ordem)
 | ✅ *I'm going to buy the balloons and the banner.* | **Bia:** Perfect! The list is ready! ✅ | `lista_pronta = true` | — |
 | ❌ só *the balloons* (ou só *the banner*) | **Bia:** OK! 👍 *(ninguém percebe o item que ficou faltando)* | `false` | No seu Notes estão **os dois**: *balloons and a banner*. O que ficou fora da lista ninguém vai comprar. |
 | ❌ com *the juice* | **Kauã:** Hey! The juice is MY job! 🧃😤 | `false` | O suco é do Kauã. Leia de novo as mensagens e o seu Notes. |
-| ⚠️ *I'll buy the balloons and the banner.* | **Bia:** You just decided? But it's already on your list! 😄 | `true` | Esse plano você **já tinha** desde segunda: *I'm going to*. *I'll* é para decidir na hora. |
+| ⚠️ *I'll buy the balloons and the banner.* | **Bia:** Is that a new idea? But it's already on your list! 😄 | `true` | Esse plano você **já tinha** desde segunda: *I'm going to*. *I'll* é para decidir na hora. |
 
 **Notes:** a lista do aluno é atualizada com o que ele escreveu (☑ ou o item
 que faltou riscado em cinza na sexta).
@@ -348,11 +493,154 @@ jogo só mostra a diferença como curiosidade, sem contar erro.
 
 ---
 
+### Ordem do dia (15 partes)
+
+| # | Hora | Tarefa | Tipo | Forma / habilidade |
+|---|---|---|---|---|
+| 1 | 7:00 a.m. | L1 · Bia: que horas na loja? | leitura | ler o Notes (combinado de segunda) |
+| 2 | 7:15 a.m. | T1 · prometer à mãe 🔑 | montar | *I'll help you at 7. I promise!* |
+| 3 | 7:40 a.m. | M5 · Kauã sem dinheiro | montar | *I'll buy you a sandwich!* |
+| 4 | 10:00 a.m. | T2 · dividir a lista 🔑 | montar | *I'm going to buy...* |
+| 5 | 10:30 a.m. | L2 · Maya: quem compra o suco? | leitura | lembrar a lista |
+| 6 | 2:00 p.m. | M6 · Davi: o que você vai fazer à tarde? | montar | *I'm meeting Bia at the party shop at 4.* |
+| 7 | 4:15 p.m. | T3 · a Nina na loja | montar | *My grandma is visiting us on Saturday.* |
+| 8 | 4:40 p.m. | M7 · a faixa grande ou pequena? | montar | *I'll take the big banner!* |
+| 9 | 5:50 p.m. | L3 · o próximo treino | leitura | ler a mensagem do técnico |
+| 10 | 6:30 p.m. | L4 · a avó chega quando? | leitura | ler dia e hora |
+| 11 | 8:30 p.m. | T4 · a roupa da festa | montar | *going to* ou *will* (💡) |
+| 12 | 9:00 p.m. | M8 · Nina: estudar na quarta | montar | aceitar e combinar a hora |
+
+**Elenco novo do dia:** a vendedora da loja (*Shop*), o técnico do futebol
+(*Coach*) e a avó (*Grandma*).
+
+**Ajuste na T3 (loja):** a Bia está junto (combinado de segunda, M8). Ela vai
+pagar no caixa e a Nina aparece enquanto o aluno segura os balões. As falas não
+mudam.
+
+---
+
+#### L1 · 7:00 a.m. · Chat com a Bia — a hora da loja *(leitura)*
+
+> **Bia:** Good morning! ☀️ What time are we meeting at the party shop today?
+
+*Instrução (pt):* Confira no seu Notes o que vocês combinaram ontem.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *At 4 p.m. 🎈* | **Bia:** Yes! See you at 4! | — |
+| ❌ *At 5 p.m.* | **Bia:** At 5? You have football at 5! 😅 | Vocês combinaram às 4. Às 5 você tem futebol. |
+| ❌ *At 6 p.m.* | **Bia:** 6 is the party time, on FRIDAY! 😂 | Às 6 é a festa, na sexta. Hoje é às 4. |
+
+#### M5 · 7:40 a.m. · Chat com o Kauã — sem dinheiro *(montar)*
+
+> **Kauã:** Oh no! 😩 My wallet is at home!
+> **Kauã:** No money for lunch today...
+
+*Instrução (pt):* Ofereça ajuda **agora**.
+
+**Blocos:** `Don't worry!` `I` `'ll` `'m going to` `buy you` `a sandwich` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Don't worry!) I'll buy you a sandwich!* | **Kauã:** You're the best! 🥪💛 | — |
+| ⚠️ *(Don't worry!) I'm going to buy you a sandwich!* | **Kauã:** You have a plan for my sandwich? Since when? 😂 | Ajuda oferecida **na hora** é *I'll*. O *going to* parece um plano antigo. |
+
+#### L2 · 10:30 a.m. · Chat "Nina's Party 🤫" — quem compra o suco? *(leitura)*
+
+> **Maya:** Who is going to buy the juice? I can't remember. 🤔
+
+*Instrução (pt):* Lembra da lista da Bia? Responda à Maya.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Kauã is going to buy it. 🧃* | **Maya:** Oh, right! Thanks! | — |
+| ❌ *You are going to buy it.* | **Maya:** Me? No, I'm going to buy the plates and the candles! | A Maya fica com os pratos e as velas. O suco é do Kauã. |
+| ❌ *I'm going to buy it.* | **Kauã:** Hey! That's MY job! 🧃😤 | O suco é do Kauã. Você compra os balões e a faixa. |
+
+#### M6 · 2:00 p.m. · Chat com o Davi — a tarde *(montar)*
+
+> **Davi:** I'm so [[bored|entediado]]! 😴 What are you doing this afternoon?
+
+*Instrução (pt):* Conte o compromisso que você **já marcou** com a Bia (está no Notes).
+
+**Blocos:** `I` `'m meeting` `'ll meet` `Bia` `at the party shop` `at 4` `at 5` `.`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *I'm meeting Bia at the party shop at 4.* (lugar e hora em qualquer ordem) | **Davi:** Cool! Buy some candy for me! 🍬 | — |
+| ⚠️ *I'll meet Bia at the party shop at 4.* | **Davi:** Is that a plan or just an idea? 🤔 | Já está combinado: *I'm meeting*. *I'll meet* soa como decisão de agora. |
+| ❌ … *at 5* | **Davi:** At 5? But you have football at 5! ⚽ | O combinado com a Bia é às 4. |
+| ❌ sem hora | **Davi:** Now? But you're at school! 😂 | Sem expressão de tempo, *I'm meeting* quer dizer **agora**. Diga quando: *at 4*. |
+
+#### M7 · 4:40 p.m. · Na loja — a faixa *(montar)*
+
+> **Shop:** Hello! Do you want the big banner or the small banner? 🏳️
+> **Shop:** The big one is very nice for parties!
+
+*Instrução (pt):* Decida **agora**, no balcão da loja.
+
+**Blocos:** `OK,` `I` `'ll` `'m going to` `take` `the big banner` `the small banner` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(OK,) I'll take the big banner!* | **Shop:** Great choice! 🎉 | — |
+| ✅ 💡 *(OK,) I'll take the small banner!* | **Shop:** OK! Here you are! | Vale! As duas faixas servem. (O tamanho não muda nada na sexta.) |
+| ⚠️ *(OK,) I'm going to take …* | **Shop:** Going to? When? I'm here now! 😄 | Decisão na hora, no balcão: *I'll take*. |
+
+#### L3 · 5:50 p.m. · Chat "Football Team ⚽" — o próximo treino *(leitura)*
+
+> **Coach:** Great practice today, team! 👏
+> **Coach:** Next practice: Thursday at 5. Don't be late!
+> **Davi:** {name}, when is the next practice? I'm always late... 😅
+
+*Instrução (pt):* Leia a mensagem do técnico e responda ao Davi.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *On Thursday at 5.* | **Davi:** Thursday at 5. OK! [[I'm writing it in my calendar!|Estou anotando na agenda!]] 📅 | — |
+| ❌ *On Friday at 6.* | **Davi:** Friday at 6? That's the PARTY! 😂 | O técnico escreveu *Thursday at 5* (quinta às 5). |
+| ❌ *Tomorrow at 5.* | **Davi:** Tomorrow? Are you sure? 🤔 | Amanhã é quarta. O treino é na quinta (*Thursday*). |
+
+*Nota:* a fala do Davi *I'm writing it in my calendar!* é "agora" de propósito
+(por isso vai em `[[...]]`).
+
+#### L4 · 6:30 p.m. · Chat com a avó — a chegada *(leitura)*
+
+> **Grandma:** Hello, dear! 👵💜
+> **Grandma:** I'm arriving on Saturday at 10 a.m. Can you meet me at the bus station?
+
+*Instrução (pt):* Leia com atenção o dia e a hora e responda à sua avó.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Yes, Grandma! I'll be there at 10! 🚌* | **Grandma:** Wonderful! See you on Saturday! 🥰 | — |
+| ❌ *Yes, Grandma! I'll be there on Friday!* | **Grandma:** Friday? I'm arriving on SATURDAY, dear! 😄 | Ela chega no sábado (*Saturday*), não na sexta. |
+| ❌ *Yes, Grandma! I'll be there at 10 p.m.!* | **Grandma:** At night? 😄 No, dear: 10 in the MORNING! | *a.m.* é de manhã; *p.m.* é de tarde e de noite. |
+
+#### M8 · 9:00 p.m. · Chat com a Nina — estudar na quarta *(montar)*
+
+> **Nina:** Hey! The science [[test|prova]] is on Thursday... 😬
+> **Nina:** Do you want to study with me tomorrow at 3? At the library? 📚
+
+*Instrução (pt):* Aceite o convite **agora** e repita o dia e a hora.
+
+**Blocos:** `Sure!` `I` `'ll meet` `'m meeting` `you` `at the library` `tomorrow` `at 3` `on Thursday` `!`
+
+**Notes:** entra `Wednesday: I'm meeting Nina at the library at 3.`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Sure!) I'll meet you at the library tomorrow at 3!* (as expressões em qualquer ordem) | **Nina:** Yay! 📚💛 | — |
+| ✅ 💡 *(Sure!) I'm meeting you …* | **Nina:** Yay! 📚💛 | Vale! Aceitando na hora, o mais comum é *I'll meet you*. |
+| ❌ … *on Thursday* | **Nina:** Thursday? But the test is on Thursday! 😅 | O estudo é amanhã (*tomorrow*), quarta, antes da prova. |
+
+---
+
 ### Fechamento · Tuesday, 9:00 p.m.
 
 **Resumo do dia:**
 
-> ✅ **Tuesday** · first try: **3/4**
+> ✅ **Tuesday** · first try: **10/12**
 > 📝 **My list:** balloons ☑ · banner ☑
 > 👵 **Saturday:** Grandma is visiting us.
 > 📖 **My words:** *candles, plates, promise...*
@@ -403,7 +691,7 @@ qualquer chegada. A regra de "uma cena só para os atrasos" está na sexta
 (*I think... will*). Ler o app do tempo.
 **Liberação:** código do dia `CLOUD` (aula 3).
 **Decisão-chave:** 🔑 `preparado_tempo` (tarefa 2).
-**Duração estimada:** 12 a 14 min · ~220 palavras de leitura.
+**Duração estimada:** 25 a 30 min (15 partes).
 
 **Cuidado com esta dupla:** *will* e *going to* para previsões são a diferença
 mais sutil da semana. A própria previsão do tempo em inglês diz *It will rain*.
@@ -536,11 +824,145 @@ think it's going to be a great day! 😉* (com ou sem *Don't worry!*)
 
 ---
 
+### Ordem do dia (15 partes)
+
+| # | Hora | Tarefa | Tipo | Forma / habilidade |
+|---|---|---|---|---|
+| 1 | 7:05 a.m. | L1 · Mãe: guarda-chuva hoje? | leitura | ler o app do tempo (hoje × sexta) |
+| 2 | 7:20 a.m. | T1 · ler a previsão | montar | *It's going to rain on Friday.* |
+| 3 | 7:40 a.m. | T2 · jardim ou sala? 🔑 | montar | evidência × opinião |
+| 4 | 9:30 a.m. | M5 · Ms. Lima: o que você vai estudar? | montar | *I'm going to study...* |
+| 5 | 11:00 a.m. | L2 · Bia: ajuda às 3? | leitura | conferir a agenda |
+| 6 | 12:30 p.m. | L3 · Davi: chove na hora da festa? | leitura | ler as horas da previsão |
+| 7 | 3:00 p.m. | M6 · estudando com a Nina | montar | *I'll help you!* |
+| 8 | 4:30 p.m. | T3 · cuidado com o bolo! | montar | *You're going to drop it!* |
+| 9 | 5:00 p.m. | L4 · a foto do céu da Maya | leitura | evidência: *It's going to rain!* |
+| 10 | 5:10 p.m. | M7 · a Maya sem guarda-chuva | montar | *I'll lend you my umbrella!* |
+| 11 | 8:00 p.m. | T4 · animar a Nina | montar | *I think it'll be a great day!* |
+| 12 | 9:00 p.m. | M8 · Mãe: buscar a avó | montar | *I'm meeting her at 10.* |
+
+**Weather (tela que o aluno abre):** ganha a linha de **hoje**:
+`Today · ☁️ Cloudy · rain 20%`, acima da previsão de sexta.
+
+---
+
+#### L1 · 7:05 a.m. · Chat com a mãe — guarda-chuva? *(leitura)*
+
+> **Mom:** Do you need an umbrella today? ☔
+
+*Instrução (pt):* Abra o app do tempo. Olhe **hoje**, não a sexta.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *No, it isn't going to rain today. Only on Friday.* | **Mom:** OK! Have a good day! 💜 | — |
+| ❌ *Yes, it's going to rain today.* | **Mom:** Today? Look again: only 20%! 😄 | Hoje a chance de chuva é só 20%. A chuva forte é na sexta. |
+| ❌ *Yes, it's going to snow!* | **Mom:** Snow? Here? 😂 | Neve (*snow*)? Não! Hoje está nublado (*cloudy*). |
+
+#### M5 · 9:30 a.m. · Na escola — a pergunta da professora *(montar)*
+
+> **Ms. Lima:** Remember: the test is tomorrow! 📚
+> **Ms. Lima:** {name}, what are you going to study tonight?
+
+*Instrução (pt):* Estudar à noite já está no seu Notes. Conte o seu **plano**.
+
+**Blocos:** `I` `'m going to` `'ll` `study` `the plants chapter` `tonight` `.`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *I'm going to study the plants chapter (tonight).* | **Ms. Lima:** Good plan! 👍 | — |
+| ⚠️ *I'll study the plants chapter (tonight).* | **Ms. Lima:** Hmm... a new idea? OK! 😊 | Estudar já era um plano (está no Notes): *I'm going to study*. |
+
+#### L2 · 11:00 a.m. · Chat com a Bia — ajuda às 3? *(leitura)*
+
+> **Bia:** Can you help me with the decorations today at 3? 🎈
+
+*Instrução (pt):* Confira a sua agenda de hoje antes de responder.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Sorry, I'm studying with Nina at 3. 📚* | **Bia:** Oh, OK! Good luck! 🍀 | — |
+| ❌ *Sure! I'm free at 3!* | **Bia:** Free? But your calendar says Nina at 3! 😅 | Às 3 você estuda com a Nina (combinado ontem). |
+| ❌ *Sorry, I'm playing football at 3.* | **Bia:** Football at 3? It's on Thursday at 5! 🤔 | O treino é quinta às 5. Às 3 de hoje é o estudo com a Nina. |
+
+#### L3 · 12:30 p.m. · Chat com o Davi — chuva na festa? *(leitura)*
+
+> **Davi:** Is it going to rain at 6 p.m. on Friday? At the party time? 🥺
+
+*Instrução (pt):* Abra o app do tempo e veja a hora da festa na sexta.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Yes, the forecast says rain at 6 p.m. 🌧️* | **Davi:** Oh no... 😭 | — |
+| ❌ *No, it's going to be sunny at 6.* | **Davi:** Really? 😃 … **Maya:** NO, Davi! Look: 🌧️ at 6! | Na sexta, às 6 p.m., a previsão é chuva (🌧️). |
+| ❌ *No, the rain is on Saturday.* | **Davi:** Saturday? The app says FRIDAY! 🤔 | A chuva é na sexta, na hora da festa. |
+
+#### M6 · 3:00 p.m. · Na biblioteca com a Nina *(montar)*
+
+> **Nina:** This chapter is SO difficult! 😩
+> **Nina:** I don't understand the plants part...
+
+*Instrução (pt):* Ofereça ajuda **na hora**.
+
+**Blocos:** `Don't worry!` `I` `'ll` `'m going to` `help you` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Don't worry!) I'll help you!* | **Nina:** Thank you! You're a good friend! 💛 | — |
+| ⚠️ *(Don't worry!) I'm going to help you!* | **Nina:** Going to? When? The test is TOMORROW! 😅 | Ajuda oferecida na hora: *I'll help you!* |
+
+#### L4 · 5:00 p.m. · Photos — o céu da Maya *(leitura)*
+
+**Cena:** foto que a Maya manda: nuvens pretas e baixas sobre a rua, sem
+chuva ainda.
+
+> **Maya:** Look at this sky!! 😱 What's going to happen?
+
+*Instrução (pt):* Olhe a foto. O que **vai** acontecer, pelo que você vê?
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *It's going to rain! 🌧️* | **Maya:** I know!! 😩 | — |
+| ❌ *It's going to be sunny! ☀️* | **Maya:** Sunny? Look at those clouds! 😂 | As nuvens pretas são uma evidência: *It's going to rain*. |
+| ❌ *[[It's raining now.\|Está chovendo agora.]]* | **Maya:** Not yet! Look, no rain... yet. 😅 | Ainda não está chovendo. Mas **vai** chover: *It's going to rain*. |
+
+#### M7 · 5:10 p.m. · Chat com a Maya — sem guarda-chuva *(montar)*
+
+> **Maya:** And [[I'm walking home now|estou indo para casa agora]]... with NO umbrella! 😱☔
+
+*Instrução (pt):* Você está perto e tem um guarda-chuva. Ofereça **agora**.
+
+**Blocos:** `Wait!` `I` `'ll` `'m going to` `lend you` `my umbrella` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Wait!) I'll lend you my umbrella!* | **Maya:** My hero! ☂️💚 | — |
+| ⚠️ *(Wait!) I'm going to lend you my umbrella!* | **Maya:** Going to? The rain is NOW! 😂 | Oferta na hora: *I'll lend you*. |
+
+*Nota:* *I'm walking home now* é "agora" de propósito (por isso vai em `[[...]]`).
+
+#### M8 · 9:00 p.m. · Chat com a mãe — buscar a avó *(montar)*
+
+> **Mom:** Grandma is arriving on Saturday at 10. 👵
+> **Mom:** Are you meeting her at the bus station?
+
+*Instrução (pt):* Você combinou com a sua avó ontem. Confirme o compromisso,
+com a hora certa.
+
+**Blocos:** `Yes!` `I` `'m meeting` `'ll meet` `her` `at the bus station` `at 10` `at 6` `.`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Yes!) I'm meeting her at the bus station at 10.* (lugar e hora em qualquer ordem) | **Mom:** Perfect! 💜 | — |
+| ✅ 💡 *(Yes!) I'll meet her …* | **Mom:** Perfect! 💜 | Vale! Já está combinado, então *I'm meeting her* é o mais natural. |
+| ❌ … *at 6* | **Mom:** At 6? Grandma is arriving at 10! 😄 | A avó chega às 10 da manhã (*at 10*). |
+
+---
+
 ### Fechamento · Wednesday, 9:30 p.m.
 
 **Resumo do dia:**
 
-> ✅ **Wednesday** · first try: **3/4**
+> ✅ **Wednesday** · first try: **10/12**
 > 🌧️ **Friday:** rain · party in the living room 🛋️ *(ou: in the garden 🌳)*
 > 📖 **My words:** *forecast, rain, sunny, watch out...*
 
@@ -588,7 +1010,7 @@ guardanapo: um pedaço só, para não repetir a bagunça duas vezes.
 marcado por telefone (*present continuous* + hora).
 **Liberação:** código do dia `OVEN` (aula 4).
 **Decisão-chave:** 🔑 `imprevisto_resolvido` (tarefa 2).
-**Duração estimada:** 12 a 14 min · ~220 palavras de leitura.
+**Duração estimada:** 25 a 30 min (15 partes).
 **Convidada do evento que entra hoje:** Dona Célia, da padaria *Sweet Corner*.
 
 ### Abertura
@@ -713,11 +1135,149 @@ expressões em qualquer ordem; *at the bakery* é opcional). Se o aluno marcou �
 
 ---
 
+### Ordem do dia (15 partes)
+
+| # | Hora | Tarefa | Tipo | Forma / habilidade |
+|---|---|---|---|---|
+| 1 | 7:00 a.m. | T1 · Kauã: o forno quebrou | montar | *I'll call the bakery.* |
+| 2 | 7:15 a.m. | T2 · padaria: marcar a retirada 🔑 | montar | *I'm picking it up tomorrow at 4.* |
+| 3 | 7:30 a.m. | L1 · Kauã: a padaria fecha quando? | leitura | lembrar a ligação |
+| 4 | 8:00 a.m. | M5 · Mãe: dinheiro para o bolo | montar | *I'll pay you back on Saturday!* |
+| 5 | 9:40 a.m. | T3 · promessa para a professora | montar | *I won't forget!* |
+| 6 | 10:30 a.m. | L2 · Nina: o que é para segunda? | leitura | lembrar a fala da professora |
+| 7 | 12:00 p.m. | M6 · Davi esquece a festa | montar | *We're meeting at Bia's house tomorrow!* |
+| 8 | 1:00 p.m. | L3 · Nina: livre no sábado? | leitura | conferir a agenda (avó às 10) |
+| 9 | 5:00 p.m. | M7 · técnico: quem traz a bola? | montar | *I'll bring it!* |
+| 10 | 5:45 p.m. | L4 · Mãe: o plano de amanhã | leitura | ordem dos compromissos |
+| 11 | 6:00 p.m. | T4 · contar o plano novo | montar | *I'm picking up the cake...* |
+| 12 | 9:00 p.m. | M8 · Avó: o que você vai fazer amanhã? | montar | *I'm going to a party tomorrow!* |
+
+---
+
+#### L1 · 7:30 a.m. · Chat com o Kauã — o horário da padaria *(leitura)*
+
+> **Kauã:** Thank you, {name}! 🦸
+> **Kauã:** What time is the bakery closing tomorrow? I can't remember... 😵
+
+*Instrução (pt):* Lembra do que a Dona Célia disse na ligação?
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *At 5 p.m.* | **Kauã:** OK, at 5! Don't be late! 😅 | — |
+| ❌ *At 6 p.m.* | **Kauã:** 6? Are you sure? That's the party time! 🤔 | A padaria fecha às 5 (*we close at 5 p.m.*). |
+| ❌ *At 4 p.m.* | **Kauã:** 4? But that's your pick-up time! 🤔 | Às 4 você busca o bolo. A padaria fecha às 5. |
+
+#### M5 · 8:00 a.m. · Chat com a mãe — dinheiro para o bolo *(montar)*
+
+> **Mom:** Good luck on the test! 🍀
+> **Mom:** Do you need money for the cake? 🎂
+
+*Instrução (pt):* Aceite e **prometa** devolver no sábado.
+
+**Blocos:** `Yes, please!` `I` `'ll` `'m going to` `pay you back` `on Saturday` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Yes, please!) I'll pay you back on Saturday!* | **Mom:** Deal! 🤝 | — |
+| ⚠️ *(Yes, please!) I'm going to pay you back on Saturday!* | **Mom:** Is that a promise? 🤨 … OK! 😄 | Para **prometer**, use *I'll*. Como na terça! |
+
+#### L2 · 10:30 a.m. · Chat com a Nina — o que é para segunda? *(leitura)*
+
+> **Nina:** The test is over! 😮‍💨
+> **Nina:** What do we need for Monday? I can't remember! 😵
+
+*Instrução (pt):* Lembra do que a Ms. Lima disse depois da prova?
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Our science project. 🔬* | **Nina:** Oh right! Thanks! | — |
+| ❌ *Our science test.* | **Nina:** Another test?! 😱 No way! | A prova já foi hoje. Para segunda é o projeto (*science project*). |
+| ❌ *A cake.* | **Nina:** A cake? 😂 For the teacher? | Para segunda é o projeto de ciências. (E cuidado com o segredo! 🤫) |
+
+#### M6 · 12:00 p.m. · Chat com o Davi — o Davi esquece *(montar)*
+
+> **Davi:** Hey! Let's play video games tomorrow after school! 🎮
+
+*Instrução (pt):* O Davi esqueceu a festa! Lembre o **compromisso** de amanhã.
+
+**Blocos:** `Davi!` `We` `'re meeting` `'ll meet` `at Bia's house` `tomorrow` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Davi!) We're meeting at Bia's house tomorrow!* (lugar e dia em qualquer ordem) | **Davi:** Oh no, the PARTY! I forget everything! 😅 | — |
+| ⚠️ *(Davi!) We'll meet at Bia's house tomorrow!* | **Davi:** Is it a plan or just an idea? 🤔 | Já está combinado: *We're meeting*. |
+| ❌ sem *tomorrow* | **Davi:** Now?! 😱 I'm in class! | Sem expressão de tempo, parece **agora**. Diga quando: *tomorrow*. |
+
+#### L3 · 1:00 p.m. · Chat com a Nina — sábado *(leitura)*
+
+> **Nina:** You're so busy this week! 😅
+> **Nina:** Are you free on Saturday?
+
+*Instrução (pt):* Confira a sua agenda de sábado.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *My grandma is arriving on Saturday at 10. But I'm free in the afternoon! 😊* | **Nina:** Great! Let's do something in the afternoon! 🙂 | — |
+| ❌ *Yes, I'm free all day!* | **Nina:** Really? What about your grandma? 👵 | A avó chega no sábado às 10. Você está livre só à tarde. |
+| ❌ *Sorry, I'm going to a party on Saturday.* | **Nina:** A party? What party?? 👀 | Ops! A festa é na sexta e é segredo. No sábado é a avó. |
+
+#### M7 · 5:00 p.m. · Chat "Football Team ⚽" — a bola *(montar)*
+
+> **Coach:** Good practice, team! 👏
+> **Coach:** Next week we need a ball. Who can bring one?
+
+*Instrução (pt):* Ofereça-se **agora**.
+
+**Blocos:** `Me!` `I` `'ll` `'m going to` `bring it` `bring one` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Me!) I'll bring one!* | **Coach:** Thanks! ⚽👍 | — |
+| ✅ 💡 *(Me!) I'll bring it!* | **Coach:** Thanks! ⚽👍 | Vale! (*one* = uma bola qualquer; *it* = uma bola já falada.) |
+| ⚠️ *(Me!) I'm going to bring …* | **Coach:** Oh, a plan already? Great! 😄 | Oferta na hora: *I'll bring one!* |
+
+#### L4 · 5:45 p.m. · Chat com a mãe — o plano de amanhã *(leitura)*
+
+> **Mom:** Tell me your plan for tomorrow! 🕐 What's first?
+
+*Instrução (pt):* Confira a sua agenda. O que vem primeiro?
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *First the cake at the bakery, then the party at Bia's house.* | **Mom:** Very [[organized|organizado]]! 😊 | — |
+| ❌ *First the party, then the cake.* | **Mom:** The cake AFTER the party? 😂 | Primeiro você busca o bolo (às 4) e depois vai para a festa (às 6). |
+| ❌ *First football, then the movies with Nina.* | **Mom:** Football? Movies? On Friday? 🤔 | Confira a agenda: amanhã é o bolo e depois a festa. |
+
+*Nota:* sem horas nas opções, para servir também a quem marcou o bolo às 6
+(marca `imprevisto_resolvido = false`).
+
+#### M8 · 9:00 p.m. · Chat com a avó — amanhã à noite *(montar)*
+
+> **Grandma:** Hello, dear! 👵
+> **Grandma:** What are you doing tomorrow night?
+
+*Instrução (pt):* Conte o compromisso de amanhã para a sua avó (ela não é a Nina:
+pode contar!).
+
+**Blocos:** `I` `'m going` `'ll go` `to a party` `at Bia's house` `tomorrow night` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *I'm going to a party at Bia's house tomorrow night!* | **Grandma:** How nice! Have fun! 🥳 | — |
+| ⚠️ *I'll go to a party …* | **Grandma:** Oh, just an idea? 😊 | Já está marcado: *I'm going to a party* (o *going* aqui é o verbo *go*, ir). |
+| ❌ sem *tomorrow night* | **Grandma:** Now? At 9 p.m.? 😮 | Sem expressão de tempo, parece **agora**. Diga quando: *tomorrow night*. |
+
+*Para a aula:* *I'm going to a party tomorrow* (verbo *go*, compromisso) ×
+*I'm going to buy balloons* (*going to* + verbo, plano). O balão do glossário
+mostra a diferença.
+
+---
+
 ### Fechamento · Thursday, 9:30 p.m.
 
 **Resumo do dia:**
 
-> ✅ **Thursday** · first try: **3/4**
+> ✅ **Thursday** · first try: **10/12**
 > 📅 **Tomorrow:** 4:00 p.m. cake 🎂 · 6:00 p.m. Bia's house 🎉
 > 📖 **My words:** *bakery, oven, broken, pick up, won't...*
 
@@ -761,28 +1321,99 @@ a sexta (**Chegada**).
 próprio aluno.
 **Liberação:** código do dia `PARTY` (aula 5).
 **Decisões-chave:** nenhuma nova. A sexta **mostra** as marcas da semana.
-**Duração estimada:** 10 min de jogo + 10 a 15 min de plano.
+**Duração estimada:** 20 min de jogo + 10 a 15 min de plano (18 partes).
 
 **Regra da sexta:** a festa **sempre acontece** e a Nina **sempre fica feliz**.
 As marcas mudam o jeito (organizada ou caótica e engraçada), nunca viram
 fracasso. Ninguém sai da semana se sentindo culpado por um erro de terça.
 
-### Roteiro da sexta, na ordem
+### Partes da sexta (18)
 
-| Hora | Momento | Tipo | De onde vem |
-|---|---|---|---|
-| 7:00 a.m. | Abertura | tela | — |
-| 7:30 a.m. | **Tarefa 1** · chat com a Nina | tarefa | — |
-| 4:00 p.m. | Na padaria | pedaço | `imprevisto_resolvido = true` (se `false`, o bolo entra na **Chegada**) |
-| 5:30 p.m. | Saída de casa | pedaço | `promessa_familia` |
-| 5:35 p.m. | **Tarefa 2** · a hora de voltar | tarefa | — |
-| 5:55 p.m. | **Chegada** | pedaço | prioridade abaixo |
-| 6:15 p.m. | A sala | pedaço | `lista_pronta` × `preparado_tempo` |
-| 6:29 p.m. | **Tarefa 3** · a porta | tarefa | — |
-| 6:30 p.m. | SURPRISE! | cena fixa | — |
-| 7:00 p.m. | **Tarefa 4** · o convite da Nina | tarefa | — |
-| 9:00 p.m. | A foto e as estrelas | tela | todas as marcas + camiseta da terça |
-| 9:30 p.m. | **Plano do fim de semana** | produção | — |
+A sexta já tem as cenas da festa e o plano do fim de semana (10 a 15 min), então
+ela ganha **4 tarefas novas** (2 de montar e 2 de leitura), e não 8: com as
+cenas, o dia passa de 15 partes sem estourar a aula.
+
+Abertura · Notes · **8 tarefas** (T1 a T4 + M5, M6, L1, L2) · 4 pedaços (padaria,
+saída, chegada, sala) · SURPRISE! · foto e estrelas · plano · fim = **18 partes**.
+
+| Hora | Parte | Tipo |
+|---|---|---|
+| 7:00 a.m. | Abertura + Notes | tela |
+| 7:30 a.m. | T1 · Nina: parabéns e segredo | montar |
+| 7:45 a.m. | **L1 · Bia: quem traz o quê?** | leitura |
+| 12:00 p.m. | **M5 · Kauã nervoso** | montar |
+| 4:00 p.m. | Pedaço · padaria | cena |
+| 5:30 p.m. | Pedaço · saída de casa | cena |
+| 5:35 p.m. | T2 · Mãe: a hora de voltar | montar |
+| 5:55 p.m. | Pedaço · chegada | cena |
+| 6:10 p.m. | **L2 · Davi: a Nina chega quando?** | leitura |
+| 6:15 p.m. | Pedaço · a sala | cena |
+| 6:20 p.m. | **M6 · Maya: as luzes** | montar |
+| 6:29 p.m. | T3 · a porta | montar |
+| 6:30 p.m. | SURPRISE! | cena |
+| 7:00 p.m. | T4 · o convite da Nina | montar |
+| 9:00 p.m. | A foto e as estrelas | tela |
+| 9:30 p.m. | Plano do fim de semana | produção |
+| — | Fim da semana | tela |
+
+As estrelas e a lista *Your week* não mudam: as marcas continuam sendo as 5 da
+semana. O total de acertos de primeira passa a ser de **56** (4 dias × 12 + 8).
+
+---
+
+#### L1 · 7:45 a.m. · Chat "Nina's Party 🤫" — quem traz o quê? *(leitura)*
+
+> **Bia:** TODAY!!! 🎉 Final check: who is bringing what tonight?
+
+*Instrução (pt):* Lembre a lista da semana.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *Me: balloons and banner. Kauã: juice. Maya: plates and candles.* | **Bia:** Perfect! ✅✅✅ | — |
+| ❌ *Me: juice. Kauã: balloons. Maya: banner.* | **Kauã:** Hey! The juice is MY job! 🧃 | Você ficou com os balões e a faixa; o Kauã, com o suco; a Maya, com pratos e velas. |
+| ❌ *Me: the cake. Kauã: the music.* | **Bia:** The cake is from the bakery! 😄 | O bolo vem da padaria (ou da torre de biscoitos do Kauã 🍪). Você ficou com os balões e a faixa. |
+
+#### M5 · 12:00 p.m. · Chat com o Kauã — nervoso *(montar)*
+
+> **Kauã:** I'm so nervous! 😬
+> **Kauã:** Do you think Nina is going to like the party?
+
+*Instrução (pt):* Dê a **sua opinião** para acalmar o Kauã.
+
+**Blocos:** `Don't worry!` `I think` `she` `'ll love` `'s going to love` `it` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(Don't worry!) I think she'll love it!* | **Kauã:** You're right! 😊 | — |
+| ✅ 💡 *(Don't worry!) I think she's going to love it!* | **Kauã:** You're right! 😊 | Vale! Para opinião (*I think*), o livro didático prefere *I think she'll...* |
+
+#### L2 · 6:10 p.m. · Na casa da Bia — a hora da Nina *(leitura)*
+
+> **Davi:** *(whispering)* When is Nina arriving again? 😅
+
+*Instrução (pt):* Lembre o plano da Bia de segunda.
+
+| Opção | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *At 6:30! In 20 minutes!* | **Davi:** OK! 😬 | — |
+| ❌ *At 6!* | **Davi:** At 6? It's 6:10 now! Where is she?! 😱 | Às 6 vocês se encontram. A Nina chega às 6:30. |
+| ❌ *At 7!* | **Davi:** 7? Great, I have time for pizza! 🍕 **Bia:** NO! 6:30! 😤 | A mãe da Nina traz ela às 6:30. |
+
+#### M6 · 6:20 p.m. · Na casa da Bia — as luzes *(montar)*
+
+> **Maya:** Shh! [[A car is coming!|Um carro está chegando!]] 🚗
+> **Maya:** Can somebody turn off the lights?!
+
+*Instrução (pt):* Faça isso **agora**: avise que você vai apagar as luzes.
+
+**Blocos:** `OK!` `I` `'ll` `'m going to` `turn them off` `!`
+
+| Montagem | Reação | Dica (pt) |
+|---|---|---|
+| ✅ *(OK!) I'll turn them off!* | *(as luzes apagam)* **Maya:** Shh! 🤫 | — |
+| ⚠️ *(OK!) I'm going to turn them off!* | **Maya:** Going to? NOW, please! 😱 *(as luzes apagam)* | Decisão na hora: *I'll turn them off!* |
+
+### Regras dos pedaços
 
 **Chegada: uma cena só, pela prioridade** (é a regra de juntar os atrasos):
 1. `imprevisto_resolvido = false` → o aluno e o Davi chegam às 6:20, sem bolo
@@ -958,7 +1589,7 @@ guardar o segredo. Na sexta, os dois combinam o cinema de verdade.
 Cada linha mostra **a frase que o aluno montou** e o efeito dela. Assim ele liga
 a causa à consequência sem precisar lembrar dos dias.
 
-Mais: **first try 15/20** (acertos de primeira na semana).
+Mais: **first try 47/56** (acertos de primeira na semana).
 
 ---
 
@@ -1024,7 +1655,7 @@ código de resultado. Para entregar, o aluno copia no caderno ou mostra a tela.
 ### Fim da semana
 
 > **My Busy Week · Surprise Party** ✅
-> ⭐⭐ *A great party!* · first try 15/20 · plan ✅
+> ⭐⭐ *A great party!* · first try 47/56 · plan ✅
 > **Result code:** `PARTY-…` *(formato no GDD)*
 > [ **Play another event** ] [ **My words** ]
 
