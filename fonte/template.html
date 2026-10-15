@@ -623,13 +623,13 @@ function screenPiece(t) {
 
 // a foto, as estrelas e "Your week": uma linha por marca, com a frase que o aluno montou e o efeito dela
 const goodMarks = () => EV().meta.marks.filter(k => run.marks[k] === true).length;
-const starsOf = n => n === 5 ? [3, "The perfect party!", "a festa perfeita!"] : n >= 3 ? [2, "A great party!", "uma ótima festa!"]
-  : [1, "A crazy party... but Nina loves it! 😂", "uma festa maluca... mas a Nina adora!"];
+// meta.stars: as legendas de cada evento, de 3 a 1 estrela ([inglês, português])
+const starsOf = n => { const k = n === 5 ? 0 : n >= 3 ? 1 : 2; return [3 - k, ...EV().meta.stars[k]]; };
 const weekTasks = () => EV().days.reduce((s, d) => s + nTasks(d), 0);
 function screenStars(t) {
   const [st, en, pt] = starsOf(goodMarks()), all = EV().days.flatMap(d => d.tasks);
   render(`${dayTop()}
-    <div class="page">${sceneOf(t.scene, t.alt || "Party photo")}<div class="page-body" style="text-align:center">
+    <div class="page">${sceneOf(t.scene, t.alt || "Photo")}<div class="page-body" style="text-align:center">
       <p class="stars" role="img" aria-label="${st} of 3 stars · ${st} de 3 estrelas">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</p>
       <h2 class="ch-title" style="margin:4px 0">${rich(en)}</h2><p class="hint">${esc(pt)}</p></div></div>
     <div class="card"><p class="sec-t" style="margin-top:0">Your week <span>· a sua semana</span></p>

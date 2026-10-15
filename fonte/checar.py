@@ -27,7 +27,7 @@ SEM_A1 = {"a", "an", "the", "i", "you", "it", "is", "are", "am", "to", "and", "o
 CONHECIDAS = set(A1) | set(A1.get("_cognatos", [])) | set(A1.get("_ignorar", [])) | SEM_A1
 for _b, _p, _pp, _ in IR:
     CONHECIDAS |= {_b, _b + "s", _b + "es", _b + "ing", _b[:-1] + "ing", _b + _b[-1] + "ing", _b[:-2] + "ying"} | set(_p.split(" / ")) | set(_pp.split(" / "))
-META = ["slug", "code", "title", "titlePt", "blurb", "blurbPt", "cover", "cast", "marks", "keywords"]
+META = ["slug", "code", "title", "titlePt", "blurb", "blurbPt", "cover", "cast", "marks", "keywords", "stars"]
 DAY = ["day", "dayPt", "focusPt", "lock", "notes", "notesPt", "tasks", "close"]
 KINDS = {"ok", "warn", "bad"}
 TAREFAS, LEITURA = 12, 4   # por dia: 12 tarefas, das quais 4 de leitura ("type": "pick") e 8 de montar
@@ -104,6 +104,8 @@ def check_event(slug, game):
                     falta = set(M.get("marks", [])) - {m.get("mark") for m in M.get("markInfo", [])}
                     if falta: erros.append(f"{onde}: meta.markInfo sem as marcas {sorted(falta)} (a lista Your week)")
                     for m in M.get("markInfo", []): textos += [(onde, m.get("good", "")), (onde, m.get("bad", ""))]
+                    if len(M.get("stars", [])) != 3 or not all(len(x) == 2 for x in M.get("stars", [])): erros.append(f"{onde}: meta.stars precisa de 3 legendas [inglês, português] (3, 2 e 1 estrela)")
+                    textos += [(onde, x[0]) for x in M.get("stars", [])]
                 elif t["type"] == "plan":
                     P = t.get("plan", {})
                     for k in ("sentences", "minTime", "maxHelp", "times", "forms", "acts", "example"):

@@ -22,8 +22,10 @@ escrito e aprovado primeiro; depois vira `event.json`.
 
 **Estado (out/2026):** a semana inteira da *Surprise Party* é jogável: segunda a
 quinta com 15 partes, a sexta com 18 (códigos `BALLOON`, `CLOUD`, `OVEN` e
-`PARTY`). Faltam os outros dois eventos do GDD (*School Culture Fair* e *Class Trip*)
-(o decodificador do código de resultado já está na `professor.html`).
+`PARTY`). A *School Culture Fair* (`culture-fair`, código `CF`) também está
+completa, mas é **rascunho** (`"published": false`) até o professor aprovar: teste com
+`python3 fonte/build.py --drafts --out ...`. Falta a *Class Trip* (o decodificador do
+código de resultado já está na `professor.html`).
 
 ## Arquitetura
 
@@ -90,8 +92,9 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
     (os parágrafos que combinam), cada um com `when`: `[{"mark": ..., "is": ...}]` ou
     `[{"flag": ..., "is": ...}]` (todas precisam valer; marca sem valor = false).
   - `"type": "stars"`: a foto (`scene`), as estrelas (5 marcas boas = ⭐⭐⭐, 3–4 = ⭐⭐,
-    0–2 = ⭐) e a lista *Your week* (`meta.markInfo`: a frase que o aluno montou em
-    cada decisão-chave e o efeito dela).
+    0–2 = ⭐), a legenda de cada faixa (`meta.stars`: 3 pares [inglês, português],
+    de 3 a 1 estrela) e a lista *Your week* (`meta.markInfo`: a frase que o aluno montou em
+    cada decisão-chave e o efeito dela). Nada de um evento fica no template.
   - `"type": "plan"`: o plano do fim de semana (`plan`: `sentences`, `minTime`,
     `maxHelp`, os blocos do montador e o exemplo). Cada frase precisa de futuro
     (*will/'ll/won't* + verbo, *going to* + verbo, ou *am/is/are* + *-ing* com

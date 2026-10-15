@@ -1,11 +1,21 @@
 {
  "title": "My Busy Week",
  "subtitle": "A week on your phone · uma semana no seu celular",
- "codes": ["", "BALLOON", "CLOUD", "OVEN", "PARTY"],
+ "codes": [
+  "",
+  "BALLOON",
+  "CLOUD",
+  "OVEN",
+  "PARTY"
+ ],
  "events": [
   {
    "slug": "surprise-party",
    "published": true
+  },
+  {
+   "slug": "culture-fair",
+   "published": false
   }
  ]
 }
