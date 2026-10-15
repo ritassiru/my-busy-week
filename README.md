@@ -20,7 +20,9 @@ evento de sexta-feira.
 
 A semana inteira da *Surprise Party* está jogável (segunda a sexta, um dia por
 aula). A *School Culture Fair* também
-([roteiro](docs/roteiro-culture-fair.md)): o aluno escolhe o evento no começo da semana. A página do professor tem o QR code, os códigos dos dias e um
+([roteiro](docs/roteiro-culture-fair.md)): o aluno escolhe o evento no começo da semana.
+A *Class Trip* está pronta como rascunho, esperando a aprovação do professor
+([roteiro](docs/roteiro-class-trip.md)). A página do professor tem o QR code, os códigos dos dias e um
 **decodificador**: cole os códigos de resultado que os alunos copiaram e veja a
 tabela da turma (pode copiar para uma planilha). O design completo está
 em [`docs/gdd.md`](docs/gdd.md) e o roteiro dos cinco dias em

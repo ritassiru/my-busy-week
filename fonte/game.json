@@ -16,6 +16,10 @@
   {
    "slug": "culture-fair",
    "published": true
+  },
+  {
+   "slug": "class-trip",
+   "published": false
   }
  ]
 }

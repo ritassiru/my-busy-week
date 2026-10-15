@@ -6,7 +6,7 @@ ver o recife de corais. O ônibus sai do portão da escola **às 7 a.m.**
 **Turma:** 1º ano · **Nível:** A1/A2 · **GDD:** `docs/gdd.md`
 **Formas:** *will*, *going to*, *present continuous* (com expressão de tempo).
 **Apoio:** *simple present* e imperativo. **Sem simple past**, nem nas falas.
-**Estado:** roteiro para revisão do professor (out/2026).
+**Estado:** roteiro aprovado (out/2026) e no jogo como rascunho (`fonte/events/class-trip/`, `"published": false` no `game.json`); vai para `true` quando o professor aprovar a versão jogável.
 **Código do evento:** `CT` (código de resultado `CT-…`). Os códigos dos dias são
 os do jogo (`BALLOON`, `CLOUD`, `OVEN`, `PARTY`).
 
@@ -248,7 +248,7 @@ recusar com compromisso marcado. **Liberação:** `BALLOON`.
 **Decisões-chave:** 🔑 `promessa_familia` (T1), 🔑 `lista_praia` (T2). **Escolha visual:** `chapeu_engracado` (T4).
 
 **Bloqueio · 7:00:** 💬 **Mom** · *Can you help me today? 🙏* · 💬 **Beach Trip 🏖️** · 2
-**Notes:** School at 7:30. · *(new)* I'm going to buy sunscreen and a cap. · *(new)* I'm meeting Bia at the pharmacy at 4. · Football practice at 5 p.m. ⚽ · On Saturday, I'm going to Lia's birthday party! 🎂
+**Notes:** School at 7:30. · *(new)* I'm going to buy sunscreen and a cap. · *(new)* I'm meeting Bia at the pharmacy at 4. · Football practice at 5 p.m. ⚽ · On Saturday, I'm going to my cousin Lia's birthday party! 🎂
 
 | # | Hora | Tarefa | Tipo | Forma |
 |---|---|---|---|---|
@@ -258,7 +258,7 @@ recusar com compromisso marcado. **Liberação:** `BALLOON`.
 | 4 | 12:30 p.m. | T2 · a lista 🔑 | montar | *I'm going to buy sunscreen and a cap.* |
 | 5 | 12:35 p.m. | L2 · Davi: o que eu levo? | leitura | lembrar a lista |
 | 6 | 3:00 p.m. | M6 · Davi: videogame às 4? | montar | *I'm meeting Bia at the pharmacy at 4.* |
-| 7 | 4:15 p.m. | T3 · Rafa na farmácia: cinema no sábado? | montar | *I'm going to Lia's birthday party on Saturday.* |
+| 7 | 4:15 p.m. | T3 · Rafa na farmácia: cinema no sábado? | montar | *I'm going to my cousin's birthday party on Saturday.* |
 | 8 | 4:25 p.m. | M7 · Grande ou pequeno? | montar | *I'll take the big one.* |
 | 9 | 6:30 p.m. | L3 · Técnico: o próximo treino | leitura | ler um horário |
 | 10 | 7:45 p.m. | L4 · Família: a festa da Lia | leitura | ler um horário |
@@ -318,15 +318,15 @@ recusar com compromisso marcado. **Liberação:** `BALLOON`.
 > **Rafa:** {name}! Hi! 👋
 > **Rafa:** Let's go to the movies on Saturday afternoon! 🍿
 
-**Blocos:** `Sorry,` `I` `'m going` `'ll go` `to Lia's birthday party` `on Saturday` `.`
+**Blocos:** `Sorry,` `I` `'m going` `'ll go` `to my cousin's birthday party` `on Saturday` `.`
 
 | Montagem | Reação | Dica (pt) |
 |---|---|---|
-| ✅ *(Sorry,) I'm going to Lia's birthday party on Saturday.* | **Rafa:** Oh, nice! Next time! 😊 | — |
-| ⚠️ *(Sorry,) I'll go to Lia's birthday party on Saturday.* | **Rafa:** Just an idea? 🤔 | A festa já está marcada: *I'm going*. |
+| ✅ *(Sorry,) I'm going to my cousin's birthday party on Saturday.* | **Rafa:** Oh, nice! Next time! 😊 | — |
+| ⚠️ *(Sorry,) I'll go to my cousin's birthday party on Saturday.* | **Rafa:** Just an idea? 🤔 | A festa já está marcada: *I'm going*. |
 | ❌ sem *on Saturday* | **Rafa:** Now? 😂 | Diga quando: *on Saturday*. |
 
-*(Aqui *going to Lia's* é o verbo **go** + lugar, e não futuro com *going to*: a regra `GOING_TO` já trata o possessivo.)*
+*(Aqui *going to my cousin's* é o verbo **go** + lugar: a regra `GOING_TO` reconhece o *my*. Com um nome (*going to Lia's*), o balão leria como futuro, então a frase evita o nome.)*
 
 #### M7 · 4:25 p.m. · "Pharmacy 💊" *(montar)*
 > **Shop:** This sunscreen is big, and this one is small. Which one?
@@ -342,7 +342,7 @@ recusar com compromisso marcado. **Liberação:** `BALLOON`.
 ✅ *On Thursday at 5!* · ❌ *On Friday at 5!* (sexta é o passeio) · ❌ *Tomorrow at 5!*
 
 #### L4 · 7:45 p.m. · "Family 🏠" *(leitura)*
-> **Grandma:** Hello, my dears! 💕 Lia's birthday party is on Saturday at 3 p.m. I'm making the cake! 🎂
+> **Grandma:** Hello, my dears! 💕 Lia's birthday party is on Saturday at 3 p.m. I'm making the cake on Saturday morning! 🎂
 > **Mom:** {name}, what time is Lia's party? [[I'm washing the car...|Estou lavando o carro...]] 🧽
 
 ✅ *On Saturday at 3 p.m.!* (**Calendar:** `Sat · 3:00 p.m. · Lia's birthday party 🎂`) · ❌ *On Saturday at 3 a.m.!* · ❌ *On Sunday at 3 p.m.!*
