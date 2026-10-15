@@ -49,6 +49,7 @@ def load_event(slug):
     e = json.load(open(os.path.join(d, "event.json"), encoding="utf-8"))
     for day in e["days"]:
         for t in day["tasks"]:
+            if t.get("type") in ("piece", "stars", "plan"): continue   # partes da sexta que não são tarefas
             for o in t["outcomes"]:
                 if "say" in o: o["say"] = [s for p in o["say"] for s in expand(p)]
             for o in t["outcomes"]:   # respostas certas com "if": cada uma tem a sua frase-modelo

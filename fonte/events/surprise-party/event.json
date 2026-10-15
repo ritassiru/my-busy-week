@@ -173,6 +173,38 @@
      ]
     ]
    }
+  ],
+  "markInfo": [
+   {
+    "mark": "combinado_firme",
+    "day": "Monday",
+    "good": "Davi is on time. ⏰",
+    "bad": "Davi is late! 🏃"
+   },
+   {
+    "mark": "promessa_familia",
+    "day": "Tuesday",
+    "good": "Mom drives you to the party. 🚗",
+    "bad": "First, wash the dishes! 🍽️"
+   },
+   {
+    "mark": "lista_pronta",
+    "day": "Tuesday",
+    "good": "A big banner: HAPPY BIRTHDAY, NINA! 🎉",
+    "bad": "No banner... a pizza box! 📦"
+   },
+   {
+    "mark": "preparado_tempo",
+    "day": "Wednesday",
+    "good": "The party is in the living room. 🛋️",
+    "bad": "Rain in the garden! 🌧️"
+   },
+   {
+    "mark": "imprevisto_resolvido",
+    "day": "Thursday",
+    "good": "A chocolate cake: NINA 15! 🎂",
+    "bad": "The bakery is [[closed|fechada]]... cookies! 🍪"
+   }
   ]
  },
  "days": [
@@ -4763,6 +4795,1087 @@
      "Bia",
      "9:45 p.m.",
      "Tomorrow is the BIG day!! 🎉 See you at 6! Don't tell Nina! 🤫"
+    ]
+   }
+  },
+  {
+   "day": "Friday",
+   "dayPt": "sexta-feira",
+   "focusPt": "O grande dia! As três formas do futuro misturadas, a festa montada com as suas escolhas da semana e, no fim, o SEU plano para o fim de semana.",
+   "lock": {
+    "time": "7:00",
+    "items": [
+     [
+      "💬",
+      "Nina's Party 🤫",
+      "6 new messages · TODAY!!! 🎉🎉"
+     ],
+     [
+      "💬",
+      "Nina",
+      "1 new message"
+     ],
+     [
+      "🌦️",
+      "Weather",
+      "Rain from 6 p.m. 🌧️"
+     ]
+    ]
+   },
+   "notes": [
+    "Today is the BIG day! 🎉",
+    "Check your calendar: the cake, then Bia's house.",
+    "At 6:30 p.m., Nina is arriving! 🤫"
+   ],
+   "notesPt": "Hoje é a festa! Confira a sua agenda (📅) antes de começar.",
+   "weather": {
+    "today": "🌧️ Rain from 6 p.m. · 80%",
+    "days": [
+     {
+      "day": "Friday",
+      "summary": "🌧️ Rain · 80%",
+      "hours": [
+       [
+        "2 p.m.",
+        "☁️"
+       ],
+       [
+        "4 p.m.",
+        "🌦️"
+       ],
+       [
+        "6 p.m.",
+        "🌧️"
+       ],
+       [
+        "8 p.m.",
+        "🌧️"
+       ],
+       [
+        "10 p.m.",
+        "🌦️"
+       ]
+      ]
+     },
+     {
+      "day": "Saturday",
+      "summary": "☀️ Sunny · rain 10%",
+      "hours": [
+       [
+        "10 a.m.",
+        "☀️"
+       ],
+       [
+        "2 p.m.",
+        "☀️"
+       ],
+       [
+        "6 p.m.",
+        "🌤️"
+       ]
+      ]
+     }
+    ]
+   },
+   "tasks": [
+    {
+     "id": "fri1",
+     "app": "chat",
+     "thread": "Nina",
+     "time": "7:30 a.m.",
+     "messages": [
+      [
+       "Nina",
+       "Good morning! Today is my birthday! 🎂💛"
+      ],
+      [
+       "Nina",
+       "My mom is taking me to dinner tonight. 🙄"
+      ],
+      [
+       "Nina",
+       "What are you doing tonight? Do you want to come?"
+      ]
+     ],
+     "pt": "Dê os parabéns e diga que você já tem um compromisso hoje à noite. Não conte o segredo!",
+     "blocks": [
+      "Happy birthday!",
+      "Sorry,",
+      "I",
+      "'m meeting",
+      "'ll meet",
+      "some friends",
+      "tonight",
+      "😉"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Happy birthday!"
+         },
+         {
+          "opt": "Sorry,"
+         },
+         "I",
+         "'m meeting",
+         "some friends",
+         "tonight",
+         {
+          "opt": "😉"
+         }
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "AGAIN? You and your friends! 🙄😂 Have fun!"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Happy birthday!"
+         },
+         {
+          "opt": "Sorry,"
+         },
+         "I",
+         "'ll meet",
+         "some friends",
+         "tonight",
+         {
+          "opt": "😉"
+         }
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Just an idea? Come to dinner with me, then! 😄"
+        ],
+        [
+         "Nina",
+         "No? OK! 🙄"
+        ]
+       ],
+       "tip": "Compromisso marcado: I'm meeting. Igualzinho à segunda-feira!"
+      },
+      {
+       "kind": "bad",
+       "hasAny": [
+        "'m meeting",
+        "'ll meet"
+       ],
+       "lacks": [
+        "tonight"
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Now? At 7 a.m.? 😂"
+        ]
+       ],
+       "tip": "Sem expressão de tempo, I'm meeting quer dizer agora. Diga quando: tonight."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Nina",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Dê os parabéns e conte o compromisso: Happy birthday! Sorry, I'm meeting some friends tonight."
+     }
+    },
+    {
+     "id": "fri_p1",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "7:45 a.m.",
+     "messages": [
+      [
+       "Bia",
+       "TODAY!!! 🎉 Final check: who is bringing what tonight?"
+      ]
+     ],
+     "pt": "Lembre a lista da semana.",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "Me: balloons and banner. Kauã: juice. Maya: plates and candles.",
+       "reply": [
+        [
+         "Bia",
+         "Perfect! ✅✅✅"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "Me: juice. Kauã: balloons. Maya: banner.",
+       "reply": [
+        [
+         "Kauã",
+         "Hey! The juice is MY job! 🧃"
+        ]
+       ],
+       "tip": "Você ficou com os balões e a faixa; o Kauã, com o suco; a Maya, com pratos e velas."
+      },
+      {
+       "kind": "bad",
+       "text": "Me: the cake. Kauã: the music.",
+       "reply": [
+        [
+         "Bia",
+         "The cake is from the bakery! 😄"
+        ]
+       ],
+       "tip": "O bolo vem da padaria. Você ficou com os balões e a faixa."
+      }
+     ]
+    },
+    {
+     "id": "fri5",
+     "app": "chat",
+     "thread": "Kauã",
+     "time": "12:00 p.m.",
+     "messages": [
+      [
+       "Kauã",
+       "I'm so nervous! 😬"
+      ],
+      [
+       "Kauã",
+       "Do you think Nina is going to like the party?"
+      ]
+     ],
+     "pt": "Dê a sua opinião para acalmar o Kauã.",
+     "blocks": [
+      "Don't worry!",
+      "I think",
+      "she",
+      "'ll love",
+      "'s going to love",
+      "it",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I think",
+         "she",
+         "'ll love",
+         "it",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "You're right! 😊"
+        ]
+       ]
+      },
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I think",
+         "she",
+         "'s going to love",
+         "it",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "You're right! 😊"
+        ]
+       ],
+       "tip": "Vale! Para opinião (I think), o livro didático prefere I think she'll..."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Kauã",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Dê a sua opinião: I think she'll love it!"
+     }
+    },
+    {
+     "id": "fri_bakery",
+     "type": "piece",
+     "time": "4:00 p.m.",
+     "title": "The cake",
+     "scenes": [
+      {
+       "scene": "bakery",
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": true
+        }
+       ],
+       "alt": "A Dona Célia entrega o bolo NINA 15"
+      },
+      {
+       "scene": "clock_late",
+       "alt": "O relógio marca 4 horas; na agenda, o bolo às 6"
+      }
+     ],
+     "text": [
+      {
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": true
+        }
+       ],
+       "text": "At 4 p.m., you're at the bakery. Dona Célia smiles. \"Here's your cake!\" It's big, it's chocolate, and it says NINA 15 on top. 🎂✨"
+      },
+      {
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": false
+        }
+       ],
+       "text": "It's 4 p.m. You look at your calendar: \"Cake · 6:00 p.m.\" Wait... the bakery closes at 5! 😬 Oh no..."
+      }
+     ]
+    },
+    {
+     "id": "fri_leave",
+     "type": "piece",
+     "time": "5:30 p.m.",
+     "title": "Time to go!",
+     "scenes": [
+      {
+       "scene": "car",
+       "when": [
+        {
+         "mark": "promessa_familia",
+         "is": true
+        }
+       ],
+       "alt": "A mãe leva o aluno de carro, com os balões"
+      },
+      {
+       "scene": "dishes",
+       "alt": "O aluno lava a louça; a mãe olha, brava"
+      }
+     ],
+     "text": [
+      {
+       "when": [
+        {
+         "mark": "promessa_familia",
+         "is": true
+        }
+       ],
+       "text": "Mom smiles. \"The house looks great! Thank you! Come on, [[I'm driving you|vou te levar]] to Bia's house.\" 🚗 The balloons are in the car, safe."
+      },
+      {
+       "when": [
+        {
+         "mark": "promessa_familia",
+         "is": false
+        }
+       ],
+       "text": "Mom isn't happy. \"First, wash the dishes. A promise is a promise!\" 🍽️ You wash them fast and run to Bia's house."
+      }
+     ]
+    },
+    {
+     "id": "fri2",
+     "app": "chat",
+     "thread": "Mom",
+     "time": "5:35 p.m.",
+     "messages": [
+      [
+       "Mom",
+       "Have fun at the party! 🎉"
+      ],
+      [
+       "Mom",
+       "But come home by 10, OK? Grandma is arriving tomorrow morning! 👵"
+      ]
+     ],
+     "pt": "Prometa para a sua mãe que você volta às 10.",
+     "blocks": [
+      "OK, Mom!",
+      "I",
+      "'ll",
+      "'m going to",
+      "be home",
+      "at 10",
+      "at 11",
+      ". I promise!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "OK, Mom!"
+         },
+         "I",
+         "'ll",
+         "be home",
+         "at 10",
+         {
+          "opt": ". I promise!"
+         }
+        ]
+       ],
+       "reply": [
+        [
+         "Mom",
+         "Good! Love you! 💜"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "OK, Mom!"
+         },
+         "I",
+         "'m going to",
+         "be home",
+         "at 10",
+         {
+          "opt": ". I promise!"
+         }
+        ]
+       ],
+       "reply": [
+        [
+         "Mom",
+         "Is that a promise? 🤨"
+        ],
+        [
+         "Mom",
+         "OK! Love you! 💜"
+        ]
+       ],
+       "tip": "Para prometer, use I'll. Como na terça!"
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "at 11"
+       ],
+       "reply": [
+        [
+         "Mom",
+         "Eleven?! No way! TEN! 😠"
+        ]
+       ],
+       "tip": "A sua mãe pediu às 10."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Mom",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Prometa: I'll be home at 10. I promise!"
+     }
+    },
+    {
+     "id": "fri_arrive",
+     "type": "piece",
+     "time": "5:55 p.m.",
+     "title": "At Bia's house",
+     "scenes": [
+      {
+       "scene": "arrival",
+       "alt": "A chegada à casa da Bia"
+      }
+     ],
+     "text": [
+      {
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": false
+        }
+       ],
+       "text": "At 6 p.m., you and Davi are at the bakery. It's [[closed|fechada]]. 🔒 No cake! At 6:20, you run into Bia's house with empty hands. Kauã has an idea: a tower of cookies with a candle on top. 🍪🕯️ \"It's... modern!\" says Bia."
+      },
+      {
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": true
+        },
+        {
+         "mark": "combinado_firme",
+         "is": false
+        }
+       ],
+       "text": "It's 6:25 p.m. Where's Davi? Bia looks at her phone. \"Nina is here in five minutes!\" 😱 At 6:29, Davi runs in through the kitchen door. \"Sorry, sorry!\" The surprise almost doesn't happen!"
+      },
+      {
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": true
+        },
+        {
+         "mark": "combinado_firme",
+         "is": true
+        }
+       ],
+       "text": "It's 5:55 p.m. Everybody is at Bia's house: Maya, Kauã... and Davi! He's on time today! 😄 Bia smiles. \"Perfect! Now we wait for Nina.\""
+      }
+     ]
+    },
+    {
+     "id": "fri_p2",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "6:10 p.m.",
+     "messages": [
+      [
+       "Bia",
+       "[[When is Nina arriving?|Quando a Nina chega?]] I'm so nervous! 😅"
+      ]
+     ],
+     "pt": "Lembre o plano da Bia de segunda.",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "At 6:30! In 20 minutes!",
+       "reply": [
+        [
+         "Bia",
+         "OK! 😬"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "At 6!",
+       "reply": [
+        [
+         "Bia",
+         "At 6? It's 6:10 now! Where is she?! 😱"
+        ]
+       ],
+       "tip": "Às 6 vocês se encontram. A Nina chega às 6:30."
+      },
+      {
+       "kind": "bad",
+       "text": "At 7!",
+       "reply": [
+        [
+         "Davi",
+         "7? Great, I have time for pizza! 🍕"
+        ],
+        [
+         "Bia",
+         "NO! 6:30! 😤"
+        ]
+       ],
+       "tip": "A mãe da Nina traz ela às 6:30."
+      }
+     ]
+    },
+    {
+     "id": "fri_room",
+     "type": "piece",
+     "time": "6:15 p.m.",
+     "title": "The party room",
+     "scenes": [
+      {
+       "scene": "room",
+       "alt": "A sala ou o jardim da festa"
+      }
+     ],
+     "text": [
+      {
+       "when": [
+        {
+         "mark": "lista_pronta",
+         "is": true
+        },
+        {
+         "mark": "preparado_tempo",
+         "is": true
+        }
+       ],
+       "text": "The living room looks amazing: balloons everywhere and a big banner: HAPPY BIRTHDAY, NINA! 🎉"
+      },
+      {
+       "when": [
+        {
+         "mark": "lista_pronta",
+         "is": true
+        },
+        {
+         "mark": "preparado_tempo",
+         "is": false
+        }
+       ],
+       "text": "The garden looks amazing: balloons in the trees and a big banner: HAPPY BIRTHDAY, NINA! 🎉"
+      },
+      {
+       "when": [
+        {
+         "mark": "lista_pronta",
+         "is": false
+        }
+       ],
+       "text": "Bia looks around. \"Where's the banner?\" Everybody looks at you. 😅 Kauã writes HAPPY BIRTHDAY on a pizza box. It's... different. 📦"
+      },
+      {
+       "when": [
+        {
+         "mark": "preparado_tempo",
+         "is": true
+        }
+       ],
+       "text": "Outside, [[it's raining a lot|está chovendo muito]]. 🌧️ But inside, the room is warm and bright. Nobody cares about the rain!"
+      },
+      {
+       "when": [
+        {
+         "mark": "preparado_tempo",
+         "is": false
+        }
+       ],
+       "text": "But look at the sky... It's very dark. 🌧️ Bia looks up. \"Hmm...\""
+      }
+     ]
+    },
+    {
+     "id": "fri6",
+     "app": "chat",
+     "thread": "Bia's house 🤫",
+     "time": "6:20 p.m.",
+     "messages": [
+      [
+       "Maya",
+       "Shh! [[A car is coming!|Um carro está chegando!]] 🚗"
+      ],
+      [
+       "Maya",
+       "Can somebody turn off the lights?!"
+      ]
+     ],
+     "pt": "Faça isso agora: avise que você vai apagar as luzes.",
+     "blocks": [
+      "OK!",
+      "I",
+      "'ll",
+      "'m going to",
+      "turn them off",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "OK!"
+         },
+         "I",
+         "'ll",
+         "turn them off",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Maya",
+         "Shh! 🤫"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "OK!"
+         },
+         "I",
+         "'m going to",
+         "turn them off",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Maya",
+         "[[Going to|Vai]]? NOW, please! 😱"
+        ]
+       ],
+       "tip": "Decisão na hora: I'll turn them off!"
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Maya",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Decida na hora: I'll turn them off!"
+     }
+    },
+    {
+     "id": "fri3",
+     "app": "chat",
+     "thread": "Bia's house 🤫",
+     "time": "6:29 p.m.",
+     "scene": "dark_door",
+     "sceneAlt": "A sala escura; a maçaneta da porta começa a girar",
+     "messages": [
+      [
+       "Bia",
+       "(whispering) Shh! Everybody quiet! 🤫"
+      ],
+      [
+       "Nina",
+       "(outside) Mom, why are we at Bia's house? 🤔"
+      ]
+     ],
+     "pt": "Olhe a porta! O que vai acontecer agora mesmo? Avise todo mundo, bem baixinho.",
+     "blocks": [
+      "Shh!",
+      "She",
+      "'s going to",
+      "'ll",
+      "open",
+      "the door",
+      "the window",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "Shh!",
+         "She",
+         "'s going to",
+         "open",
+         "the door",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "(whispering) Ready... 🤫"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         "Shh!",
+         "She",
+         "'ll",
+         "open",
+         "the door",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Davi",
+         "(whispering) When? Next year? 😂"
+        ],
+        [
+         "Bia",
+         "SHH!"
+        ]
+       ],
+       "tip": "A maçaneta está girando, você está vendo: She's going to open the door! Como o bolo do Kauã na quarta!"
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "the window"
+       ],
+       "reply": [
+        [
+         "Maya",
+         "(whispering) The window?! 😂"
+        ]
+       ],
+       "tip": "A Nina está na porta (the door)."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Bia",
+        "Shh! What? 😅"
+       ]
+      ],
+      "tip": "Avise o que vai acontecer agora: Shh! She's going to open the door!"
+     }
+    },
+    {
+     "id": "fri_surprise",
+     "type": "piece",
+     "time": "6:30 p.m.",
+     "title": "SURPRISE!",
+     "scenes": [
+      {
+       "scene": "surprise",
+       "alt": "Todos gritam SURPRISE e a Nina chora de alegria"
+      }
+     ],
+     "text": [
+      {
+       "text": "The door opens. The lights go on. \"SURPRISE!!!\" 🎉🎉🎉"
+      },
+      {
+       "text": "Nina looks at everybody. Her mouth is open. Then she laughs and cries at the same time. \"You... all of you... in YELLOW!\" 💛😭"
+      },
+      {
+       "when": [
+        {
+         "flag": "camiseta_amarela",
+         "is": false
+        }
+       ],
+       "text": "Then she looks at you. \"And you... in BLUE?!\" 😂"
+      },
+      {
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": true
+        }
+       ],
+       "text": "Everybody sings Happy Birthday. The chocolate cake is perfect. 🎂🎶"
+      },
+      {
+       "when": [
+        {
+         "mark": "imprevisto_resolvido",
+         "is": false
+        }
+       ],
+       "text": "Everybody sings Happy Birthday to the tower of cookies. Nina loves it! 🍪🎶"
+      },
+      {
+       "when": [
+        {
+         "mark": "preparado_tempo",
+         "is": false
+        },
+        {
+         "mark": "lista_pronta",
+         "is": true
+        }
+       ],
+       "text": "At 6:40, the first drops fall. Then... a lot of rain! 🌧️ Everybody runs to the living room with the plates and the juice. Nina laughs. \"This is the wettest party in the world!\" 😂"
+      },
+      {
+       "when": [
+        {
+         "mark": "preparado_tempo",
+         "is": false
+        },
+        {
+         "mark": "lista_pronta",
+         "is": false
+        }
+       ],
+       "text": "At 6:40, the rain starts! 🌧️ The pizza box is wet, so Kauã writes HAPPY BIRTHDAY on a napkin. Everybody runs inside. Nina laughs. \"This is the wettest party in the world!\" 😂"
+      }
+     ]
+    },
+    {
+     "id": "fri4",
+     "app": "chat",
+     "thread": "Nina",
+     "time": "7:00 p.m.",
+     "messages": [
+      [
+       "Nina",
+       "So THIS is your \"meeting with friends\"! 😂"
+      ],
+      [
+       "Nina",
+       "This is the best birthday ever! 💛"
+      ],
+      [
+       "Nina",
+       "Hey... let's all go to the movies next Saturday! 🍿"
+      ]
+     ],
+     "pt": "A Nina teve a ideia agora. Aceite e ofereça uma ajuda na hora.",
+     "blocks": [
+      "Great idea!",
+      "I",
+      "'ll",
+      "'m going to",
+      "buy",
+      "the tickets",
+      "the cake",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Great idea!"
+         },
+         "I",
+         "'ll",
+         "buy",
+         "the tickets",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Deal! 🤝🍿"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Great idea!"
+         },
+         "I",
+         "'m going to",
+         "buy",
+         "the tickets",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "You have a plan already? Another secret? 👀😂"
+        ]
+       ],
+       "tip": "Oferta na hora: I'll. Igual à segunda, quando você se ofereceu para comprar os balões!"
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "the cake"
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Another cake?! 😂🎂"
+        ]
+       ],
+       "tip": "Para o cinema, o que se compra são os ingressos (the tickets)."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Nina",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Aceite e ofereça na hora: Great idea! I'll buy the tickets!"
+     }
+    },
+    {
+     "id": "fri_stars",
+     "type": "stars",
+     "time": "9:00 p.m.",
+     "scene": "party_photo",
+     "alt": "A foto da festa"
+    },
+    {
+     "id": "fri_plan",
+     "type": "plan",
+     "time": "9:30 p.m.",
+     "pt": "Agora é você, de verdade: escreva os SEUS planos para o fim de semana, em 5 frases, com pelo menos 3 expressões de tempo diferentes. O montador ajuda em até 2 frases.",
+     "plan": {
+      "sentences": 5,
+      "minTime": 3,
+      "maxHelp": 2,
+      "times": [
+       "On Saturday,",
+       "On Sunday,",
+       "Tomorrow morning,",
+       "Tonight,",
+       "This weekend,"
+      ],
+      "forms": [
+       "I'm going to",
+       "I'll",
+       "I won't"
+      ],
+      "acts": [
+       "sleep late",
+       "play football",
+       "visit my grandma",
+       "watch a movie",
+       "study",
+       "help my mom",
+       "go to the beach",
+       "play video games"
+      ],
+      "example": [
+       "On Saturday morning, I'm going to play video games. 🎮",
+       "In the afternoon, I'm playing football with my cousins at 3.",
+       "On Sunday, my grandma is visiting us.",
+       "I think it'll be a great day!",
+       "Tonight, I won't watch TV. 😄"
+      ]
+     }
+    }
+   ],
+   "close": {
+    "time": "10:00 p.m.",
+    "tomorrow": "Grandma is arriving at 10 a.m. 👵",
+    "hook": [
+     "💬",
+     "Nina",
+     "10:05 p.m.",
+     "Best. Birthday. EVER. 💛"
     ]
    }
   }

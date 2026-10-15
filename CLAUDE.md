@@ -20,10 +20,10 @@ visual entre eles.
 `docs/roteiro-<evento>.md` (o texto de cada dia, tarefa por tarefa). O roteiro é
 escrito e aprovado primeiro; depois vira `event.json`.
 
-**Estado (out/2026):** **segunda a quinta** da *Surprise Party* jogáveis (15 partes
-cada; códigos `BALLOON`, `CLOUD` e `OVEN`), com as 5 marcas da semana. A sexta
-(as cenas da festa, as estrelas e o plano do fim de semana) está no roteiro,
-ainda não no jogo.
+**Estado (out/2026):** a semana inteira da *Surprise Party* é jogável: segunda a
+quinta com 15 partes, a sexta com 18 (códigos `BALLOON`, `CLOUD`, `OVEN` e
+`PARTY`). Faltam os outros dois eventos do GDD (*School Culture Fair* e *Class Trip*)
+e o decodificador do código de resultado na `professor.html`.
 
 ## Arquitetura
 
@@ -85,6 +85,21 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
   `chat` 💬, `call` 📞, `video` 📹, `photo` 🖼️, `shop` 🛍️.
 - `weather` (no dia) liga o app 🌦️ na barra do celular: `today` e `days` (cada um
   com `day`, `summary` e `hours` = [hora, emoji]). Só aparece nos dias que têm.
+- **Partes da sexta que não são tarefas** (não contam acertos):
+  - `"type": "piece"`: cena da festa. `scenes` (a primeira que combina) e `text`
+    (os parágrafos que combinam), cada um com `when`: `[{"mark": ..., "is": ...}]` ou
+    `[{"flag": ..., "is": ...}]` (todas precisam valer; marca sem valor = false).
+  - `"type": "stars"`: a foto (`scene`), as estrelas (5 marcas boas = ⭐⭐⭐, 3–4 = ⭐⭐,
+    0–2 = ⭐) e a lista *Your week* (`meta.markInfo`: a frase que o aluno montou em
+    cada decisão-chave e o efeito dela).
+  - `"type": "plan"`: o plano do fim de semana (`plan`: `sentences`, `minTime`,
+    `maxHelp`, os blocos do montador e o exemplo). Cada frase precisa de futuro
+    (*will/'ll/won't* + verbo, *going to* + verbo, ou *am/is/are* + *-ing* com
+    expressão de tempo); as dicas (*will to*, *will goes*, *I going to*, *going to
+    playing*) não bloqueiam. **Trava:** com o plano aberto (`run.planPending`), a
+    tela inicial não deixa recomeçar, mesmo recarregando.
+- As ilustrações recebem o contexto da semana (`sceneOf`): `c.marks`, `c.flags` e
+  `c.me` (o avatar). Escreva cenas que mudam como `cena: c => ...`.
 - `flag` (na resposta) guarda uma escolha **sem marca** que só muda o visual da
   sexta (ex.: `camiseta_amarela`, na terça). Fica em `run.flags`.
 
@@ -127,7 +142,8 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
 - **Um dia por aula:** a segunda abre direto; terça a sexta pedem o código do dia
   (`game.json` → `codes`), que fica em `professor.html`. O código organiza a
   turma, não é segurança.
-- **Código de resultado:** `EV-dias-acertos-marcas-X` (ex.: `SP-1-03-1xxxx-L`):
+- **Código de resultado:** `EV-dias-acertos-marcas-X` (ex.: `SP-1-03-1xxxx-L`; dias = 5
+  só depois do plano, então `SP-5-...` quer dizer semana completa com plano):
   evento, dias concluídos, acertos de primeira (2 dígitos), uma letra por marca de
   `meta.marks` (1 boa, 0 ruim, x ainda não) e uma letra de conferência (soma dos
   códigos dos caracteres, mod 26).

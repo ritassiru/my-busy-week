@@ -154,6 +154,14 @@ textarea { width: 100%; font: inherit; font-size: 1.02rem; color: var(--ink); ba
 .fb.ok { color: var(--ok); font-weight: 700; } .fb.no { color: var(--bad); }
 .sec-t { font-weight: 700; margin: 16px 0 8px; } .sec-t span { font-weight: 400; color: var(--muted); }
 .score { font-size: 1.15rem; font-weight: 700; color: var(--berry); }
+/* página do livro */
+.page { background: var(--panel); border: 1px solid var(--line); border-radius: 6px 14px 14px 6px; box-shadow: 0 1px 0 var(--line), 0 6px 18px rgba(43,23,33,.06); overflow: hidden; margin-bottom: 14px; }
+.page .scene svg { display: block; width: 100%; height: auto; }
+.page-body { padding: 16px 18px 18px; }
+.ch-kicker { font-size: 0.8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--rose); font-weight: 700; margin: 0 0 2px; }
+.ch-title { font-size: 1.55rem; color: var(--berry); margin: 0 0 12px; line-height: 1.15; }
+.story p { font-size: 1.1rem; }
+
 /* ---------------- celular ---------------- */
 .phone { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 6px 18px rgba(43,23,33,.08); }
 .ph-head { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--cream); border-bottom: 1px solid var(--line); }
@@ -220,6 +228,13 @@ input.name { width: 100%; font: inherit; font-size: 1.1rem; color: var(--ink); b
 .wx-h { display: flex; flex-wrap: wrap; gap: 6px; }
 .wx-h span { display: grid; justify-items: center; min-width: 3.4rem; padding: 4px 6px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
 .wx-h small { font-size: .78rem; color: var(--muted); } .wx-h b { font-size: 1.3rem; line-height: 1.2; }
+.stars { font-size: 2.4rem; letter-spacing: .1em; margin: 0; }
+.week-l { list-style: none; padding: 0; margin: 0 0 10px; }
+.week-l li { display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); font-size: .98rem; }
+.week-l li:first-child { border-top: 0; }
+.week-l i { color: var(--berry); }
+.plan-sum { padding: 10px 12px; border-radius: 10px; background: var(--bg); margin: 8px 0 12px; font-size: .95rem; }
+.plan-sum b.ok { color: var(--ok); }
 .stamp { display: inline-block; font-weight: 700; color: var(--ok); border: 2px solid var(--ok); border-radius: 999px; padding: 2px 12px; margin-bottom: 8px; }
 </style>
 </head>
@@ -280,7 +295,8 @@ const FUT_PT = { will: "vai + verbo: decisão, promessa ou opinião (futuro)", w
 function markFuture(text) {
   const keep = [];
   const masked = text.replace(/\[\[[^\]]+\]\]/g, m => { keep.push(m); return "" + (keep.length - 1) + ""; });
-  const marked = masked.replace(/[^.!?]+[.!?]*/g, s => TIME.test(s) ? s.replace(BE_ING, (m, be, ing, off, str) =>
+  // "frase" = até . ! ou ?, mas "a.m." e "p.m." não terminam a frase ("At 6:30 p.m., Nina is arriving!")
+  const marked = masked.replace(/(?:[ap]\.m\.|[^.!?])+[.!?]*/g, s => TIME.test(s) ? s.replace(BE_ING, (m, be, ing, off, str) =>
     NOT_ING.has(ing.toLowerCase()) || (ing.toLowerCase() === "going" && GOING_TO.test(str.slice(off + be.length))) ? m : be + "" + ing + "") : s);
   return marked.replace(/(\d+)/g, (m, i) => keep[+i]);
 }
@@ -388,7 +404,8 @@ function screenHome() {
     <div class="card">
       ${run ? `<p>${profile ? `Hi, <b>${esc(profile.name)}</b>! ` : ""}Your week: <b>${esc(ev.meta.title)}</b> · ${esc(DAY().day)}</p>
         <button type="button" class="btn primary" data-act="continue">Continue ▶ <span>· continuar</span></button>
-        <button type="button" class="help-btn" data-act="reset">${armed ? "Tap again to start over <span>· toque de novo para recomeçar</span>" : "Start over <span>· recomeçar a semana</span>"}</button>`
+        ${run.planPending && !run.planDone ? `<p class="locked-note">📝 Termine o plano do fim de semana para recomeçar ou jogar de novo.</p>`
+          : `<button type="button" class="help-btn" data-act="reset">${armed ? "Tap again to start over <span>· toque de novo para recomeçar</span>" : "Start over <span>· recomeçar a semana</span>"}</button>`}`
       : `<p>Viva uma semana no celular de um adolescente e use o futuro em inglês para organizar tudo.</p>
         <button type="button" class="btn primary" data-act="start">Start ▶ <span>· começar</span></button>`}
       ${profile ? `<button type="button" class="help-btn" data-act="profile">Edit my profile <span>· mudar nome e avatar</span></button>` : ""}
@@ -520,7 +537,7 @@ function screenTask(n) {
   }
   render(`${dayTop()}
     <div class="phone"><div class="ph-head"><span class="ph-ico" aria-hidden="true">${icon}</span><div><b>${esc(t.thread)}</b><small>${esc(t.time)}</small></div></div>
-      <div class="ph-body">${t.scene ? `<div class="ph-scene">${scene(EV().slug, t.scene, t.sceneAlt || t.thread)}</div>` : ""}${sayButton(speakable(t.messages))}<div class="chat">${t.messages.map(([w, x]) => bubble(w, x)).join("")}
+      <div class="ph-body">${t.scene ? `<div class="ph-scene">${sceneOf(t.scene, t.sceneAlt || t.thread)}</div>` : ""}${sayButton(speakable(t.messages))}<div class="chat">${t.messages.map(([w, x]) => bubble(w, x)).join("")}
       ${a ? after : `</div>${t.mark ? `<p class="keyb">🔑 Important · esta resposta muda a sexta-feira</p>` : ""}
         <p class="task-pt">${esc(t.pt)}</p>${t.type === "pick" ? pickHTML(t) : `<div id="builder">${builderHTML(t)}</div>`}`}
       </div>${appBar("chat")}</div>`);
@@ -567,7 +584,7 @@ function screenClose() {
   render(`${topBar(esc(EV().meta.title), `${esc(d.day)} ✓`, true)}
     <div class="card" style="text-align:center"><span class="stamp">✓ ${esc(d.day)}</span>
       <h2 style="margin:0">Good job, ${esc(NAME())}! <span class="hint">· bom trabalho!</span></h2>
-      <p class="score">First try: ${firstTry(run.day)}/${d.tasks.length} <span class="hint">· acertos de primeira</span></p></div>
+      <p class="score">First try: ${firstTry(run.day)}/${nTasks(d)} <span class="hint">· acertos de primeira</span></p></div>
     <div class="card"><p class="sec-t" style="margin-top:0">📅 This week <span>· esta semana</span></p>
       ${run.cal.length ? `<ul class="cal-l">${calSorted().map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nada marcado ainda.</p>`}
       <p class="sec-t">📝 Tomorrow <span>· amanhã</span></p><p>${rich(d.close.tomorrow)}</p></div>
@@ -586,6 +603,128 @@ function screenClose() {
       <button type="button" class="help-btn" data-act="home">Back to the start <span>· voltar ao início</span></button></div>`);
 }
 
+/* ---------------- sexta: cenas da festa, estrelas e plano do fim de semana ---------------- */
+// as ilustrações da sexta mudam com a semana: recebem as marcas, as escolhas (a camiseta da terça) e o avatar
+const sceneCtx = () => ({ marks: run.marks, flags: run.flags || [], me: profile });
+const sceneOf = (k, label) => `<div class="scene"><svg viewBox="0 0 540 220" role="img" aria-label="${esc(label)}">${SCENE_LIB[EV().slug][k](sceneCtx())}</svg></div>`;
+// "when": [{ "mark": ..., "is": true/false } ou { "flag": ..., "is": true/false }]; todas precisam valer (marca ainda sem valor = false)
+const when = w => !w || w.every(c => (c.mark ? run.marks[c.mark] === true : (run.flags || []).includes(c.flag)) === c.is);
+const nTasks = d => d.tasks.filter(x => !x.type || x.type === "pick").length;
+const nextBtn = () => `<button type="button" class="btn primary" data-act="next">Next ▶ <span>· próxima</span></button>`;
+
+// cena (piece): a ilustração é a primeira de "scenes" que combina; o texto junta os parágrafos que combinam
+function screenPiece(t) {
+  const sc = (t.scenes || []).find(x => when(x.when)), ps = t.text.filter(x => when(x.when)).map(x => x.text);
+  render(`${dayTop()}
+    <div class="page">${sc ? sceneOf(sc.scene, sc.alt || t.title) : ""}<div class="page-body">
+      <p class="ch-kicker">${esc(t.time)}</p><h2 class="ch-title">${esc(t.title)}</h2>${sayButton(ps.map(semGloss).join(" "))}
+      <div class="story">${ps.map(x => `<p>${rich(x)}</p>`).join("")}</div></div></div>${nextBtn()}`);
+}
+
+// a foto, as estrelas e "Your week": uma linha por marca, com a frase que o aluno montou e o efeito dela
+const goodMarks = () => EV().meta.marks.filter(k => run.marks[k] === true).length;
+const starsOf = n => n === 5 ? [3, "The perfect party!", "a festa perfeita!"] : n >= 3 ? [2, "A great party!", "uma ótima festa!"]
+  : [1, "A crazy party... but Nina loves it! 😂", "uma festa maluca... mas a Nina adora!"];
+const weekTasks = () => EV().days.reduce((s, d) => s + nTasks(d), 0);
+function screenStars(t) {
+  const [st, en, pt] = starsOf(goodMarks()), all = EV().days.flatMap(d => d.tasks);
+  render(`${dayTop()}
+    <div class="page">${sceneOf(t.scene, t.alt || "Party photo")}<div class="page-body" style="text-align:center">
+      <p class="stars" role="img" aria-label="${st} of 3 stars · ${st} de 3 estrelas">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</p>
+      <h2 class="ch-title" style="margin:4px 0">${rich(en)}</h2><p class="hint">${esc(pt)}</p></div></div>
+    <div class="card"><p class="sec-t" style="margin-top:0">Your week <span>· a sua semana</span></p>
+      <ul class="week-l">${EV().meta.markInfo.map(m => {
+        const task = all.find(x => x.mark === m.mark), a = task && answerOf(task.id), good = run.marks[m.mark] === true;
+        return `<li><span aria-hidden="true">${good ? "✅" : "❌"}</span><div><b>${esc(m.day)}</b> · <i>${esc(a ? a.said : "—")}</i><br>→ ${esc(semGloss(good ? m.good : m.bad))}</div></li>`;
+      }).join("")}</ul>
+      <p class="score">First try: ${firstTry()}/${weekTasks()} <span class="hint">· acertos de primeira na semana</span></p></div>${nextBtn()}`);
+}
+
+// plano do fim de semana: 5 frases no futuro, expressões de tempo diferentes, montador em no máximo 2
+const PLAN_TIME = /\b(?:tonight|tomorrow(?: morning| afternoon| evening| night)?|this (?:morning|afternoon|evening|weekend)|next (?:week|weekend|monday|tuesday|wednesday|thursday|friday|saturday|sunday)|on (?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)(?: morning| afternoon| evening| night)?|in the (?:morning|afternoon|evening)|at \d{1,2}(?::\d\d)?)\b/g;
+const PLAN_PAST = new Set(IRREG.flatMap(v => v[1].toLowerCase().split(" / ")));
+function planCheck(raw) {
+  const low = raw.trim().toLowerCase().replace(/’/g, "'");
+  if (!low) return { ok: false, msg: "", times: [] };
+  const times = [...low.matchAll(PLAN_TIME)].map(m => m[0]);
+  const will = /\b(?:will|'ll|won't)\s+(?:not\s+)?[a-z]+/.test(low), going = GOING_TO.test(low);
+  const ing = [...low.matchAll(BE_ING)].filter(m => !NOT_ING.has(m[2]));
+  const future = will || going || (ing.length > 0 && TIME.test(low));
+  const v = (low.match(/\b(?:will|'ll|won't)\s+(?:not\s+)?([a-z]+)/) || [])[1] || "";
+  let hint = "";
+  if (/\b(?:will|'ll|won't) to\b/.test(low)) hint = "Depois de will, o verbo vem sem to: will go.";
+  else if (v && (PLAN_PAST.has(v) || (/ed$/.test(v) && v.length > 3 && !["need", "feed"].includes(v)) || (/[^su]s$/.test(v) && v.length > 3)))
+    hint = "Depois de will, o verbo fica na forma básica: will go, will play.";
+  else if (/\b(?:i|you|we|they|he|she)\s+going to\b/.test(low)) hint = "Falta o am/is/are: I'm going to.";
+  else if (/\bgoing to\s+[a-z]+ing\b/.test(low) && !GOING_TO.test(low.replace(/going to\s+[a-z]+ing/, ""))) hint = "Depois de going to, o verbo fica na forma básica: going to play.";
+  if (!future) return { ok: false, times, msg: ing.length ? "Sem expressão de tempo, o -ing parece agora. Diga quando: on Saturday." : "Use o futuro: will, going to, ou am/is/are + -ing com uma expressão de tempo." };
+  return { ok: true, times, msg: hint };
+}
+let planBuild = null;   // o montador aberto: { i, time, form, act }
+function planRowsHTML(t) {
+  const P = t.plan;
+  return run.plan.s.map((x, i) => {
+    const helped = run.plan.help.includes(i), canHelp = !helped && run.plan.help.length < P.maxHelp;
+    const b = planBuild && planBuild.i === i ? planBuild : null;
+    const grp = (g, en, pt, list) => `<p class="step-t">${en} <span>· ${pt}</span></p><div class="chips">${list.map(v =>
+      `<button type="button" class="chip${b[g] === v ? " on" : ""}" aria-pressed="${b[g] === v}" data-pb="${g}:${esc(v)}"><b>${esc(v)}</b></button>`).join("")}</div>`;
+    return `<div class="sent"><label class="lbl" for="pl-${i}">${i + 1}${helped ? `<span class="tag">montador</span>` : ""}</label>
+      <input class="name" id="pl-${i}" data-pl="${i}" maxlength="140" autocomplete="off" value="${esc(x)}">
+      <p class="fb" id="pl-fb-${i}"></p>
+      ${b ? `<div class="builder">${grp("time", "When?", "quando?", P.times)}${grp("form", "Form", "forma", P.forms)}${grp("act", "What?", "o quê?", P.acts)}</div>`
+        : canHelp ? `<button type="button" class="help-btn" data-plhelp="${i}">Help me write <span>· montar com ajuda (${P.maxHelp - run.plan.help.length} de ${P.maxHelp})</span></button>` : ""}</div>`;
+  }).join("");
+}
+function updatePlan(t) {
+  const P = t.plan, res = run.plan.s.map(planCheck);
+  res.forEach((r, i) => { const f = $("#pl-fb-" + i); if (!f) return;
+    f.className = "fb " + (r.ok ? "ok" : "no"); f.textContent = run.plan.s[i].trim() ? (r.ok ? "✓ Future! " : "") + (r.msg || "") : ""; });
+  const okN = res.filter(r => r.ok).length, times = new Set(res.filter(r => r.ok).flatMap(r => r.times)).size;
+  const done = okN === P.sentences && times >= P.minTime;
+  $("#plan-sum").innerHTML = `Sentences · frases: <b class="${okN === P.sentences ? "ok" : ""}">${okN}/${P.sentences}</b> &nbsp;·&nbsp;
+    Time words · expressões de tempo diferentes: <b class="${times >= P.minTime ? "ok" : ""}">${times}/${P.minTime}</b>`;
+  $("[data-act=plan-done]").disabled = !done;
+}
+function screenPlan(t) {
+  if (!run.plan) { run.plan = { s: Array(t.plan.sentences).fill(""), help: [] }; }
+  if (!run.planPending) { run.planPending = true; saveRun(); }
+  render(`${dayTop()}
+    <div class="phone"><div class="ph-head"><span class="ph-ico" aria-hidden="true">📝</span><div><b>Notes</b><small>My weekend · ${esc(t.time)}</small></div></div>
+      <div class="ph-body"><h2 style="margin:0 0 4px">Now it's your turn! 📝</h2><p><b>What are your plans for this weekend?</b></p>
+        <p class="task-pt">${esc(t.pt)}</p><div id="plan">${planRowsHTML(t)}</div>
+        <div class="plan-sum" id="plan-sum" aria-live="polite"></div>
+        <button type="button" class="help-btn" data-act="plan-ex">💡 Example <span>· ver um exemplo</span></button>
+        <div class="card" id="plan-ex" hidden>${t.plan.example.map(x => `<p style="margin:0 0 4px">${esc(x)}</p>`).join("")}</div>
+        <p class="hint">🔒 O seu plano é pessoal e fica só neste aparelho. Para entregar, copie no caderno ou mostre a tela.</p>
+        <button type="button" class="btn primary" data-act="plan-done" disabled>Finish my week ▶ <span>· terminar a semana</span></button></div></div>`);
+  updatePlan(t);
+}
+function redrawPlan(t, focus) {
+  $("#plan").innerHTML = planRowsHTML(t); updatePlan(t);
+  const f = focus && $(focus); if (f) f.focus();
+}
+$("#app").addEventListener("input", e => {
+  const inp = e.target.closest("[data-pl]"); if (!inp) return;
+  run.plan.s[+inp.dataset.pl] = inp.value; saveRun(); updatePlan(DAY().tasks[run.step - 2]);
+});
+
+// fim da semana: estrelas, acertos, o plano para copiar, o código e jogar de novo
+function screenWeekEnd() {
+  const [st, en] = starsOf(goodMarks());
+  render(`${topBar(esc(EV().meta.title), "The end ✓", true)}
+    <div class="card" style="text-align:center"><span class="stamp">✓ My Busy Week · ${esc(EV().meta.title)}</span>
+      <p class="stars" role="img" aria-label="${st} of 3 stars">${"⭐".repeat(st)}${"☆".repeat(3 - st)}</p>
+      <h2 style="margin:0">${rich(en)}</h2>
+      <p class="score">First try: ${firstTry()}/${weekTasks()} <span class="hint">· acertos de primeira</span> · plan ✅</p></div>
+    <div class="card"><p class="sec-t" style="margin-top:0">📝 My weekend plan <span>· o meu plano (copie no caderno)</span></p>
+      ${run.plan.s.map(x => `<p style="margin:0 0 6px">${esc(x)}</p>`).join("")}</div>
+    <div class="card"><p class="sec-t" style="margin-top:0">Result code <span>· código de resultado</span></p>
+      <p class="code">${resultCode()}</p><p class="hint">Copie este código no caderno: ele mostra ao professor como foi a sua semana.</p></div>
+    ${wordsCardHTML(run.t0)}
+    <div class="card"><button type="button" class="btn primary" data-act="reset">${armed ? "Tap again to play again <span>· toque de novo para jogar de novo</span>" : "Play again ▶ <span>· jogar a semana de novo</span>"}</button>
+      <button type="button" class="help-btn" data-act="home">Back to the start <span>· voltar ao início</span></button></div>`);
+}
+
 function go() {
   if (!run) return screenHome();
   if (!profile) return screenProfile();
@@ -593,8 +732,11 @@ function go() {
   const d = DAY();
   if (run.step === 0) return screenLock();
   if (run.step === 1) return screenNotes();
-  if (run.step < d.tasks.length + 2) { pick = []; return screenTask(run.step - 2); }
-  return screenClose();
+  if (run.step < d.tasks.length + 2) {
+    const t = d.tasks[run.step - 2]; pick = [];
+    return t.type === "piece" ? screenPiece(t) : t.type === "stars" ? screenStars(t) : t.type === "plan" ? screenPlan(t) : screenTask(run.step - 2);
+  }
+  return run.planDone ? screenWeekEnd() : screenClose();
 }
 
 function sheetList(title, items) {
@@ -616,6 +758,18 @@ function openApp(k) {
 $("#app").addEventListener("click", e => {
   const blk = e.target.closest("[data-blk]"), tok = e.target.closest("[data-tok]"), av = e.target.closest("[data-av]"), app = e.target.closest("[data-app]");
   if (blk) { pick.push(+blk.dataset.blk); redrawBuilder(); return; }
+  const plh = e.target.closest("[data-plhelp]"), pb = e.target.closest("[data-pb]");
+  if (plh) { planBuild = { i: +plh.dataset.plhelp }; redrawPlan(DAY().tasks[run.step - 2], `[data-pb^="time:"]`); return; }
+  if (pb) {
+    const t = DAY().tasks[run.step - 2], [g, v] = [pb.dataset.pb.slice(0, pb.dataset.pb.indexOf(":")), pb.dataset.pb.slice(pb.dataset.pb.indexOf(":") + 1)];
+    planBuild[g] = v;
+    if (planBuild.time && planBuild.form && planBuild.act) {
+      const i = planBuild.i; run.plan.s[i] = `${planBuild.time} ${planBuild.form} ${planBuild.act}.`;
+      if (!run.plan.help.includes(i)) run.plan.help.push(i);   // editar depois não tira a etiqueta (como no reconto)
+      planBuild = null; saveRun(); redrawPlan(t, "#pl-" + i);
+    } else redrawPlan(t, `[data-pb="${g}:${CSS.escape(v)}"]`);
+    return;
+  }
   const pk = e.target.closest("[data-pick]");
   if (pk) { const t = DAY().tasks[run.step - 2]; if (!answerOf(t.id)) answer(t, +pk.dataset.pick, t.outcomes[+pk.dataset.pick].text); return; }
   if (tok) { pick.splice(+tok.dataset.tok, 1); redrawBuilder(); return; }
@@ -634,6 +788,7 @@ $("#app").addEventListener("click", e => {
   else if (act === "home") screenHome();
   else if (act === "profile") { draft = null; screenProfile(); }
   else if (act === "reset") {
+    if (run && run.planPending && !run.planDone) return;   // a trava do plano: sem plano, não recomeça
     if (!armed) { armed = true; screenHome(); setTimeout(() => { if (armed) { armed = false; if ($("[data-act=reset]")) screenHome(); } }, 4000); return; }
     armed = false; run = null; store.del(KEY.run); screenHome();
   }
@@ -649,6 +804,8 @@ $("#app").addEventListener("click", e => {
     run ? go() : screenEvents();
   }
   else if (act === "kwdone") { run.kw = true; saveRun(); go(); }
+  else if (act === "plan-ex") { const x = $("#plan-ex"); x.hidden = !x.hidden; }
+  else if (act === "plan-done") { run.planDone = true; run.planPending = false; run.step++; if (!run.done.includes(run.day)) run.done.push(run.day); saveRun(); go(); }
   else if (act === "next") { run.step++; saveRun(); go(); }
   else if (act === "clear") { pick = []; redrawBuilder(); }
   else if (act === "send") send();

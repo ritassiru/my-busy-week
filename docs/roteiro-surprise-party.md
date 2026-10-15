@@ -666,7 +666,7 @@ mudam.
 > **HAPPY BIRTHDAY, NINA!** 🎉
 
 **🔑 `lista_pronta = false`**
-> Bia looks at the wall. "Where's the banner?" Everybody looks at you. 😅 Kauã
+> Bia looks around. "Where's the banner?" Everybody looks at you. 😅 Kauã
 > writes **HAPPY BIRTHDAY** on a pizza box. It's... different. 📦
 
 *Combinação:* a cena da louça não atrasa o aluno, então ela combina com
@@ -1389,9 +1389,12 @@ semana. O total de acertos de primeira passa a ser de **56** (4 dias × 12 + 8).
 | ✅ *(Don't worry!) I think she'll love it!* | **Kauã:** You're right! 😊 | — |
 | ✅ 💡 *(Don't worry!) I think she's going to love it!* | **Kauã:** You're right! 😊 | Vale! Para opinião (*I think*), o livro didático prefere *I think she'll...* |
 
-#### L2 · 6:10 p.m. · Na casa da Bia — a hora da Nina *(leitura)*
+#### L2 · 6:10 p.m. · Chat "Nina's Party 🤫" — a hora da Nina *(leitura)*
 
-> **Davi:** *(whispering)* When is Nina arriving again? 😅
+*No jogo, a pergunta é da Bia, no grupo: o Davi pode estar atrasado, ou na padaria
+com o aluno, conforme as marcas.*
+
+> **Bia:** When is Nina arriving? I'm so nervous! 😅
 
 *Instrução (pt):* Lembre o plano da Bia de segunda.
 

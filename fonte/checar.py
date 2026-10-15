@@ -40,7 +40,8 @@ def passado(t):
 def ing_ambiguo(t):
     """-ing depois de am/is/are sem expressão de tempo na mesma frase: o aluno lê como "agora"."""
     out = []
-    for frase in re.findall(r"[^.!?]+[.!?]*", re.sub(r"\[\[[^\]]+\]\]", "", t)):
+    # "a.m." e "p.m." não terminam a frase (a mesma regra está em markFuture, no template)
+    for frase in re.findall(r"(?:[ap]\.m\.|[^.!?])+[.!?]*", re.sub(r"\[\[[^\]]+\]\]", "", t)):
         if TIME.search(frase): continue
         for m in BE_ING.finditer(frase):
             ing = m.group(2).lower()
@@ -60,7 +61,7 @@ def check_event(slug, game):
         if not all(len(w) == 3 for w in g.get("words", [])): erros.append(f"keywords '{g.get('title')}': cada palavra precisa de [emoji, inglês, português]")
     js = open(os.path.join(pasta, "scenes.js"), encoding="utf-8").read()
     if f'SCENE_LIB["{slug}"]' not in js: erros.append(f'scenes.js precisa registrar SCENE_LIB["{slug}"]')
-    cenas = set(re.findall(r"^\s*(\w+): \(\) =>", js, re.M))
+    cenas = set(re.findall(r"^\s*(\w+): (?:\(\)|\w+|\(\w+\)) =>", js, re.M))   # cenas com ou sem contexto (c =>)
     if M.get("cover") not in cenas: erros.append(f"meta.cover: a ilustração '{M.get('cover')}' não existe em scenes.js")
     if not 1 <= len(D) <= 5: erros.append(f"o evento tem {len(D)} dias (de 1 a 5)")
     elif len(D) < 5: avisos.append(f"evento incompleto: {len(D)} de 5 dias")
@@ -72,7 +73,12 @@ def check_event(slug, game):
             if k not in d: erros.append(f"{nd}: falta o campo '{k}'")
         if erros: continue
         nt, nlq = SEXTA if di == 4 else (TAREFAS, LEITURA)
-        if len(d["tasks"]) != nt: erros.append(f"{nd}: {len(d['tasks'])} tarefas (este dia tem {nt})")
+        TELAS = ("piece", "stars", "plan")   # partes da sexta que não são tarefas (não contam acertos)
+        tarefas = [t for t in d["tasks"] if t.get("type") not in TELAS]
+        if len(tarefas) != nt: erros.append(f"{nd}: {len(tarefas)} tarefas (este dia tem {nt})")
+        if di == 4:
+            for k in ("stars", "plan"):
+                if sum(t.get("type") == k for t in d["tasks"]) != 1: erros.append(f"{nd}: a sexta precisa de exatamente uma parte '{k}'")
         nl = sum(t.get("type") == "pick" for t in d["tasks"])
         if nl != nlq: erros.append(f"{nd}: {nl} tarefas de leitura (este dia tem {nlq} e {nt - nlq} de montar)")
         w = d.get("weather")
@@ -82,6 +88,29 @@ def check_event(slug, game):
         for t in d["tasks"]:
             tid = t.get("id", "?"); ids[tid] += 1; onde = f"{nd} · {tid}"
             if t.get("scene") and t["scene"] not in cenas: erros.append(f"{onde}: a ilustração '{t['scene']}' não existe em scenes.js")
+            if t.get("type") in TELAS:
+                cond_ok = lambda w: all(("mark" in c and c["mark"] in M.get("marks", [])) or isinstance(c.get("flag"), str) for c in (w or [])) and all(isinstance(c.get("is"), bool) for c in (w or []))
+                if t["type"] == "piece":
+                    for k in ("time", "title", "text"):
+                        if k not in t: erros.append(f"{onde}: falta o campo '{k}'")
+                    for sc in t.get("scenes", []):
+                        if sc.get("scene") not in cenas: erros.append(f"{onde}: a ilustração '{sc.get('scene')}' não existe em scenes.js")
+                        if not cond_ok(sc.get("when")): erros.append(f"{onde}: condição inválida em scenes")
+                    for x in t.get("text", []):
+                        if not cond_ok(x.get("when")): erros.append(f"{onde}: condição inválida no texto")
+                        textos.append((onde, x.get("text", "")))
+                elif t["type"] == "stars":
+                    if t.get("scene") not in cenas: erros.append(f"{onde}: a ilustração '{t.get('scene')}' não existe em scenes.js")
+                    falta = set(M.get("marks", [])) - {m.get("mark") for m in M.get("markInfo", [])}
+                    if falta: erros.append(f"{onde}: meta.markInfo sem as marcas {sorted(falta)} (a lista Your week)")
+                    for m in M.get("markInfo", []): textos += [(onde, m.get("good", "")), (onde, m.get("bad", ""))]
+                elif t["type"] == "plan":
+                    P = t.get("plan", {})
+                    for k in ("sentences", "minTime", "maxHelp", "times", "forms", "acts", "example"):
+                        if k not in P: erros.append(f"{onde}: plan sem o campo '{k}'")
+                    if P and not (0 <= P.get("maxHelp", 0) < P.get("sentences", 0)): erros.append(f"{onde}: maxHelp precisa ser menor que sentences")
+                    textos += [(onde, x) for x in P.get("example", [])]
+                continue
             if t.get("type") == "pick":
                 for k in ["id", "app", "thread", "time", "messages", "pt", "outcomes"]:
                     if k not in t: erros.append(f"{onde}: falta o campo '{k}'")
