@@ -1192,5 +1192,20 @@
  "wallet": "carteira",
  "wonderful": "maravilhoso",
  "wow": "uau",
- "yellow": "amarelo"
+ "yellow": "amarelo",
+ "boring": "chato",
+ "chapter": "capítulo",
+ "clouds": "cloud|nuvens",
+ "crash": "pá! (barulho de batida)",
+ "decorations": "decoration|decoração",
+ "drop": "derrubar",
+ "forecasts": "forecast|previsões do tempo",
+ "hero": "herói",
+ "inside": "dentro",
+ "it'll": "it will|vai (futuro)",
+ "living": "living room|sala (de estar)",
+ "plants": "plant|plantas",
+ "relax": "relaxa",
+ "umbrella": "guarda-chuva",
+ "whoa": "opa!"
 }

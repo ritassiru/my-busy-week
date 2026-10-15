@@ -767,6 +767,7 @@ Decida onde fazer a festa e diga por quê.
 | ✅ *It's going to rain. Let's have the party in the living room!* | **Bia:** Good idea! The living room is big. 🛋️ **Maya:** Thank you!! 🙏 | `preparado_tempo = true` | — |
 | ❌ *It'll be sunny. Let's have the party in the garden!* | **Davi:** Yes! 😎 **Maya:** Oh no... 🌧️😰 | `false` | Você foi com a **opinião** do Davi, mas a **evidência** (o app, 80%) diz chuva. |
 | ❌ *It's going to rain. Let's have the party in the garden!* | **Bia:** In the rain?! 😂 | `false` | Se vai chover, o jardim não é uma boa ideia! |
+| ❌ *It'll be sunny. Let's have the party in the living room!* | **Bia:** Sunny... but inside? 🤔 OK! | `true` | A sala é a escolha certa, mas o motivo é a evidência: *It's going to rain* (80%). |
 
 *Para a aula:* a fala do Davi é o exemplo de **opinião** (*I think it'll be
 sunny*), e a resposta certa é o exemplo de **evidência**. Vale projetar as

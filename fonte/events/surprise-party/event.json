@@ -43,6 +43,10 @@
    "Shop": {
     "color": "#6E5C63",
     "emoji": "🛍️"
+   },
+   "Ms. Lima": {
+    "color": "#3E6E8E",
+    "emoji": "👩‍🏫"
    }
   },
   "marks": [
@@ -2442,6 +2446,1094 @@
      "Maya",
      "9:40 p.m.",
      "Look at the forecast for Friday! 😬🌧️"
+    ]
+   }
+  },
+  {
+   "day": "Wednesday",
+   "dayPt": "quarta-feira",
+   "focusPt": "Previsões: com evidência que se vê (It's going to rain!) e com opinião (I think it'll be great). Abra o app do tempo (🌦️) na barra do celular.",
+   "lock": {
+    "time": "7:00",
+    "items": [
+     [
+      "🌦️",
+      "Weather",
+      "Friday: 🌧️ Rain, 80%"
+     ],
+     [
+      "💬",
+      "Mom",
+      "1 new message"
+     ],
+     [
+      "💬",
+      "Nina's Party 🤫",
+      "5 new messages"
+     ],
+     [
+      "💬",
+      "Nina",
+      "1 new message"
+     ]
+    ]
+   },
+   "notes": [
+    "School at 7:30.",
+    "Science [[test|prova]] tomorrow! I'm going to study tonight. 📚"
+   ],
+   "notesPt": "Leia a sua lista. Hoje, o app do tempo (🌦️, na barra embaixo) vai ser importante!",
+   "weather": {
+    "today": "☁️ Cloudy · rain 20%",
+    "days": [
+     {
+      "day": "Thursday",
+      "summary": "⛅ Cloudy · rain 30%",
+      "hours": [
+       [
+        "10 a.m.",
+        "⛅"
+       ],
+       [
+        "2 p.m.",
+        "☁️"
+       ],
+       [
+        "6 p.m.",
+        "⛅"
+       ]
+      ]
+     },
+     {
+      "day": "Friday",
+      "summary": "🌧️ Rain · 80%",
+      "hours": [
+       [
+        "2 p.m.",
+        "☁️"
+       ],
+       [
+        "4 p.m.",
+        "🌦️"
+       ],
+       [
+        "6 p.m.",
+        "🌧️"
+       ],
+       [
+        "8 p.m.",
+        "🌧️"
+       ],
+       [
+        "10 p.m.",
+        "🌦️"
+       ]
+      ]
+     },
+     {
+      "day": "Saturday",
+      "summary": "☀️ Sunny · rain 10%",
+      "hours": [
+       [
+        "10 a.m.",
+        "☀️"
+       ],
+       [
+        "2 p.m.",
+        "☀️"
+       ],
+       [
+        "6 p.m.",
+        "🌤️"
+       ]
+      ]
+     }
+    ]
+   },
+   "tasks": [
+    {
+     "id": "wed_p1",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Mom",
+     "time": "7:05 a.m.",
+     "messages": [
+      [
+       "Mom",
+       "Do you need an umbrella today? ☔"
+      ]
+     ],
+     "pt": "Abra o app do tempo (🌦️ na barra). Olhe hoje, não a sexta.",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "No, it isn't going to rain today. Only on Friday.",
+       "reply": [
+        [
+         "Mom",
+         "OK! Have a good day! 💜"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "Yes, it's going to rain today.",
+       "reply": [
+        [
+         "Mom",
+         "Today? Look again: only 20%! 😄"
+        ]
+       ],
+       "tip": "Hoje a chance de chuva é só 20%. A chuva forte é na sexta."
+      },
+      {
+       "kind": "bad",
+       "text": "Yes, it's going to snow!",
+       "reply": [
+        [
+         "Mom",
+         "Snow? Here? 😂"
+        ]
+       ],
+       "tip": "Neve (snow)? Não! Hoje está nublado (cloudy)."
+      }
+     ]
+    },
+    {
+     "id": "wed1",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "7:20 a.m.",
+     "messages": [
+      [
+       "Maya",
+       "Look at the forecast for Friday! 😬"
+      ],
+      [
+       "Bia",
+       "Oh no! The party is in my garden! 😱"
+      ],
+      [
+       "Bia",
+       "{name}, what does the forecast say for Friday?"
+      ]
+     ],
+     "pt": "Olhe o app do tempo (🌦️) e conte para a Bia.",
+     "blocks": [
+      "It",
+      "'s going to",
+      "'ll",
+      "rain",
+      "be sunny",
+      "on Friday",
+      "on Saturday",
+      "."
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "It",
+         "'s going to",
+         "rain",
+         "on Friday",
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Oh no... 🌧️😩"
+        ]
+       ],
+       "tip": "A previsão é uma evidência, então going to é a escolha mais comum. Mas os apps e o jornal também dizem It will rain."
+      },
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "It",
+         "'ll",
+         "rain",
+         "on Friday",
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Oh no... 🌧️😩"
+        ]
+       ],
+       "tip": "Vale! Com uma evidência na mão, como a previsão do app, It's going to rain é ainda mais comum."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "be sunny"
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Sunny? Really? 😃"
+        ],
+        [
+         "Maya",
+         "NO! Look again! 🌧️"
+        ]
+       ],
+       "tip": "Olhe o app: na sexta, chuva (rain), 80%."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "on Saturday"
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Saturday? But the party is on FRIDAY! 😅"
+        ]
+       ],
+       "tip": "A pergunta é sobre sexta (Friday)."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Bia",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Conte o que o app diz: It's going to rain on Friday."
+     }
+    },
+    {
+     "id": "wed2",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "7:40 a.m.",
+     "mark": "preparado_tempo",
+     "messages": [
+      [
+       "Davi",
+       "Relax! I think it'll be sunny. Forecasts are always wrong! 😎"
+      ],
+      [
+       "Maya",
+       "Davi! It's 80%! 🙄"
+      ],
+      [
+       "Bia",
+       "OK, I need a decision. The garden or the living room? 🤔"
+      ],
+      [
+       "Bia",
+       "{name}, what do you think?"
+      ]
+     ],
+     "pt": "O Davi dá uma opinião. Você tem uma evidência (o app). Decida onde fazer a festa e diga por quê.",
+     "blocks": [
+      "It's going to rain.",
+      "It'll be sunny.",
+      "Let's have the party",
+      "in the garden",
+      "in the living room",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "It's going to rain.",
+         "Let's have the party",
+         "in the living room",
+         "!"
+        ],
+        [
+         "Let's have the party",
+         "in the living room",
+         "!",
+         "It's going to rain."
+        ]
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Good idea! The living room is big. 🛋️"
+        ],
+        [
+         "Maya",
+         "Thank you!! 🙏"
+        ]
+       ],
+       "mark": true
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "in the garden",
+        "It'll be sunny."
+       ],
+       "reply": [
+        [
+         "Davi",
+         "Yes! 😎"
+        ],
+        [
+         "Maya",
+         "Oh no... 🌧️😰"
+        ]
+       ],
+       "mark": false,
+       "tip": "Você foi com a opinião do Davi, mas a evidência (o app, 80%) diz chuva."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "in the garden"
+       ],
+       "reply": [
+        [
+         "Bia",
+         "In the rain?! 😂"
+        ]
+       ],
+       "mark": false,
+       "tip": "Se vai chover, o jardim não é uma boa ideia!"
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "in the living room",
+        "It'll be sunny."
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Sunny... but inside? 🤔 OK!"
+        ]
+       ],
+       "mark": true,
+       "tip": "A sala é a escolha certa, mas o motivo é a evidência: It's going to rain (80%)."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Bia",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Use a evidência e decida: It's going to rain. Let's have the party in the living room!",
+      "mark": false
+     }
+    },
+    {
+     "id": "wed5",
+     "app": "chat",
+     "thread": "Science class 🔬",
+     "time": "9:30 a.m.",
+     "messages": [
+      [
+       "Ms. Lima",
+       "Remember: the test is tomorrow! 📚"
+      ],
+      [
+       "Ms. Lima",
+       "{name}, what are you going to study tonight?"
+      ]
+     ],
+     "pt": "Estudar à noite já está no seu Notes. Conte o seu plano.",
+     "blocks": [
+      "I",
+      "'m going to",
+      "'ll",
+      "study",
+      "the plants chapter",
+      "tonight",
+      "."
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "I",
+         "'m going to",
+         "study",
+         "the plants chapter",
+         {
+          "opt": "tonight"
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Ms. Lima",
+         "Good plan! 👍"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         "I",
+         "'ll",
+         "study",
+         "the plants chapter",
+         {
+          "opt": "tonight"
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Ms. Lima",
+         "Hmm... a new idea? OK! 😊"
+        ]
+       ],
+       "tip": "Estudar já era um plano (está no Notes): I'm going to study."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Ms. Lima",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Conte o seu plano: I'm going to study the plants chapter tonight."
+     }
+    },
+    {
+     "id": "wed_p2",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Bia",
+     "time": "11:00 a.m.",
+     "messages": [
+      [
+       "Bia",
+       "Can you help me with the decorations today at 3? 🎈"
+      ]
+     ],
+     "pt": "Confira a sua agenda de hoje (📅) antes de responder.",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "Sorry, I'm studying with Nina at 3. 📚",
+       "reply": [
+        [
+         "Bia",
+         "Oh, OK! Good luck! 🍀"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "Sure! I'm free at 3!",
+       "reply": [
+        [
+         "Bia",
+         "Free? But your calendar says Nina at 3! 😅"
+        ]
+       ],
+       "tip": "Às 3 você estuda com a Nina (combinado ontem)."
+      },
+      {
+       "kind": "bad",
+       "text": "Sorry, I'm playing football at 3.",
+       "reply": [
+        [
+         "Bia",
+         "Football at 3? It's on Thursday at 5! 🤔"
+        ]
+       ],
+       "tip": "O treino é quinta às 5. Às 3 de hoje é o estudo com a Nina."
+      }
+     ]
+    },
+    {
+     "id": "wed_p3",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Davi",
+     "time": "12:30 p.m.",
+     "messages": [
+      [
+       "Davi",
+       "Is it going to rain at 6 p.m. on Friday? At the party time? 🥺"
+      ]
+     ],
+     "pt": "Abra o app do tempo (🌦️) e veja a hora da festa na sexta.",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "Yes, the forecast says rain at 6 p.m. 🌧️",
+       "reply": [
+        [
+         "Davi",
+         "Oh no... 😭"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "No, it's going to be sunny at 6.",
+       "reply": [
+        [
+         "Davi",
+         "Really? 😃"
+        ],
+        [
+         "Maya",
+         "NO, Davi! Look: 🌧️ at 6!"
+        ]
+       ],
+       "tip": "Na sexta, às 6 p.m., a previsão é chuva (🌧️)."
+      },
+      {
+       "kind": "bad",
+       "text": "No, the rain is on Saturday.",
+       "reply": [
+        [
+         "Davi",
+         "Saturday? The app says FRIDAY! 🤔"
+        ]
+       ],
+       "tip": "A chuva é na sexta, na hora da festa."
+      }
+     ]
+    },
+    {
+     "id": "wed6",
+     "app": "chat",
+     "thread": "Nina",
+     "time": "3:00 p.m.",
+     "messages": [
+      [
+       "Nina",
+       "This chapter is SO difficult! 😩"
+      ],
+      [
+       "Nina",
+       "I don't understand the plants part..."
+      ]
+     ],
+     "pt": "Vocês estão na biblioteca. Ofereça ajuda na hora.",
+     "blocks": [
+      "Don't worry!",
+      "I",
+      "'ll",
+      "'m going to",
+      "help you",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I",
+         "'ll",
+         "help you",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Thank you! You're a good friend! 💛"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I",
+         "'m going to",
+         "help you",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "[[Going to|Vai]]? When? The test is TOMORROW! 😅"
+        ]
+       ],
+       "tip": "Ajuda oferecida na hora: I'll help you!"
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Nina",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Ofereça na hora: I'll help you!"
+     }
+    },
+    {
+     "id": "wed3",
+     "app": "video",
+     "thread": "Kauã",
+     "time": "4:30 p.m.",
+     "scene": "kitchen_cake",
+     "sceneAlt": "O Kauã carrega um bolo enorme e não vê a bola no chão",
+     "messages": [
+      [
+       "Kauã",
+       "Look! My test cake! 🎂 It's HUGE!"
+      ],
+      [
+       "Kauã",
+       "[[I'm taking it to the table.|Estou levando para a mesa.]] Wait..."
+      ]
+     ],
+     "pt": "Olhe a cena. O que vai acontecer agora mesmo? Avise o Kauã!",
+     "blocks": [
+      "Watch out!",
+      "You",
+      "'re going to",
+      "'ll",
+      "drop",
+      "the cake",
+      "the ball",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "Watch out!",
+         "You",
+         "'re going to",
+         "drop",
+         "the cake",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "Whoa! 😳"
+        ],
+        [
+         "Kauã",
+         "Thanks! The cake is OK! 🎂😅"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         "Watch out!",
+         "You",
+         "'ll",
+         "drop",
+         "the cake",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "Will I? Maybe one day... CRASH! 💥"
+        ],
+        [
+         "Kauã",
+         "The cake is OK... almost. 😅"
+        ]
+       ],
+       "tip": "Você está vendo que vai acontecer agora: You're going to drop it! You'll drop it soa como uma previsão para um dia qualquer."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "the ball"
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "What ball? ... CRASH! 💥"
+        ]
+       ],
+       "tip": "O perigo é o bolo (the cake) cair. A bola está no chão!"
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Kauã",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Avise o que vai acontecer agora: Watch out! You're going to drop the cake!"
+     }
+    },
+    {
+     "id": "wed_p4",
+     "type": "pick",
+     "app": "photo",
+     "thread": "Maya",
+     "time": "5:00 p.m.",
+     "messages": [
+      [
+       "Maya",
+       "Look at this sky!! 😱 What's going to happen?"
+      ]
+     ],
+     "pt": "Olhe a foto. O que vai acontecer, pelo que você vê?",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "It's going to rain! 🌧️",
+       "reply": [
+        [
+         "Maya",
+         "I know!! 😩"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "It's going to be sunny! ☀️",
+       "reply": [
+        [
+         "Maya",
+         "Sunny? Look at those clouds! 😂"
+        ]
+       ],
+       "tip": "As nuvens pretas são uma evidência: It's going to rain."
+      },
+      {
+       "kind": "bad",
+       "text": "[[It's raining now.|Está chovendo agora.]]",
+       "reply": [
+        [
+         "Maya",
+         "Not yet! Look, no rain... yet. 😅"
+        ]
+       ],
+       "tip": "Ainda não está chovendo. Mas vai chover: It's going to rain."
+      }
+     ],
+     "scene": "sky_photo",
+     "sceneAlt": "Foto da Maya: nuvens pretas e baixas sobre a rua, ainda sem chuva"
+    },
+    {
+     "id": "wed7",
+     "app": "chat",
+     "thread": "Maya",
+     "time": "5:10 p.m.",
+     "messages": [
+      [
+       "Maya",
+       "And [[I'm walking home now|estou indo para casa agora]]... with NO umbrella! 😱☔"
+      ]
+     ],
+     "pt": "Você está perto e tem um guarda-chuva. Ofereça agora.",
+     "blocks": [
+      "Wait!",
+      "I",
+      "'ll",
+      "'m going to",
+      "lend you",
+      "my umbrella",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Wait!"
+         },
+         "I",
+         "'ll",
+         "lend you",
+         "my umbrella",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Maya",
+         "My hero! ☂️💚"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Wait!"
+         },
+         "I",
+         "'m going to",
+         "lend you",
+         "my umbrella",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Maya",
+         "[[Going to|Vai]]? The rain is NOW! 😂"
+        ]
+       ],
+       "tip": "Oferta na hora: I'll lend you."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Maya",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Ofereça na hora: I'll lend you my umbrella!"
+     }
+    },
+    {
+     "id": "wed4",
+     "app": "chat",
+     "thread": "Nina",
+     "time": "8:00 p.m.",
+     "messages": [
+      [
+       "Nina",
+       "It's going to rain on my birthday. 😢🌧️"
+      ],
+      [
+       "Nina",
+       "I think Friday will be a boring day."
+      ]
+     ],
+     "pt": "Anime a Nina sem contar o segredo. Dê a sua opinião sobre a sexta-feira.",
+     "blocks": [
+      "Don't worry!",
+      "I think",
+      "it",
+      "'ll be",
+      "'s going to be",
+      "a great day",
+      "a boring day",
+      "😉"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I think",
+         "it",
+         "'ll be",
+         "a great day",
+         {
+          "opt": "😉"
+         }
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Why the 😉?? 🤔"
+        ],
+        [
+         "Nina",
+         "OK! Thank you! 💛"
+        ]
+       ]
+      },
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I think",
+         "it",
+         "'s going to be",
+         "a great day",
+         {
+          "opt": "😉"
+         }
+        ]
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Why the 😉?? 🤔"
+        ],
+        [
+         "Nina",
+         "OK! Thank you! 💛"
+        ]
+       ],
+       "tip": "Vale! Para uma opinião (I think), o livro didático prefere I think it'll be..."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "a boring day"
+       ],
+       "reply": [
+        [
+         "Nina",
+         "Thanks a lot... 😑"
+        ]
+       ],
+       "tip": "A ideia era animar a Nina: a great day."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Nina",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Dê a sua opinião: I think it'll be a great day!"
+     }
+    },
+    {
+     "id": "wed8",
+     "app": "chat",
+     "thread": "Mom",
+     "time": "9:00 p.m.",
+     "messages": [
+      [
+       "Mom",
+       "Grandma is arriving on Saturday at 10. 👵"
+      ],
+      [
+       "Mom",
+       "Are you meeting her at the bus station?"
+      ]
+     ],
+     "pt": "Você combinou com a sua avó ontem. Confirme o compromisso, com a hora certa.",
+     "blocks": [
+      "Yes!",
+      "I",
+      "'m meeting",
+      "'ll meet",
+      "her",
+      "at the bus station",
+      "at 10",
+      "at 6",
+      "."
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Yes!"
+         },
+         "I",
+         "'m meeting",
+         "her",
+         {
+          "any": [
+           "at the bus station",
+           "at 10"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Mom",
+         "Perfect! 💜"
+        ]
+       ]
+      },
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Yes!"
+         },
+         "I",
+         "'ll meet",
+         "her",
+         {
+          "any": [
+           "at the bus station",
+           "at 10"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Mom",
+         "Perfect! 💜"
+        ]
+       ],
+       "tip": "Vale! Já está combinado, então I'm meeting her é o mais natural."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "at 6"
+       ],
+       "reply": [
+        [
+         "Mom",
+         "At 6? Grandma is arriving at 10! 😄"
+        ]
+       ],
+       "tip": "A avó chega às 10 da manhã (at 10)."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Mom",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Confirme o compromisso: I'm meeting her at the bus station at 10."
+     }
+    }
+   ],
+   "close": {
+    "time": "9:30 p.m.",
+    "tomorrow": "Science test at 8 a.m.! 📚 And football at 5 p.m. ⚽",
+    "hook": [
+     "📞",
+     "Kauã",
+     "10:05 p.m.",
+     "2 [[missed calls|chamadas perdidas]] 😰 · Big problem!! Call me tomorrow! 🆘"
     ]
    }
   }

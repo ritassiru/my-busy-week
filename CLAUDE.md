@@ -20,9 +20,9 @@ visual entre eles.
 `docs/roteiro-<evento>.md` (o texto de cada dia, tarefa por tarefa). O roteiro é
 escrito e aprovado primeiro; depois vira `event.json`.
 
-**Estado (out/2026):** **segunda e terça** da *Surprise Party* jogáveis (15 partes
-cada; a terça abre com o código `BALLOON`). Quarta a sexta estão no roteiro,
-ainda não no `event.json`.
+**Estado (out/2026):** **segunda a quarta** da *Surprise Party* jogáveis (15 partes
+cada; códigos `BALLOON` e `CLOUD`). Quinta e sexta estão no roteiro, ainda não
+no `event.json`.
 
 ## Arquitetura
 
@@ -75,6 +75,11 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
   ordem dos dias (a entrada começa com `Mon`, `Tue`...). `notes` (na tarefa) entra
   nas notas do dia seguinte (escreva `"Tuesday: ..."`; na terça o nome do dia some
   e a nota aparece como *new* no Notes).
+- `scene` (na tarefa, com `sceneAlt` para leitores de tela) mostra uma ilustração
+  de `scenes.js` acima da conversa (videochamada, foto). `app` muda o ícone:
+  `chat` 💬, `call` 📞, `video` 📹, `photo` 🖼️, `shop` 🛍️.
+- `weather` (no dia) liga o app 🌦️ na barra do celular: `today` e `days` (cada um
+  com `day`, `summary` e `hours` = [hora, emoji]). Só aparece nos dias que têm.
 - `flag` (na resposta) guarda uma escolha **sem marca** que só muda o visual da
   sexta (ex.: `camiseta_amarela`, na terça). Fica em `run.flags`.
 

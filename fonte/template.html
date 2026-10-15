@@ -213,6 +213,13 @@ input.name { width: 100%; font: inherit; font-size: 1.1rem; color: var(--ink); b
 .kwbtn { font-size: 1.15rem; line-height: 1; }
 .kwbtn + .gear { margin-left: 0; }
 .top.bar { gap: 8px; }
+.ph-scene svg { display: block; width: 100%; height: auto; border-radius: 12px; margin-bottom: 10px; }
+.wx-today { padding: 8px 10px; background: var(--bg); border-radius: 10px; }
+.wx-day { border-left: 4px solid var(--berry); padding: 2px 0 2px 10px; margin: 12px 0; }
+.wx-t { margin: 0 0 6px; }
+.wx-h { display: flex; flex-wrap: wrap; gap: 6px; }
+.wx-h span { display: grid; justify-items: center; min-width: 3.4rem; padding: 4px 6px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+.wx-h small { font-size: .78rem; color: var(--muted); } .wx-h b { font-size: 1.3rem; line-height: 1.2; }
 .stamp { display: inline-block; font-weight: 700; color: var(--ok); border: 2px solid var(--ok); border-radius: 999px; padding: 2px 12px; margin-bottom: 8px; }
 </style>
 </head>
@@ -431,7 +438,7 @@ const kwHTML = () => EV().meta.keywords.map(g => `<p class="kw-g">${esc(g.title)
 const kwButton = () => `<button type="button" class="gear kwbtn" id="kwbtn" aria-label="Key words · palavras-chave" title="Key words · palavras-chave" aria-haspopup="dialog"><span aria-hidden="true">📖</span></button>`;
 const kwSheet = () => `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="st-t"><h2 id="st-t">📖 Key words <span>· palavras-chave</span></h2>
   ${kwHTML()}<button type="button" class="btn primary" id="st-close" style="margin-top:14px">Done <span>· pronto</span></button></div>`;
-const appBar = cur => `<nav class="appbar" aria-label="Apps">${[["chat", "💬", "Chat"], ["notes", "📝", "Notes"], ["calendar", "📅", "Calendar"]].map(([k, i, n]) =>
+const appBar = cur => `<nav class="appbar" aria-label="Apps">${[["chat", "💬", "Chat"], ["notes", "📝", "Notes"], ["calendar", "📅", "Calendar"]].concat(DAY().weather ? [["weather", "🌦️", "Weather"]] : []).map(([k, i, n]) =>
   `<button type="button" data-app="${k}" class="${cur === k ? "on" : ""}"${cur === k ? ' aria-current="page"' : ""}><span aria-hidden="true">${i}</span>${n}</button>`).join("")}</nav>`;
 
 function screenLock() {
@@ -494,7 +501,7 @@ const pickHTML = t => `<div class="choices" role="group" aria-label="Choose your
   `<button type="button" class="btn" data-pick="${i}">${esc(semGloss(t.outcomes[i].text))}</button>`).join("")}</div>`;
 function screenTask(n) {
   const d = DAY(), t = d.tasks[n], a = answerOf(t.id);
-  const icon = t.app === "call" ? "📞" : "💬";
+  const icon = { call: "📞", video: "📹", photo: "🖼️", shop: "🛍️" }[t.app] || "💬";
   let after = "";
   if (a) {
     const o = outcomeOf(t, a.o), [cls, title] = FB[o.kind === "ok" && o.tip ? "ok" : o.kind];
@@ -508,7 +515,7 @@ function screenTask(n) {
   }
   render(`${dayTop()}
     <div class="phone"><div class="ph-head"><span class="ph-ico" aria-hidden="true">${icon}</span><div><b>${esc(t.thread)}</b><small>${esc(t.time)}</small></div></div>
-      <div class="ph-body">${sayButton(speakable(t.messages))}<div class="chat">${t.messages.map(([w, x]) => bubble(w, x)).join("")}
+      <div class="ph-body">${t.scene ? `<div class="ph-scene">${scene(EV().slug, t.scene, t.sceneAlt || t.thread)}</div>` : ""}${sayButton(speakable(t.messages))}<div class="chat">${t.messages.map(([w, x]) => bubble(w, x)).join("")}
       ${a ? after : `</div>${t.mark ? `<p class="keyb">🔑 Important · esta resposta muda a sexta-feira</p>` : ""}
         <p class="task-pt">${esc(t.pt)}</p>${t.type === "pick" ? pickHTML(t) : `<div id="builder">${builderHTML(t)}</div>`}`}
       </div>${appBar("chat")}</div>`);
@@ -590,6 +597,12 @@ function sheetList(title, items) {
 function openApp(k) {
   if (k === "notes") openSheet(sheetList(`📝 Notes <span>· anotações</span>`, `<ul class="notes-l">${notesToday().map(n => `<li class="${n.isNew ? "new" : ""}">${esc(semGloss(n.t))}</li>`).join("")}</ul>
     ${run.notes.some(n => n.day > run.day) ? `<p class="sec-t">Next days <span>· próximos dias</span></p><ul class="notes-l">${run.notes.filter(n => n.day > run.day).map(n => `<li>${esc(semGloss(n.text))}</li>`).join("")}</ul>` : ""}`));
+  else if (k === "weather") {
+    const w = DAY().weather;
+    openSheet(sheetList(`🌦️ Weather <span>· previsão do tempo</span>`, `<p class="wx-today"><b>Today</b> · ${esc(w.today)}</p>
+      ${w.days.map(x => `<div class="wx-day"><p class="wx-t"><b>${esc(x.day)}</b> · ${esc(x.summary)}</p>
+        <div class="wx-h">${x.hours.map(([h, ic]) => `<span><small>${esc(h)}</small><b aria-hidden="true">${ic}</b></span>`).join("")}</div></div>`).join("")}`));
+  }
   else if (k === "calendar") openSheet(sheetList(`📅 Calendar <span>· agenda</span>`, run.cal.length ? `<ul class="cal-l">${calSorted().map(c => `<li>${esc(c)}</li>`).join("")}</ul>` : `<p class="hint">Nothing yet · nada marcado ainda.</p>`));
 }
 

@@ -75,9 +75,13 @@ def check_event(slug, game):
         if len(d["tasks"]) != nt: erros.append(f"{nd}: {len(d['tasks'])} tarefas (este dia tem {nt})")
         nl = sum(t.get("type") == "pick" for t in d["tasks"])
         if nl != nlq: erros.append(f"{nd}: {nl} tarefas de leitura (este dia tem {nlq} e {nt - nlq} de montar)")
+        w = d.get("weather")
+        if w and not (w.get("today") and all(x.get("day") and x.get("summary") and x.get("hours") for x in w.get("days", []))):
+            erros.append(f"{nd}: weather precisa de today e de days com day, summary e hours")
         textos += [(nd, x) for x in d["notes"]] + [(nd, x[2]) for x in d["lock"]["items"]] + [(nd, d["close"]["tomorrow"]), (nd, d["close"]["hook"][3])]
         for t in d["tasks"]:
             tid = t.get("id", "?"); ids[tid] += 1; onde = f"{nd} · {tid}"
+            if t.get("scene") and t["scene"] not in cenas: erros.append(f"{onde}: a ilustração '{t['scene']}' não existe em scenes.js")
             if t.get("type") == "pick":
                 for k in ["id", "app", "thread", "time", "messages", "pt", "outcomes"]:
                     if k not in t: erros.append(f"{onde}: falta o campo '{k}'")
