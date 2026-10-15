@@ -23,7 +23,7 @@ escrito e aprovado primeiro; depois vira `event.json`.
 **Estado (out/2026):** a semana inteira da *Surprise Party* é jogável: segunda a
 quinta com 15 partes, a sexta com 18 (códigos `BALLOON`, `CLOUD`, `OVEN` e
 `PARTY`). Faltam os outros dois eventos do GDD (*School Culture Fair* e *Class Trip*)
-e o decodificador do código de resultado na `professor.html`.
+(o decodificador do código de resultado já está na `professor.html`).
 
 ## Arquitetura
 
@@ -147,6 +147,13 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
   evento, dias concluídos, acertos de primeira (2 dígitos), uma letra por marca de
   `meta.marks` (1 boa, 0 ruim, x ainda não) e uma letra de conferência (soma dos
   códigos dos caracteres, mod 26).
+- **Decodificador** na `professor.html` (gerado pelo `build.py`, sem mexer no `qr.py`):
+  o professor cola os códigos, um por linha, com ou sem o nome antes, e vê a
+  tabela da turma (dias, acertos de primeira com %, as 5 decisões, estrelas) e
+  copia para planilha. A letra de conferência acusa cópia errada; as médias da
+  turma contam só os códigos conferidos. Usa `meta.markInfo[].pt` (o rótulo em
+  português de cada decisão). A conta da letra e a regra das estrelas estão no
+  template (`resultCode`, `starsOf`) e no `build.py`: se mudar num, mude no outro.
 - **PWA:** o `build.py` gera `sw.js` e `manifest.webmanifest`; prefixo do cache
   `my-busy-week-` (a estante usa `story-shelf-`, o CEO game `ceo-game-`).
 

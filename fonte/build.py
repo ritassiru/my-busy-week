@@ -94,10 +94,102 @@ def pagina_do_professor(game, events):
                      for i, c in enumerate(game["codes"]))
     codigos = (f'    <article class="card"><h2>Códigos dos dias</h2><p class="hint">Mostre no quadro no começo de cada aula. '
                f'Quem faltou recebe o código depois.</p><table style="margin:8px auto;border-collapse:collapse;text-align:left;font-size:1.1rem">{linhas}</table></article>\n')
-    assert "  </div>\n</main>" in pag
-    pag = pag.replace("  </div>\n</main>", codigos + "  </div>\n</main>", 1)
+    assert "  </div>\n</main>" in pag and "</head>" in pag
+    pag = pag.replace("  </div>\n</main>", codigos + "  </div>\n" + decodificador(events) + "</main>", 1)
+    pag = pag.replace("</head>", DEC_CSS + "</head>", 1)
     open(os.path.join(HERE, "..", "professor.html"), "w", encoding="utf-8", newline="\n").write(pag)
     print("professor.html gerado (QR code + códigos dos dias)")
+
+# ---------------- decodificador do código de resultado (na professor.html) ----------------
+# O código é EV-dias-acertos-marcas-X (o mesmo resultCode() do template): X é a letra de conferência,
+# 65 + (soma dos códigos dos caracteres de "EV-dias-acertos-marcas") mod 26. Se mudar lá, mude aqui.
+DEC_CSS = """<style>
+.dec { margin-top: 26px; }
+.dec textarea { width: 100%; box-sizing: border-box; min-height: 120px; font: 1rem ui-monospace, Consolas, monospace; color: var(--ink); background: var(--panel); border: 2px solid var(--line); border-radius: 10px; padding: 10px; }
+.dec table { width: 100%; border-collapse: collapse; margin: 12px 0; background: var(--panel); font-size: .95rem; }
+.dec th, .dec td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+.dec th { color: var(--berry); }
+.dec .err { color: #B0413E; font-weight: 700; }
+.dec .marks span { margin-right: 2px; cursor: help; }
+.dec .tab { overflow-x: auto; }
+.dec ol { margin: 6px 0 0; padding-left: 20px; }
+@media print { .dec { display: none; } }
+</style>
+"""
+
+def decodificador(events):
+    import html
+    dec = {e["meta"]["code"]: {"title": e["meta"]["title"], "marks": [{"pt": m.get("pt", m["mark"]), "good": m["good"], "bad": m["bad"]} for m in e["meta"]["markInfo"]],
+                               "order": e["meta"]["marks"], "info": {m["mark"]: i for i, m in enumerate(e["meta"]["markInfo"])},
+                               "perDay": [sum(1 for t in d["tasks"] if t.get("type") in (None, "pick")) for d in e["days"]]} for e in events}
+    # a ordem das letras no código é a de meta.marks; a legenda segue meta.markInfo
+    for v in dec.values(): v["marks"] = [v["marks"][v["info"][k]] for k in v["order"]]; del v["info"], v["order"]
+    return DEC_HTML.replace("__DEC__", json.dumps(dec, ensure_ascii=False))
+
+DEC_HTML = r"""  <section class="dec" id="decoder">
+    <h2>Decodificador dos códigos de resultado</h2>
+    <p class="hint">Cole os códigos que os alunos copiaram, <b>um por linha</b>. Pode pôr o nome antes (<i>Ana SP-5-50-11011-K</i>).
+      Tudo é calculado aqui mesmo, sem internet, e nada é enviado.</p>
+    <textarea id="dec-in" spellcheck="false" placeholder="Ana SP-5-50-11011-K&#10;Beto SP-3-30-110xx-P"></textarea>
+    <p><button type="button" id="dec-copy" style="font:inherit;font-weight:700;color:#fff;background:var(--berry);border:0;border-radius:10px;padding:8px 14px;cursor:pointer" hidden>📋 Copiar a tabela (para planilha)</button>
+      <span class="hint" id="dec-msg"></span></p>
+    <div class="tab" id="dec-out"></div>
+  </section>
+<script>
+const DEC = __DEC__;
+const DEC_RX = /([A-Za-z]{2})\s*-\s*(\d)\s*-\s*(\d{1,2})\s*-\s*([01xXoO]{1,10})\s*-\s*([A-Za-z])/;
+const decCheck = body => String.fromCharCode(65 + [...body].reduce((s, c) => s + c.charCodeAt(0), 0) % 26);
+const decEsc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function decLine(line) {
+  const m = line.match(DEC_RX); if (!m) return line.trim() ? { bad: line.trim() } : null;
+  const ev = m[1].toUpperCase(), days = +m[2], ft = +m[3], marks = m[4].toLowerCase().replace(/o/g, "0");
+  const body = `${ev}-${days}-${String(ft).padStart(2, "0")}-${marks}`;
+  const name = line.replace(m[0], "").replace(/^[\s:;,|–-]+|[\s:;,|–-]+$/g, "");
+  return { name, ev, days, ft, marks, ok: decCheck(body) === m[5].toUpperCase(), E: DEC[ev] };
+}
+const decStars = n => n === 5 ? "⭐⭐⭐" : n >= 3 ? "⭐⭐" : "⭐";   // a mesma regra de starsOf() no template
+let decRows = [];
+function decRender() {
+  const lines = document.getElementById("dec-in").value.split("\n").map(decLine).filter(Boolean);
+  const out = document.getElementById("dec-out"), msg = document.getElementById("dec-msg");
+  decRows = [];
+  if (!lines.length) { out.innerHTML = ""; msg.textContent = ""; document.getElementById("dec-copy").hidden = true; return; }
+  const evs = [...new Set(lines.filter(r => r.E).map(r => r.ev))];
+  out.innerHTML = evs.map(ev => {
+    const E = DEC[ev], rows = lines.filter(r => r.ev === ev);
+    const body = rows.map(r => {
+      const poss = E.perDay.slice(0, r.days).reduce((a, b) => a + b, 0), pct = poss ? Math.round(100 * r.ft / poss) : 0;
+      const good = [...r.marks].filter(c => c === "1").length;
+      decRows.push([r.name || "—", E.title, r.days === 5 ? "5 (semana completa, com plano)" : String(r.days), `${r.ft}/${poss} (${pct}%)`,
+        ...E.marks.map((_, i) => ({ "1": "sim", "0": "não" }[r.marks[i]] || "—")), r.days === 5 ? decStars(good) : "", r.ok ? "ok" : "conferir"]);
+      return `<tr><td>${decEsc(r.name || "—")}</td><td>${r.days === 5 ? "5 ✅" : r.days}</td><td>${r.ft}/${poss} <span class="hint">(${pct}%)</span></td>
+        <td class="marks">${E.marks.map((m, i) => { const c = r.marks[i]; return `<span title="${decEsc(m.pt)}: ${c === "1" ? decEsc(m.good) : c === "0" ? decEsc(m.bad) : "ainda não"}">${c === "1" ? "✅" : c === "0" ? "❌" : "·"}</span>`; }).join("")}</td>
+        <td>${r.days === 5 ? decStars(good) : ""}</td><td>${r.ok ? "✓" : '<span class="err">conferir a cópia</span>'}</td></tr>`;
+    }).join("");
+    // as médias da turma contam só os códigos conferidos (os com a letra errada podem estar copiados com erro)
+    const okRows = rows.filter(r => r.ok), done = okRows.filter(r => r.days === 5).length;
+    const media = okRows.length ? Math.round(okRows.reduce((s, r) => { const p = E.perDay.slice(0, r.days).reduce((a, b) => a + b, 0); return s + (p ? r.ft / p : 0); }, 0) / okRows.length * 100) : 0;
+    const perMark = E.marks.map((m, i) => { const vis = okRows.filter(r => r.marks[i] === "1" || r.marks[i] === "0"); return vis.length ? `${Math.round(100 * vis.filter(r => r.marks[i] === "1").length / vis.length)}%` : "—"; });
+    return `<h3>${decEsc(E.title)} · ${rows.length} ${rows.length === 1 ? "aluno" : "alunos"}</h3>
+      <table><thead><tr><th>Aluno</th><th>Dias</th><th>Acertos de primeira</th><th>Decisões 1–5</th><th>Estrelas</th><th>Cópia</th></tr></thead><tbody>${body}</tbody>
+      <tfoot><tr><th>Turma <span class="hint">(códigos conferidos)</span></th><td>${done} com a semana completa</td><td>média ${media}%</td><td colspan="3">${perMark.map((p, i) => `${i + 1}: ${p}`).join(" · ")}</td></tr></tfoot></table>
+      <p class="hint"><b>Decisões</b> (passe o mouse no ✅/❌ para ver o efeito na festa; a porcentagem da turma conta só quem já chegou naquele dia):</p>
+      <ol class="hint">${E.marks.map(m => `<li>${decEsc(m.pt)}</li>`).join("")}</ol>`;
+  }).join("");
+  const bad = lines.filter(r => r.bad || !r.E), wrong = lines.filter(r => r.E && !r.ok);
+  msg.textContent = [bad.length ? `${bad.length} linha(s) sem código reconhecido.` : "", wrong.length ? `${wrong.length} código(s) com a letra de conferência errada: provavelmente copiados com erro.` : ""].join(" ");
+  document.getElementById("dec-copy").hidden = !decRows.length;
+}
+document.getElementById("dec-in").addEventListener("input", decRender);
+document.getElementById("dec-copy").addEventListener("click", () => {
+  const head = ["Aluno", "Evento", "Dias", "Acertos de primeira", ...[1, 2, 3, 4, 5].map(i => "Decisão " + i), "Estrelas", "Cópia"];
+  const tsv = [head, ...decRows].map(r => r.join("\t")).join("\n");
+  const done = () => { document.getElementById("dec-msg").textContent = "Tabela copiada: cole na planilha."; };
+  if (navigator.clipboard) navigator.clipboard.writeText(tsv).then(done, () => { prompt("Copie a tabela:", tsv); });
+  else prompt("Copie a tabela:", tsv);
+});
+</script>
+"""
 
 # ---------------- aplicativo (PWA): instalar no celular e abrir sem internet ----------------
 ICONES = ["icon-192.png", "icon-512.png", "apple-touch-icon.png"]

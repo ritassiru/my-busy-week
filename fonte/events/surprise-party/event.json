@@ -179,31 +179,36 @@
     "mark": "combinado_firme",
     "day": "Monday",
     "good": "Davi is on time. ⏰",
-    "bad": "Davi is late! 🏃"
+    "bad": "Davi is late! 🏃",
+    "pt": "Segunda · combinar quando e onde (We're meeting... on Friday at 6)"
    },
    {
     "mark": "promessa_familia",
     "day": "Tuesday",
     "good": "Mom drives you to the party. 🚗",
-    "bad": "First, wash the dishes! 🍽️"
+    "bad": "First, wash the dishes! 🍽️",
+    "pt": "Terça · prometer num horário livre (I'll help you at 7)"
    },
    {
     "mark": "lista_pronta",
     "day": "Tuesday",
     "good": "A big banner: HAPPY BIRTHDAY, NINA! 🎉",
-    "bad": "No banner... a pizza box! 📦"
+    "bad": "No banner... a pizza box! 📦",
+    "pt": "Terça · o plano da lista (I'm going to buy...)"
    },
    {
     "mark": "preparado_tempo",
     "day": "Wednesday",
     "good": "The party is in the living room. 🛋️",
-    "bad": "Rain in the garden! 🌧️"
+    "bad": "Rain in the garden! 🌧️",
+    "pt": "Quarta · evidência × opinião (It's going to rain)"
    },
    {
     "mark": "imprevisto_resolvido",
     "day": "Thursday",
     "good": "A chocolate cake: NINA 15! 🎂",
-    "bad": "The bakery is [[closed|fechada]]... cookies! 🍪"
+    "bad": "The bakery is [[closed|fechada]]... cookies! 🍪",
+    "pt": "Quinta · marcar o bolo antes das 5 (I'm picking it up at 4)"
    }
   ]
  },

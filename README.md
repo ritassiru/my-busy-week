@@ -18,7 +18,10 @@ evento de sexta-feira.
 
 ## Situação
 
-**MVP:** a segunda-feira da *Surprise Party* está jogável. O design completo está
+A semana inteira da *Surprise Party* está jogável (segunda a sexta, um dia por
+aula). A página do professor tem o QR code, os códigos dos dias e um
+**decodificador**: cole os códigos de resultado que os alunos copiaram e veja a
+tabela da turma (pode copiar para uma planilha). O design completo está
 em [`docs/gdd.md`](docs/gdd.md) e o roteiro dos cinco dias em
 [`docs/roteiro-surprise-party.md`](docs/roteiro-surprise-party.md).
 
