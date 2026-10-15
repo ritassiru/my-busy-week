@@ -6,7 +6,7 @@ ver o recife de corais. O ônibus sai do portão da escola **às 7 a.m.**
 **Turma:** 1º ano · **Nível:** A1/A2 · **GDD:** `docs/gdd.md`
 **Formas:** *will*, *going to*, *present continuous* (com expressão de tempo).
 **Apoio:** *simple present* e imperativo. **Sem simple past**, nem nas falas.
-**Estado:** roteiro aprovado (out/2026) e no jogo como rascunho (`fonte/events/class-trip/`, `"published": false` no `game.json`); vai para `true` quando o professor aprovar a versão jogável.
+**Estado:** roteiro aprovado (out/2026) e publicado no jogo (`fonte/events/class-trip/`).
 **Código do evento:** `CT` (código de resultado `CT-…`). Os códigos dos dias são
 os do jogo (`BALLOON`, `CLOUD`, `OVEN`, `PARTY`).
 

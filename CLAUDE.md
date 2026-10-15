@@ -23,9 +23,8 @@ escrito e aprovado primeiro; depois vira `event.json`.
 **Estado (out/2026):** a semana inteira da *Surprise Party* é jogável: segunda a
 quinta com 15 partes, a sexta com 18 (códigos `BALLOON`, `CLOUD`, `OVEN` e
 `PARTY`). A *School Culture Fair* (`culture-fair`, código `CF`) também está
-completa e publicada (out/2026). A *Class Trip* (`class-trip`, código `CT`) está
-completa como **rascunho** (`"published": false`) até o professor aprovar: teste com
-`python3 fonte/build.py --drafts --out ...`. O decodificador do código de resultado
+completa e publicada (out/2026). A *Class Trip* (`class-trip`, código `CT`) também
+(out/2026): os três eventos do GDD estão publicados. O decodificador do código de resultado
 está na `professor.html`.
 
 ## Arquitetura
