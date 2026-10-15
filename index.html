@@ -214,6 +214,9 @@ input.name { width: 100%; font: inherit; font-size: 1.1rem; color: var(--ink); b
 .ev-card .scene svg { display: block; width: 100%; height: auto; border-radius: 10px; }
 .code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 1.3rem; font-weight: 700; letter-spacing: .06em; color: var(--berry); }
 .home-av svg { width: 90px; height: 90px; display: block; margin: 0 auto 4px; }
+.kwbtn { font-size: 1.15rem; line-height: 1; }
+.kwbtn + .gear { margin-left: 0; }
+.top.bar { gap: 8px; }
 .stamp { display: inline-block; font-weight: 700; color: var(--ok); border: 2px solid var(--ok); border-radius: 999px; padding: 2px 12px; margin-bottom: 8px; }
 </style>
 </head>
@@ -389,8 +392,9 @@ const STYLE_PT = { short: "curto", long: "longo", curly: "cacheado", bun: "coque
 const avatarSVG = p => `<svg viewBox="-40 -100 80 104" role="img" aria-label="avatar">${person(0, 0, { skin: p.skin, hair: p.hair, style: p.style, shirt: p.shirt })}</svg>`;
 
 /* ---------------- telas ---------------- */
-function topBar(left, right) {
-  return `<div class="top bar"><div class="brand">${left}</div><div class="step">${right || ""}</div>${gearButton()}</div>`;
+// kw: mostra o atalho 📖 para as palavras-chave (em todas as telas dos dias)
+function topBar(left, right, kw) {
+  return `<div class="top bar"><div class="brand">${left}</div><div class="step">${right || ""}</div>${kw ? kwButton() : ""}${gearButton()}</div>`;
 }
 function render(html) { $("#app").innerHTML = html; window.scrollTo(0, 0); }
 
@@ -439,13 +443,19 @@ function screenProfile() {
 function screenKeywords() {
   render(`${topBar(esc(EV().meta.title), "Words · palavras")}
     <h2>Key words <span class="hint">· palavras-chave</span></h2>
-    <p class="hint">Leia antes de começar. Toque nas palavras durante o jogo para ver a tradução de novo.</p>
-    <div class="card">${EV().meta.keywords.map(g => `<p class="kw-g">${esc(g.title)} <span>· ${esc(g.pt)}</span></p>
-      <div class="kw-grid">${g.words.map(([e, en, pt]) => `<div class="kw"><span class="kw-e" aria-hidden="true">${e}</span><div><b>${esc(en)}</b><span class="pt">${esc(pt)}</span></div></div>`).join("")}</div>`).join("")}</div>
+    <p class="hint">Leia antes de começar. Durante o jogo, o botão 📖 no alto da tela mostra estas palavras de novo.</p>
+    <div class="card">${kwHTML()}</div>
     <button type="button" class="btn primary" data-act="kwdone">Let's go! ▶ <span>· vamos lá!</span></button>`);
 }
 
-const dayTop = () => topBar(esc(EV().meta.title), `${esc(DAY().day)} · ${Math.min(run.step, DAY().tasks.length + 2) + 1}/${DAY().tasks.length + 3}`);
+const dayTop = () => topBar(esc(EV().meta.title), `${esc(DAY().day)} · ${Math.min(run.step, DAY().tasks.length + 2) + 1}/${DAY().tasks.length + 3}`, true);
+
+/* palavras-chave: na tela antes do primeiro dia e no atalho 📖 (abre por cima, no painel das configurações, sem mexer no jogo) */
+const kwHTML = () => EV().meta.keywords.map(g => `<p class="kw-g">${esc(g.title)} <span>· ${esc(g.pt)}</span></p>
+  <div class="kw-grid">${g.words.map(([e, en, pt]) => `<div class="kw"><span class="kw-e" aria-hidden="true">${e}</span><div><b>${esc(en)}</b><span class="pt">${esc(pt)}</span></div></div>`).join("")}</div>`).join("");
+const kwButton = () => `<button type="button" class="gear kwbtn" id="kwbtn" aria-label="Key words · palavras-chave" title="Key words · palavras-chave" aria-haspopup="dialog"><span aria-hidden="true">📖</span></button>`;
+const kwSheet = () => `<div class="sheet" role="dialog" aria-modal="true" aria-labelledby="st-t"><h2 id="st-t">📖 Key words <span>· palavras-chave</span></h2>
+  ${kwHTML()}<button type="button" class="btn primary" id="st-close" style="margin-top:14px">Done <span>· pronto</span></button></div>`;
 const appBar = cur => `<nav class="appbar" aria-label="Apps">${[["chat", "💬", "Chat"], ["notes", "📝", "Notes"], ["calendar", "📅", "Calendar"]].map(([k, i, n]) =>
   `<button type="button" data-app="${k}" class="${cur === k ? "on" : ""}"${cur === k ? ' aria-current="page"' : ""}><span aria-hidden="true">${i}</span>${n}</button>`).join("")}</nav>`;
 
@@ -545,7 +555,7 @@ function screenClose() {
   const d = DAY(), next = EV().days[run.day + 1];
   if (!run.done.includes(run.day)) { run.done.push(run.day); saveRun(); }
   const [hi, hf, ht, hx] = d.close.hook;
-  render(`${topBar(esc(EV().meta.title), `${esc(d.day)} ✓`)}
+  render(`${topBar(esc(EV().meta.title), `${esc(d.day)} ✓`, true)}
     <div class="card" style="text-align:center"><span class="stamp">✓ ${esc(d.day)}</span>
       <h2 style="margin:0">Good job, ${esc(NAME())}! <span class="hint">· bom trabalho!</span></h2>
       <p class="score">First try: ${firstTry(run.day)}/${d.tasks.length} <span class="hint">· acertos de primeira</span></p></div>
@@ -781,6 +791,8 @@ function closeSettings() {
 }
 document.addEventListener("click", e => {
   if (e.target.closest("#gear")) { openSettings(); return; }
+  // o foco vai para o "Done" (último botão): a lista volta para o começo
+  if (e.target.closest("#kwbtn")) { openSheet(kwSheet()); $("#settings").scrollTop = 0; return; }
   if (e.target.closest("#w-review")) { openWords(); return; }
   const o = $("#settings");
   if (o.hidden) return;

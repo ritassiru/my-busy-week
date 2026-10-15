@@ -1,7 +1,7 @@
 // GERADO por fonte/build.py. Nunca edite à mão.
 // Guarda o jogo no aparelho na primeira visita; depois ele abre mesmo sem internet.
 // A versão muda a cada build: o celular baixa o jogo novo na próxima vez que abrir com internet.
-const CACHE = "my-busy-week-2270e818c822";
+const CACHE = "my-busy-week-d90a8e03c8bf";
 const ARQUIVOS = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "apple-touch-icon.png"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE)

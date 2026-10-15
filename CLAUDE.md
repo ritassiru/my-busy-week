@@ -95,6 +95,10 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
   `reader:audio`), porque é o mesmo site. Do jogo: `week:profile` (nome e avatar),
   `week:run` (a semana em andamento) e `week:words` (*My words* do jogo, separado
   da estante). O nome do aluno nunca sai do aparelho.
+- **Atalho 📖 para as palavras-chave** no alto de todas as telas dos dias (tela de
+  bloqueio, notas, tarefas e fim do dia), ao lado da engrenagem (`topBar(..., true)`).
+  Abre por cima, no mesmo painel das configurações (`openSheet`): não mexe no
+  jogo nem apaga a frase que o aluno está montando.
 - **Um dia por aula:** a segunda abre direto; terça a sexta pedem o código do dia
   (`game.json` → `codes`), que fica em `professor.html`. O código organiza a
   turma, não é segurança.
