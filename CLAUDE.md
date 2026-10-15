@@ -20,9 +20,10 @@ visual entre eles.
 `docs/roteiro-<evento>.md` (o texto de cada dia, tarefa por tarefa). O roteiro é
 escrito e aprovado primeiro; depois vira `event.json`.
 
-**Estado (out/2026):** **segunda a quarta** da *Surprise Party* jogáveis (15 partes
-cada; códigos `BALLOON` e `CLOUD`). Quinta e sexta estão no roteiro, ainda não
-no `event.json`.
+**Estado (out/2026):** **segunda a quinta** da *Surprise Party* jogáveis (15 partes
+cada; códigos `BALLOON`, `CLOUD` e `OVEN`), com as 5 marcas da semana. A sexta
+(as cenas da festa, as estrelas e o plano do fim de semana) está no roteiro,
+ainda não no jogo.
 
 ## Arquitetura
 
@@ -66,6 +67,10 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
   (algum destes), `lacks` (nenhum destes). As regras só valem se nenhuma frase
   `say` combinou; vale a primeira da lista.
 - `fallback`: qualquer outra montagem.
+- `if`: `{"mark": ..., "is": true/false}` faz a resposta valer só quando aquela marca
+  (de um dia anterior) tem esse valor. Na quinta, a tarefa 4 aceita *at 4* ou
+  *at 6* conforme a hora que o aluno marcou com a padaria; a frase-modelo
+  (`model`) acompanha a condição. O `checar.py` confere se a marca já existe.
 - `kind`: `ok` (conta como acerto de primeira; com `tip` vira ✅ com 💡), `warn`
   (⚠️ só a forma errada) ou `bad` (❌ informação errada). Toda resposta errada tem `tip`.
 - Tarefa com `mark` (decisão-chave): **toda** resposta e o fallback dizem
@@ -104,6 +109,7 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
 
 - **Futuro no balão** (`WILL`, `GOING_TO`, `TIME`, `BE_ING`, `NOT_ING`): a mesma
   regra no `template.html` e no `checar.py`. Se mudar num, mude no outro.
+  `NOT_ING` lista palavras em *-ing* que não são verbo (*morning, amazing, boring...*).
 - **Partes copiadas da estante sem mudança** (utilidades, verbos, `person()`/`SKY()`/
   `GROUND()`, áudio, painel de configurações, *My words*, balão do glossário):
   mudanças nelas devem ir para os dois projetos. Diferenças de propósito: textos
@@ -113,6 +119,7 @@ Cada tarefa tem `messages` (falas: `[quem, texto]`; `{name}` = nome do aluno),
   `reader:audio`), porque é o mesmo site. Do jogo: `week:profile` (nome e avatar),
   `week:run` (a semana em andamento) e `week:words` (*My words* do jogo, separado
   da estante). O nome do aluno nunca sai do aparelho.
+- **Agenda** na ordem dos dias e, no mesmo dia, das horas (`calSorted`).
 - **Atalho 📖 para as palavras-chave** no alto de todas as telas dos dias (tela de
   bloqueio, notas, tarefas e fim do dia), ao lado da engrenagem (`topBar(..., true)`).
   Abre por cima, no mesmo painel das configurações (`openSheet`): não mexe no

@@ -274,7 +274,7 @@ const GOING_TO = /\b(going to)(?=\s+(?!(?:the|a|an|my|your|his|her|its|our|their
 const WILL = /\b([A-Za-z]+['’]ll|will|won['’]t)\b(?=\s+(?:not\s+)?[a-z])/i;
 const TIME = /\b(?:tonight|tomorrow|this (?:morning|afternoon|evening|weekend)|next (?:week|weekend|year|monday|tuesday|wednesday|thursday|friday|saturday|sunday)|on (?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)|in the (?:morning|afternoon|evening)|at \d{1,2}(?::\d\d)?)\b/i;
 const BE_ING = /((?:\b(?:am|is|are)|['’](?:m|s|re))\s+)([a-z]+ing)\b/gi;
-const NOT_ING = new Set(["nothing", "something", "anything", "everything", "thing", "morning", "evening", "king", "ring", "spring", "building", "ceiling", "sing", "bring"]);
+const NOT_ING = new Set(["nothing", "something", "anything", "everything", "thing", "morning", "evening", "king", "ring", "spring", "building", "ceiling", "sing", "bring", "amazing", "boring", "interesting", "exciting"]);
 const FUT_PT = { will: "vai + verbo: decisão, promessa ou opinião (futuro)", wont: "não vai + verbo (futuro)", going: "vai + verbo: plano ou sinal (futuro)", ing: "compromisso marcado (futuro: be + -ing + hora)" };
 // marca o -ing de compromisso com ..., frase por frase (fora dos [[...]])
 function markFuture(text) {
@@ -445,7 +445,7 @@ function screenLock() {
   const d = DAY();
   render(`${dayTop()}
     <div class="lock"><div class="clock">${esc(d.lock.time)}</div><div class="date">${esc(d.day)} · ${esc(d.dayPt)}</div>
-      ${d.lock.items.map(([i, f, t]) => `<div class="notif"><span class="ni" aria-hidden="true">${i}</span><div><b>${esc(f)}</b><span>${esc(t)}</span></div></div>`).join("")}</div>
+      ${d.lock.items.map(([i, f, t]) => `<div class="notif"><span class="ni" aria-hidden="true">${i}</span><div><b>${esc(f)}</b><span>${esc(semGloss(t))}</span></div></div>`).join("")}</div>
     <p class="task-pt">🎯 <b>Hoje:</b> ${esc(d.focusPt)}</p>
     <button type="button" class="btn primary" data-act="next">Open the phone ▶ <span>· abrir o celular</span></button>`);
 }
@@ -471,13 +471,18 @@ const bubble = (who, text, delay) => {
 const speakable = msgs => msgs.map(([w, t]) => { const s = `${w}: ${semGloss(t)}`; return /[.!?]\s*$/.test(paraFalar(s)) ? s : s + "."; }).join(" ");
 const joinToks = ts => ts.reduce((s, t) => !s ? t : /^['’.,!?]/.test(t) ? s + t : s + " " + t, "");
 const norm = ts => { ts = ts.slice(); while (ts.length && /^[.!?]$/.test(ts[ts.length - 1])) ts.pop(); return ts.join("\u0001"); };
+// "if": { "mark": ..., "is": true/false } faz a resposta valer só quando a marca tem esse valor
+// (na quinta, a hora certa do bolo depende do que o aluno marcou com a padaria)
+const cond = o => !o.if || run.marks[o.if.mark] === o.if.is;
 function judge(t, toks) {
   const k = norm(toks), o = t.outcomes;
-  let i = o.findIndex(x => x.say && x.say.some(p => norm(p) === k));
-  if (i < 0) i = o.findIndex(x => !x.say && (x.has || x.hasAny || x.lacks) &&
+  let i = o.findIndex(x => cond(x) && x.say && x.say.some(p => norm(p) === k));
+  if (i < 0) i = o.findIndex(x => cond(x) && !x.say && (x.has || x.hasAny || x.lacks) &&
     (x.has || []).every(b => toks.includes(b)) && (!x.hasAny || x.hasAny.some(b => toks.includes(b))) && !(x.lacks || []).some(b => toks.includes(b)));
   return i;
 }
+// a frase-modelo das dicas: a da primeira resposta certa que vale para este aluno
+const modelOf = t => { const o = t.outcomes.find(x => x.kind === "ok" && cond(x)); return (o && o.model) || t.model; };
 const outcomeOf = (t, i) => i >= 0 ? t.outcomes[i] : Object.assign({ kind: "none" }, t.fallback);
 const FB = { ok: ["ok", "✅ Great! · muito bem!"], warn: ["warn", "⚠️ Almost! · quase!"], bad: ["bad", "❌ Oops! · ops!"], none: ["bad", "❓ Hmm... · não deu para entender"] };
 
@@ -510,7 +515,7 @@ function screenTask(n) {
       ${(o.reply || []).map(([w, x], j) => bubble(w, x, step === undefined ? undefined : 0.5 + j * step)).join("")}</div>
       <div class="fbk ${cls}${justSent ? " appear" : ""}"${justSent ? ` style="animation-delay:${0.6 + n0 * 0.6}s"` : ""}>
         <p class="fbk-t">${title}</p>${o.tip ? `<p style="margin:0">${o.kind === "ok" ? "💡 " : ""}${esc(o.tip)}</p>` : ""}
-        ${o.kind !== "ok" ? `<p class="model">Você quis dizer: <b>${esc(withName(t.model))}</b></p>` : ""}</div>
+        ${o.kind !== "ok" ? `<p class="model">Você quis dizer: <b>${esc(withName(modelOf(t)))}</b></p>` : ""}</div>
       <button type="button" class="btn primary" data-act="next">${n + 1 < d.tasks.length ? "Next ▶ <span>· próxima</span>" : "End of the day ▶ <span>· fim do dia</span>"}</button>`;
   }
   render(`${dayTop()}
@@ -545,9 +550,11 @@ function answer(t, i, said) {
   const b = $("#app [data-act=next]"); if (b) b.focus({ preventScroll: true });
 }
 
-// a agenda na ordem dos dias da semana (as entradas começam com "Mon", "Tue"...), não na ordem em que foram marcadas
+// a agenda na ordem dos dias da semana (as entradas começam com "Mon", "Tue"...) e, no mesmo dia, na ordem das horas
+// ("4:00 p.m."), não na ordem em que foram marcadas; sem hora ("?"), vai para o fim do dia
 const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const calSorted = () => run.cal.map((c, i) => [c, i]).sort((x, y) => (DOW.indexOf(x[0].slice(0, 3)) - DOW.indexOf(y[0].slice(0, 3))) || x[1] - y[1]).map(x => x[0]);
+const minutes = c => { const m = c.match(/(\d{1,2}):(\d\d) ([ap])\.m\./); return m ? (+m[1] % 12 + (m[3] === "p" ? 12 : 0)) * 60 + +m[2] : 9999; };
+const calSorted = () => run.cal.map((c, i) => [c, i]).sort((x, y) => (DOW.indexOf(x[0].slice(0, 3)) - DOW.indexOf(y[0].slice(0, 3))) || (minutes(x[0]) - minutes(y[0])) || x[1] - y[1]).map(x => x[0]);
 function resultCode() {
   const ev = EV(), marks = ev.meta.marks.map(k => run.marks[k] === true ? "1" : run.marks[k] === false ? "0" : "x").join("");
   const body = `${ev.meta.code}-${run.done.length}-${String(firstTry()).padStart(2, "0")}-${marks}`;

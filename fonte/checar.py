@@ -21,7 +21,7 @@ NOT_PAST = {"need", "feed", "seed", "speed", "red", "bed", "indeed", "shed"}
 GOING_TO = re.compile(r"\b(going to)(?=\s+(?!(?:the|a|an|my|your|his|her|its|our|their|this|that|these|those|school|bed|sleep|work|church|class|town|home)\b)[a-z])", re.I)
 TIME = re.compile(r"\b(?:tonight|tomorrow|this (?:morning|afternoon|evening|weekend)|next (?:week|weekend|year|monday|tuesday|wednesday|thursday|friday|saturday|sunday)|on (?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)|in the (?:morning|afternoon|evening)|at \d{1,2}(?::\d\d)?)\b", re.I)
 BE_ING = re.compile(r"((?:\b(?:am|is|are)|['’](?:m|s|re))\s+)([a-z]+ing)\b", re.I)
-NOT_ING = {"nothing", "something", "anything", "everything", "thing", "morning", "evening", "king", "ring", "spring", "building", "ceiling", "sing", "bring"}
+NOT_ING = {"nothing", "something", "anything", "everything", "thing", "morning", "evening", "king", "ring", "spring", "building", "ceiling", "sing", "bring", "amazing", "boring", "interesting", "exciting"}
 A1 = json.load(open(os.path.join(HERE, "a1.json"), encoding="utf-8"))
 SEM_A1 = {"a", "an", "the", "i", "you", "it", "is", "are", "am", "to", "and", "of", "in", "on", "at"}
 CONHECIDAS = set(A1) | set(A1.get("_cognatos", [])) | set(A1.get("_ignorar", [])) | SEM_A1
@@ -131,9 +131,13 @@ def check_event(slug, game):
                     for s in expand(p):
                         if any(b not in B for b in s): erros.append(f"{ko}: o padrão usa um bloco que não existe: {[b for b in s if b not in B]}")
                         if len(set(s)) != len(s): erros.append(f"{ko}: o padrão usa o mesmo bloco duas vezes: {join_toks(s)}")
-                        chave = tuple(s[:len(s) - next((j for j, b in enumerate(reversed(s)) if b not in ".!?"), 0)])
+                        chave = tuple(s[:len(s) - next((j for j, b in enumerate(reversed(s)) if b not in ".!?"), 0)]) + (json.dumps(o.get("if"), sort_keys=True),)
                         if chave in vistas and vistas[chave] != i: erros.append(f"{ko}: a frase '{join_toks(s)}' já está em outra resposta")
                         vistas[chave] = i
+                if "if" in o:
+                    c = o["if"]
+                    if c.get("mark") not in M.get("marks", []) or not isinstance(c.get("is"), bool): erros.append(f"{ko}: 'if' precisa de mark (de meta.marks) e is (true/false)")
+                    elif not marcas[c["mark"]]: erros.append(f"{ko}: 'if' usa a marca '{c['mark']}', que nenhuma tarefa anterior define")
                 regras = [b for k in ("has", "hasAny", "lacks") for b in o.get(k, [])]
                 if any(b not in B for b in regras): erros.append(f"{ko}: has/hasAny/lacks com bloco que não existe")
                 if o["kind"] != "fallback" and not o.get("say") and not regras: erros.append(f"{ko}: resposta sem 'say' e sem regra (has, hasAny, lacks): nunca acontece")

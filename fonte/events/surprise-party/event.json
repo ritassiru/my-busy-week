@@ -47,6 +47,14 @@
    "Ms. Lima": {
     "color": "#3E6E8E",
     "emoji": "👩‍🏫"
+   },
+   "Dona Célia": {
+    "color": "#B5651D",
+    "emoji": "🥐"
+   },
+   "Class": {
+    "color": "#6E5C63",
+    "emoji": "🧑‍🎓"
    }
   },
   "marks": [
@@ -3534,6 +3542,1227 @@
      "Kauã",
      "10:05 p.m.",
      "2 [[missed calls|chamadas perdidas]] 😰 · Big problem!! Call me tomorrow! 🆘"
+    ]
+   }
+  },
+  {
+   "day": "Thursday",
+   "dayPt": "quinta-feira",
+   "focusPt": "O imprevisto: decidir e oferecer na hora (I'll call the bakery!), prometer (I won't forget!) e marcar um horário por telefone (I'm picking it up tomorrow at 4).",
+   "lock": {
+    "time": "6:50",
+    "items": [
+     [
+      "📞",
+      "Kauã",
+      "2 [[missed calls|chamadas perdidas]]"
+     ],
+     [
+      "💬",
+      "Kauã",
+      "Big problem!! Call me tomorrow! 🆘"
+     ],
+     [
+      "⏰",
+      "Reminder",
+      "Science test, 8 a.m. 📚"
+     ]
+    ]
+   },
+   "notes": [
+    "Science [[test|prova]] at 8 a.m.",
+    "Call Kauã!!",
+    "Football practice at 5 p.m. ⚽",
+    "Friday: party at Bia's house! 🎉"
+   ],
+   "notesPt": "O Kauã ligou duas vezes. Leia a sua lista e ligue de volta!",
+   "tasks": [
+    {
+     "id": "thu1",
+     "app": "call",
+     "thread": "Kauã",
+     "time": "7:00 a.m.",
+     "messages": [
+      [
+       "Kauã",
+       "{name}! Finally! 😭"
+      ],
+      [
+       "Kauã",
+       "My oven is broken! No oven, no cake! 🎂❌"
+      ],
+      [
+       "Kauã",
+       "The party is TOMORROW! What are we going to do?"
+      ]
+     ],
+     "pt": "O Kauã está desesperado. Tome uma decisão agora.",
+     "blocks": [
+      "Don't worry!",
+      "I",
+      "'ll",
+      "'m going to",
+      "call",
+      "the bakery",
+      "Nina",
+      "."
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I",
+         "'ll",
+         "call",
+         "the bakery",
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "The bakery! Good idea! You're a hero! 🦸"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Don't worry!"
+         },
+         "I",
+         "'m going to",
+         "call",
+         "the bakery",
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "Wait, you have a plan already? Since when? 😮"
+        ]
+       ],
+       "tip": "Você decidiu agora, ouvindo o problema: I'll call. O going to parece um plano que você já tinha."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "Nina"
+       ],
+       "reply": [
+        [
+         "Kauã",
+         "NINA?! 😱 It's a SURPRISE, {name}!"
+        ]
+       ],
+       "tip": "A Nina não pode saber! Quem vende bolo é a padaria (the bakery)."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Kauã",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Decida na hora: I'll call the bakery."
+     }
+    },
+    {
+     "id": "thu2",
+     "app": "call",
+     "thread": "Sweet Corner Bakery 🥐",
+     "time": "7:15 a.m.",
+     "mark": "imprevisto_resolvido",
+     "messages": [
+      [
+       "Dona Célia",
+       "Good morning! Sweet Corner Bakery! 🥐"
+      ],
+      [
+       "Dona Célia",
+       "A chocolate cake for tomorrow? Yes, no problem! 🍫🎂"
+      ],
+      [
+       "Dona Célia",
+       "But on Friday we close at 5 p.m."
+      ],
+      [
+       "Dona Célia",
+       "When are you picking it up?"
+      ]
+     ],
+     "pt": "A padaria fecha às 5 na sexta. A festa começa às 6. Marque um horário em que a padaria ainda está aberta.",
+     "blocks": [
+      "I",
+      "'m picking",
+      "'ll pick",
+      "it up",
+      "tomorrow",
+      "on Friday",
+      "at 4",
+      "at 6",
+      "."
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "I",
+         "'m picking",
+         "it up",
+         {
+          "any": [
+           "tomorrow",
+           "at 4"
+          ]
+         },
+         "."
+        ],
+        [
+         "I",
+         "'m picking",
+         "it up",
+         {
+          "any": [
+           "on Friday",
+           "at 4"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Dona Célia",
+         "Perfect! See you tomorrow at 4! 😊"
+        ]
+       ],
+       "mark": true,
+       "calendar": "Fri · 4:00 p.m. · Pick up the cake 🎂 (Sweet Corner)"
+      },
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "I",
+         "'ll pick",
+         "it up",
+         {
+          "any": [
+           "tomorrow",
+           "at 4"
+          ]
+         },
+         "."
+        ],
+        [
+         "I",
+         "'ll pick",
+         "it up",
+         {
+          "any": [
+           "on Friday",
+           "at 4"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Dona Célia",
+         "Perfect! See you tomorrow at 4! 😊"
+        ]
+       ],
+       "mark": true,
+       "calendar": "Fri · 4:00 p.m. · Pick up the cake 🎂 (Sweet Corner)",
+       "tip": "Vale! Quem marca algo na hora, por telefone, diz I'll pick it up. Depois de marcado, o combinado vira I'm picking it up at 4."
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "at 6"
+       ],
+       "reply": [
+        [
+         "Dona Célia",
+         "OK! 🙂"
+        ]
+       ],
+       "mark": false,
+       "calendar": "Fri · 6:00 p.m. · Pick up the cake 🎂 (Sweet Corner)",
+       "tip": "A padaria fecha às 5. Às 6 ela vai estar fechada!"
+      },
+      {
+       "kind": "bad",
+       "hasAny": [
+        "'m picking",
+        "'ll pick"
+       ],
+       "lacks": [
+        "at 4",
+        "at 6",
+        "tomorrow",
+        "on Friday"
+       ],
+       "reply": [
+        [
+         "Dona Célia",
+         "Now? The cake isn't ready! 😅"
+        ]
+       ],
+       "mark": false,
+       "calendar": "Fri · ? · Pick up the cake 🎂 (Sweet Corner)",
+       "tip": "Sem expressão de tempo, I'm picking it up quer dizer agora. Diga quando: tomorrow at 4."
+      },
+      {
+       "kind": "bad",
+       "hasAny": [
+        "'m picking",
+        "'ll pick"
+       ],
+       "lacks": [
+        "at 4",
+        "at 6"
+       ],
+       "reply": [
+        [
+         "Dona Célia",
+         "OK, tomorrow! 🙂"
+        ]
+       ],
+       "mark": false,
+       "calendar": "Fri · ? · Pick up the cake 🎂 (Sweet Corner)",
+       "tip": "Faltou a hora! A padaria fecha às 5: marque antes, at 4."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Dona Célia",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Marque dia e hora: I'm picking it up tomorrow at 4.",
+      "mark": false
+     }
+    },
+    {
+     "id": "thu_p1",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Kauã",
+     "time": "7:30 a.m.",
+     "messages": [
+      [
+       "Kauã",
+       "Thank you, {name}! 🦸"
+      ],
+      [
+       "Kauã",
+       "What time is the bakery closing tomorrow? I can't remember... 😵"
+      ]
+     ],
+     "pt": "Lembra do que a Dona Célia disse na ligação?",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "At 5 p.m.",
+       "reply": [
+        [
+         "Kauã",
+         "OK, at 5! Don't be late! 😅"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "At 6 p.m.",
+       "reply": [
+        [
+         "Kauã",
+         "6? Are you sure? That's the party time! 🤔"
+        ]
+       ],
+       "tip": "A padaria fecha às 5 (we close at 5 p.m.)."
+      },
+      {
+       "kind": "bad",
+       "text": "At 4 p.m.",
+       "reply": [
+        [
+         "Kauã",
+         "4? Is that the pick-up time? 🤔"
+        ]
+       ],
+       "tip": "A padaria fecha às 5. Às 4 é a hora boa para buscar o bolo."
+      }
+     ]
+    },
+    {
+     "id": "thu5",
+     "app": "chat",
+     "thread": "Mom",
+     "time": "8:00 a.m.",
+     "messages": [
+      [
+       "Mom",
+       "Good luck on the test! 🍀"
+      ],
+      [
+       "Mom",
+       "Do you need money for the cake? 🎂"
+      ]
+     ],
+     "pt": "Aceite e prometa devolver no sábado.",
+     "blocks": [
+      "Yes, please!",
+      "I",
+      "'ll",
+      "'m going to",
+      "pay you back",
+      "on Saturday",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Yes, please!"
+         },
+         "I",
+         "'ll",
+         "pay you back",
+         "on Saturday",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Mom",
+         "Deal! 🤝"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Yes, please!"
+         },
+         "I",
+         "'m going to",
+         "pay you back",
+         "on Saturday",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Mom",
+         "Is that a promise? 🤨"
+        ],
+        [
+         "Mom",
+         "OK! 😄"
+        ]
+       ],
+       "tip": "Para prometer, use I'll. Como na terça!"
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Mom",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Prometa: I'll pay you back on Saturday!"
+     }
+    },
+    {
+     "id": "thu3",
+     "app": "chat",
+     "thread": "Science class 🔬",
+     "time": "9:40 a.m.",
+     "messages": [
+      [
+       "Ms. Lima",
+       "Good job on the test, everybody! 👏"
+      ],
+      [
+       "Ms. Lima",
+       "Remember: bring your science project on Monday."
+      ],
+      [
+       "Ms. Lima",
+       "{name}, don't forget this time! 😉"
+      ]
+     ],
+     "pt": "Prometa para a professora que você não vai esquecer.",
+     "blocks": [
+      "I",
+      "won't",
+      "'ll",
+      "forget",
+      ".",
+      "I promise!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "I",
+         "won't",
+         "forget",
+         {
+          "opt": "."
+         },
+         {
+          "opt": "I promise!"
+         }
+        ]
+       ],
+       "reply": [
+        [
+         "Ms. Lima",
+         "Great! 👍"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "has": [
+        "'ll",
+        "forget"
+       ],
+       "reply": [
+        [
+         "Ms. Lima",
+         "You WILL? 😳"
+        ],
+        [
+         "Class",
+         "😂😂😂"
+        ]
+       ],
+       "tip": "I'll forget quer dizer \"eu vou esquecer\". Para prometer que não, use won't (= will not)."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Ms. Lima",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Prometa que não vai esquecer: I won't forget. I promise!"
+     }
+    },
+    {
+     "id": "thu_p2",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Nina",
+     "time": "10:30 a.m.",
+     "messages": [
+      [
+       "Nina",
+       "The test is over! 😮‍💨"
+      ],
+      [
+       "Nina",
+       "What do we need for Monday? I can't remember! 😵"
+      ]
+     ],
+     "pt": "Lembra do que a Ms. Lima disse depois da prova?",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "Our science project. 🔬",
+       "reply": [
+        [
+         "Nina",
+         "Oh right! Thanks!"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "Our science test.",
+       "reply": [
+        [
+         "Nina",
+         "Another test?! 😱 No way!"
+        ]
+       ],
+       "tip": "A prova já foi hoje. Para segunda é o projeto (science project)."
+      },
+      {
+       "kind": "bad",
+       "text": "A cake.",
+       "reply": [
+        [
+         "Nina",
+         "A cake? 😂 For the teacher?"
+        ]
+       ],
+       "tip": "Para segunda é o projeto de ciências. (E cuidado com o segredo! 🤫)"
+      }
+     ]
+    },
+    {
+     "id": "thu6",
+     "app": "chat",
+     "thread": "Davi",
+     "time": "12:00 p.m.",
+     "messages": [
+      [
+       "Davi",
+       "Hey! Let's play video games tomorrow after school! 🎮"
+      ]
+     ],
+     "pt": "O Davi esqueceu a festa! Lembre o compromisso de amanhã.",
+     "blocks": [
+      "Davi!",
+      "We",
+      "'re meeting",
+      "'ll meet",
+      "at Bia's house",
+      "tomorrow",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Davi!"
+         },
+         "We",
+         "'re meeting",
+         {
+          "any": [
+           "at Bia's house",
+           "tomorrow"
+          ]
+         },
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Davi",
+         "Oh no, the PARTY! I forget everything! 😅"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Davi!"
+         },
+         "We",
+         "'ll meet",
+         {
+          "any": [
+           "at Bia's house",
+           "tomorrow"
+          ]
+         },
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Davi",
+         "Is it a plan or just an idea? 🤔"
+        ]
+       ],
+       "tip": "Já está combinado: We're meeting."
+      },
+      {
+       "kind": "bad",
+       "hasAny": [
+        "'re meeting",
+        "'ll meet"
+       ],
+       "lacks": [
+        "tomorrow"
+       ],
+       "reply": [
+        [
+         "Davi",
+         "Now?! 😱 I'm in class!"
+        ]
+       ],
+       "tip": "Sem expressão de tempo, parece agora. Diga quando: tomorrow."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Davi",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Lembre o compromisso: We're meeting at Bia's house tomorrow!"
+     }
+    },
+    {
+     "id": "thu_p3",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Nina",
+     "time": "1:00 p.m.",
+     "messages": [
+      [
+       "Nina",
+       "You're so busy this week! 😅"
+      ],
+      [
+       "Nina",
+       "Are you free on Saturday?"
+      ]
+     ],
+     "pt": "Confira a sua agenda de sábado (📅).",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "My grandma is arriving on Saturday at 10. But I'm free in the afternoon! 😊",
+       "reply": [
+        [
+         "Nina",
+         "Great! Let's do something in the afternoon! 🙂"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "Yes, I'm free all day!",
+       "reply": [
+        [
+         "Nina",
+         "Really? What about your grandma? 👵"
+        ]
+       ],
+       "tip": "A avó chega no sábado às 10. Você está livre só à tarde."
+      },
+      {
+       "kind": "bad",
+       "text": "Sorry, I'm [[going to a party|indo a uma festa]] on Saturday.",
+       "reply": [
+        [
+         "Nina",
+         "A party? What party?? 👀"
+        ]
+       ],
+       "tip": "Ops! A festa é na sexta e é segredo. No sábado é a avó."
+      }
+     ]
+    },
+    {
+     "id": "thu7",
+     "app": "chat",
+     "thread": "Football Team ⚽",
+     "time": "5:00 p.m.",
+     "messages": [
+      [
+       "Coach",
+       "Good practice, team! 👏"
+      ],
+      [
+       "Coach",
+       "Next week we need a ball. Who can bring one?"
+      ]
+     ],
+     "pt": "Ofereça-se agora.",
+     "blocks": [
+      "Me!",
+      "I",
+      "'ll",
+      "'m going to",
+      "bring it",
+      "bring one",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Me!"
+         },
+         "I",
+         "'ll",
+         "bring one",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Coach",
+         "Thanks! ⚽👍"
+        ]
+       ]
+      },
+      {
+       "kind": "ok",
+       "say": [
+        [
+         {
+          "opt": "Me!"
+         },
+         "I",
+         "'ll",
+         "bring it",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Coach",
+         "Thanks! ⚽👍"
+        ]
+       ],
+       "tip": "Vale! (one = uma bola qualquer; it = uma bola já falada.)"
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         {
+          "opt": "Me!"
+         },
+         "I",
+         "'m going to",
+         "bring one",
+         "!"
+        ],
+        [
+         {
+          "opt": "Me!"
+         },
+         "I",
+         "'m going to",
+         "bring it",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Coach",
+         "Oh, a plan already? Great! 😄"
+        ]
+       ],
+       "tip": "Oferta na hora: I'll bring one!"
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Coach",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Ofereça na hora: I'll bring one!"
+     }
+    },
+    {
+     "id": "thu_p4",
+     "type": "pick",
+     "app": "chat",
+     "thread": "Mom",
+     "time": "5:45 p.m.",
+     "messages": [
+      [
+       "Mom",
+       "Tell me your plan for tomorrow! 🕐 What's first?"
+      ]
+     ],
+     "pt": "Confira a sua agenda (📅). O que vem primeiro?",
+     "outcomes": [
+      {
+       "kind": "ok",
+       "text": "First the cake at the bakery, then the party at Bia's house.",
+       "reply": [
+        [
+         "Mom",
+         "Very [[organized|organizado]]! 😊"
+        ]
+       ]
+      },
+      {
+       "kind": "bad",
+       "text": "First the party, then the cake.",
+       "reply": [
+        [
+         "Mom",
+         "The cake AFTER the party? 😂"
+        ]
+       ],
+       "tip": "Primeiro você busca o bolo e depois vai para a festa."
+      },
+      {
+       "kind": "bad",
+       "text": "First football, then the movies with Nina.",
+       "reply": [
+        [
+         "Mom",
+         "Football? Movies? On Friday? 🤔"
+        ]
+       ],
+       "tip": "Confira a agenda: amanhã é o bolo e depois a festa."
+      }
+     ]
+    },
+    {
+     "id": "thu4",
+     "app": "chat",
+     "thread": "Nina's Party 🤫",
+     "time": "6:00 p.m.",
+     "messages": [
+      [
+       "Kauã",
+       "Guys! The oven is broken, but {name} has a plan! 🦸"
+      ],
+      [
+       "Bia",
+       "What plan? Tell us! 😮"
+      ],
+      [
+       "Davi",
+       "I'll go with you! And I won't be late! 😅"
+      ]
+     ],
+     "pt": "O plano já está marcado com a padaria. Conte para o grupo quando você vai buscar o bolo (confira a agenda 📅).",
+     "blocks": [
+      "I",
+      "'m picking up",
+      "'ll pick up",
+      "the cake",
+      "at the bakery",
+      "tomorrow",
+      "at 4",
+      "at 6",
+      "."
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "if": {
+        "mark": "imprevisto_resolvido",
+        "is": true
+       },
+       "say": [
+        [
+         "I",
+         "'m picking up",
+         "the cake",
+         {
+          "opt": "at the bakery"
+         },
+         {
+          "any": [
+           "tomorrow",
+           "at 4"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Bia",
+         "You're amazing! 💜"
+        ],
+        [
+         "Kauã",
+         "🦸🦸🦸"
+        ]
+       ]
+      },
+      {
+       "kind": "ok",
+       "if": {
+        "mark": "imprevisto_resolvido",
+        "is": false
+       },
+       "say": [
+        [
+         "I",
+         "'m picking up",
+         "the cake",
+         {
+          "opt": "at the bakery"
+         },
+         {
+          "any": [
+           "tomorrow",
+           "at 6"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Bia",
+         "At 6? 🤔 OK... you're amazing! 💜"
+        ],
+        [
+         "Kauã",
+         "🦸🦸🦸"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "if": {
+        "mark": "imprevisto_resolvido",
+        "is": true
+       },
+       "say": [
+        [
+         "I",
+         "'ll pick up",
+         "the cake",
+         {
+          "opt": "at the bakery"
+         },
+         {
+          "any": [
+           "tomorrow",
+           "at 4"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Bia",
+         "OK... is it a plan or just an idea? 🤔"
+        ]
+       ],
+       "tip": "Já está marcado com a padaria: I'm picking up."
+      },
+      {
+       "kind": "warn",
+       "if": {
+        "mark": "imprevisto_resolvido",
+        "is": false
+       },
+       "say": [
+        [
+         "I",
+         "'ll pick up",
+         "the cake",
+         {
+          "opt": "at the bakery"
+         },
+         {
+          "any": [
+           "tomorrow",
+           "at 6"
+          ]
+         },
+         "."
+        ]
+       ],
+       "reply": [
+        [
+         "Bia",
+         "OK... is it a plan or just an idea? 🤔"
+        ]
+       ],
+       "tip": "Já está marcado com a padaria: I'm picking up."
+      },
+      {
+       "kind": "bad",
+       "if": {
+        "mark": "imprevisto_resolvido",
+        "is": true
+       },
+       "has": [
+        "at 6"
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Wait... at 4 or at 6? 🤔"
+        ]
+       ],
+       "tip": "Confira na agenda o horário que você marcou com a padaria: 4 p.m."
+      },
+      {
+       "kind": "bad",
+       "if": {
+        "mark": "imprevisto_resolvido",
+        "is": false
+       },
+       "has": [
+        "at 4"
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Wait... at 4 or at 6? 🤔"
+        ]
+       ],
+       "tip": "Confira na agenda o horário que você marcou com a padaria."
+      },
+      {
+       "kind": "bad",
+       "hasAny": [
+        "'m picking up",
+        "'ll pick up"
+       ],
+       "lacks": [
+        "tomorrow"
+       ],
+       "reply": [
+        [
+         "Bia",
+         "Now? It's 6 p.m.! 😂"
+        ]
+       ],
+       "tip": "Sem expressão de tempo, I'm picking up quer dizer agora. Diga quando: tomorrow."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Bia",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Conte o combinado com a padaria, com dia e hora."
+     }
+    },
+    {
+     "id": "thu8",
+     "app": "chat",
+     "thread": "Grandma",
+     "time": "9:00 p.m.",
+     "messages": [
+      [
+       "Grandma",
+       "Hello, dear! 👵"
+      ],
+      [
+       "Grandma",
+       "What are you doing tomorrow night?"
+      ]
+     ],
+     "pt": "Conte o compromisso de amanhã para a sua avó (ela não é a Nina: pode contar!).",
+     "blocks": [
+      "I",
+      "'m going",
+      "'ll go",
+      "to a party",
+      "at Bia's house",
+      "tomorrow night",
+      "!"
+     ],
+     "outcomes": [
+      {
+       "kind": "ok",
+       "say": [
+        [
+         "I",
+         "'m going",
+         "to a party",
+         {
+          "opt": "at Bia's house"
+         },
+         "tomorrow night",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Grandma",
+         "How nice! Have fun! 🥳"
+        ]
+       ]
+      },
+      {
+       "kind": "warn",
+       "say": [
+        [
+         "I",
+         "'ll go",
+         "to a party",
+         {
+          "opt": "at Bia's house"
+         },
+         "tomorrow night",
+         "!"
+        ]
+       ],
+       "reply": [
+        [
+         "Grandma",
+         "Oh, just an idea? 😊"
+        ]
+       ],
+       "tip": "Já está marcado: I'm going to a party (o going aqui é o verbo go, ir)."
+      },
+      {
+       "kind": "bad",
+       "hasAny": [
+        "'m going",
+        "'ll go"
+       ],
+       "lacks": [
+        "tomorrow night"
+       ],
+       "reply": [
+        [
+         "Grandma",
+         "Now? At 9 p.m.? 😮"
+        ]
+       ],
+       "tip": "Sem expressão de tempo, parece agora. Diga quando: tomorrow night."
+      }
+     ],
+     "fallback": {
+      "reply": [
+       [
+        "Grandma",
+        "Sorry, what? 😅"
+       ]
+      ],
+      "tip": "Conte o compromisso: I'm going to a party at Bia's house tomorrow night!"
+     }
+    }
+   ],
+   "close": {
+    "time": "9:30 p.m.",
+    "tomorrow": "The cake at the bakery 🎂, then the party at Bia's house 🎉. Check your calendar!",
+    "hook": [
+     "💬",
+     "Bia",
+     "9:45 p.m.",
+     "Tomorrow is the BIG day!! 🎉 See you at 6! Don't tell Nina! 🤫"
     ]
    }
   }

@@ -51,6 +51,8 @@ def load_event(slug):
         for t in day["tasks"]:
             for o in t["outcomes"]:
                 if "say" in o: o["say"] = [s for p in o["say"] for s in expand(p)]
+            for o in t["outcomes"]:   # respostas certas com "if": cada uma tem a sua frase-modelo
+                if o["kind"] == "ok" and "say" in o: o["model"] = join_toks(o["say"][0])
             ok = next(o for o in t["outcomes"] if o["kind"] == "ok")
             # tarefa de leitura ("pick"): a resposta certa é a própria frase-modelo
             t["model"] = re.sub(r"\[\[([^|\]]+)\|[^\]]+\]\]", r"\1", ok["text"]) if t.get("type") == "pick" else join_toks(ok["say"][0])

@@ -1079,6 +1079,7 @@ at 4.* · as mesmas com *I'll pick it up* (✅ com 💡)
 | ✅ *I'll pick it up tomorrow at 4.* | **Dona Célia:** Perfect! See you tomorrow at 4! 😊 | `true` | 💡 Vale! Quem marca algo **na hora**, por telefone, diz *I'll pick it up*. Depois de marcado, o combinado vira *I'm picking it up at 4*. |
 | ❌ … *at 6.* | **Dona Célia:** OK! 🙂 *(ela não lembra que fecha às 5...)* | `false` | A padaria fecha **às 5**. Às 6 ela vai estar fechada! |
 | ❌ sem dia e sem hora | **Dona Célia:** Now? The cake isn't ready! 😅 | `false` | Sem expressão de tempo, *I'm picking it up* quer dizer **agora**. Diga quando: *tomorrow at 4*. |
+| ❌ com dia, sem hora | **Dona Célia:** OK, tomorrow! 🙂 | `false` | Faltou a hora! A padaria fecha às 5: marque antes, *at 4*. |
 
 **Calendar:** cria o evento com o que o aluno escreveu:
 `Fri · 4:00 p.m. · Pick up the cake 🎂 (Sweet Corner)` (ou `6:00 p.m.`).
@@ -1166,7 +1167,7 @@ expressões em qualquer ordem; *at the bakery* é opcional). Se o aluno marcou �
 |---|---|---|
 | ✅ *At 5 p.m.* | **Kauã:** OK, at 5! Don't be late! 😅 | — |
 | ❌ *At 6 p.m.* | **Kauã:** 6? Are you sure? That's the party time! 🤔 | A padaria fecha às 5 (*we close at 5 p.m.*). |
-| ❌ *At 4 p.m.* | **Kauã:** 4? But that's your pick-up time! 🤔 | Às 4 você busca o bolo. A padaria fecha às 5. |
+| ❌ *At 4 p.m.* | **Kauã:** 4? Is that the pick-up time? 🤔 | A padaria fecha às 5. Às 4 é a hora boa para buscar o bolo. |
 
 #### M5 · 8:00 a.m. · Chat com a mãe — dinheiro para o bolo *(montar)*
 
